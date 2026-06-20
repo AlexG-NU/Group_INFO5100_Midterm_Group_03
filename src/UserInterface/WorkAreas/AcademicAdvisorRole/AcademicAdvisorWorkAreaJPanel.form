@@ -32,13 +32,13 @@
                           <Component id="jButton9" alignment="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButton11" min="-2" pref="164" max="-2" attributes="0"/>
-                          <Component id="jButton10" min="-2" pref="164" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jButton11" pref="196" max="32767" attributes="0"/>
+                          <Component id="jButton10" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="590" max="32767" attributes="0"/>
+              <EmptySpace pref="558" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

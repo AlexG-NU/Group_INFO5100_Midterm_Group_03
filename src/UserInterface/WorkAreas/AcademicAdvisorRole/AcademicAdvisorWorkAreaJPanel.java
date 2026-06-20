@@ -12,7 +12,8 @@ package UserInterface.WorkAreas.AcademicAdvisorRole;
 
 import UserInterface.WorkAreas.StudentRole.*;
 import Business.Business;
-import Business.Profiles.StudentProfile;
+import Business.Profiles.AcademicAdvisorProfile;
+import UserInterface.WorkAreas.AcademicAdvisorRole.ViewStudentsJPanel;
 import javax.swing.JPanel;
 
 /**
@@ -23,7 +24,7 @@ public class AcademicAdvisorWorkAreaJPanel extends javax.swing.JPanel {
 
     javax.swing.JPanel CardSequencePanel;
     Business business;
-    StudentProfile student;
+    AcademicAdvisorProfile advisor;
 
     /**
      * Creates new form UnitRiskWorkArea
@@ -32,11 +33,11 @@ public class AcademicAdvisorWorkAreaJPanel extends javax.swing.JPanel {
      * @param clp
      */
 
-    public AcademicAdvisorWorkAreaJPanel(Business b, StudentProfile spp, JPanel clp) {
+    public AcademicAdvisorWorkAreaJPanel(Business b, AcademicAdvisorProfile app, JPanel clp) {
 
         business = b;
         this.CardSequencePanel = clp;
-        student = spp;
+        advisor = app;
         initComponents();
 
     }
@@ -146,10 +147,10 @@ public class AcademicAdvisorWorkAreaJPanel extends javax.swing.JPanel {
                             .addComponent(jButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                             .addComponent(jButton9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                         .addGap(75, 75, 75)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(590, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))
+                .addContainerGap(558, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,7 +172,9 @@ public class AcademicAdvisorWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4IdentifyResourceAssetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4IdentifyResourceAssetsActionPerformed
-        
+        ViewStudentsJPanel panel = new ViewStudentsJPanel(business, CardSequencePanel);
+        CardSequencePanel.add("ViewStudentsJPanel", panel);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 
     }//GEN-LAST:event_jButton4IdentifyResourceAssetsActionPerformed
 
