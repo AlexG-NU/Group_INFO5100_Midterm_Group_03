@@ -18,9 +18,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ViewStudentsJPanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ManageSuppliersJPanel
-     */
     JPanel CardSequencePanel;
     Business business;
     UserAccount selectedStudentAccount;
@@ -55,7 +52,7 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
         Object[] row = new Object[3];
         row[0] = ua.getAssociatedPersonProfile().getPerson().getPersonId();
         row[1] = ua;
-        row[2] = ua.getAssociatedPersonProfile().getRole();
+        row[2] = ua.getAssociatedPersonProfile().getPerson().getDepartment();
 
         ((DefaultTableModel) StudentTable.getModel()).addRow(row);
     }
@@ -119,7 +116,7 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Student ID", "Student Name", "Role"
+                "Student ID", "Student Name", "Department"
             }
         ));
         StudentTable.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -173,6 +170,14 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
 
     private void NextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextActionPerformed
         // TODO add your handling code here:
+        if (selectedStudentAccount == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please select a student first.");
+            return;
+        }
+
+        StudentDetailJPanel panel = new StudentDetailJPanel(business, CardSequencePanel, selectedStudentAccount);
+        CardSequencePanel.add("StudentDetailJPanel", panel);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
     }//GEN-LAST:event_NextActionPerformed
 
    
