@@ -66,10 +66,10 @@ public class AdvisorProfileJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(null);
 
-        jLabel1.setText("My Profile");
         jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabel1.setText("Advisor Profile");
         add(jLabel1);
-        jLabel1.setBounds(20, 20, 300, 28);
+        jLabel1.setBounds(30, 20, 300, 28);
 
         Back.setText("<< Back");
         Back.addActionListener(new java.awt.event.ActionListener() {
@@ -78,79 +78,79 @@ public class AdvisorProfileJPanel extends javax.swing.JPanel {
             }
         });
         add(Back);
-        Back.setBounds(30, 420, 90, 23);
+        Back.setBounds(60, 490, 90, 23);
 
         lblRole.setText("Role:");
         add(lblRole);
-        lblRole.setBounds(30, 80, 120, 20);
+        lblRole.setBounds(30, 80, 120, 30);
 
         lblPersonID.setText("Person ID:");
         add(lblPersonID);
-        lblPersonID.setBounds(30, 115, 120, 20);
+        lblPersonID.setBounds(30, 120, 120, 30);
 
         lblName.setText("Name:");
         add(lblName);
-        lblName.setBounds(30, 150, 120, 20);
+        lblName.setBounds(30, 160, 120, 30);
 
         lblNUID.setText("NUID:");
         add(lblNUID);
-        lblNUID.setBounds(30, 185, 120, 20);
+        lblNUID.setBounds(30, 200, 120, 30);
 
         lblEmail.setText("Email:");
         add(lblEmail);
-        lblEmail.setBounds(30, 220, 120, 20);
+        lblEmail.setBounds(30, 240, 120, 30);
 
         lblDepartment.setText("Department:");
         add(lblDepartment);
-        lblDepartment.setBounds(30, 255, 120, 20);
+        lblDepartment.setBounds(30, 280, 120, 30);
 
         lblTitle.setText("Title:");
         add(lblTitle);
-        lblTitle.setBounds(30, 290, 120, 20);
+        lblTitle.setBounds(30, 320, 120, 30);
 
         lblLastAccess.setText("Last Accessed:");
         add(lblLastAccess);
-        lblLastAccess.setBounds(30, 325, 120, 20);
+        lblLastAccess.setBounds(30, 360, 120, 30);
 
         lblLastUpdated.setText("Last Updated:");
         add(lblLastUpdated);
-        lblLastUpdated.setBounds(30, 360, 120, 20);
+        lblLastUpdated.setBounds(30, 400, 120, 30);
 
         txtRole.setEditable(false);
         add(txtRole);
-        txtRole.setBounds(160, 75, 230, 20);
+        txtRole.setBounds(160, 80, 230, 30);
 
         txtPersonID.setEditable(false);
         add(txtPersonID);
-        txtPersonID.setBounds(160, 110, 230, 20);
+        txtPersonID.setBounds(160, 120, 230, 30);
 
         txtName.setEditable(false);
         add(txtName);
-        txtName.setBounds(160, 145, 230, 20);
+        txtName.setBounds(160, 160, 230, 30);
 
         txtNUID.setEditable(false);
         add(txtNUID);
-        txtNUID.setBounds(160, 180, 230, 20);
+        txtNUID.setBounds(160, 200, 230, 30);
 
         txtEmail.setEditable(false);
         add(txtEmail);
-        txtEmail.setBounds(160, 215, 230, 20);
+        txtEmail.setBounds(160, 240, 230, 30);
 
         txtDepartment.setEditable(false);
         add(txtDepartment);
-        txtDepartment.setBounds(160, 250, 230, 20);
+        txtDepartment.setBounds(160, 280, 230, 30);
 
         txtTitle.setEditable(false);
         add(txtTitle);
-        txtTitle.setBounds(160, 285, 230, 20);
+        txtTitle.setBounds(160, 320, 230, 30);
 
         txtLastAccess.setEditable(false);
         add(txtLastAccess);
-        txtLastAccess.setBounds(160, 320, 230, 20);
+        txtLastAccess.setBounds(160, 360, 230, 30);
 
         txtLastUpdated.setEditable(false);
         add(txtLastUpdated);
-        txtLastUpdated.setBounds(160, 355, 230, 20);
+        txtLastUpdated.setBounds(160, 400, 230, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed

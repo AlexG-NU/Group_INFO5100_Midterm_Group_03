@@ -6,6 +6,7 @@
 package UserInterface.WorkAreas.AcademicAdvisorRole;
 
 
+import Business.Advising.AdvisorRecord;
 import Business.Business;
 import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
@@ -33,30 +34,38 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
 
     public void refreshTable() {
 
-//clear supplier table
         int rc = StudentTable.getRowCount();
         int i;
         for (i = rc - 1; i >= 0; i--) {
             ((DefaultTableModel) StudentTable.getModel()).removeRow(i);
         }
 
-
-
         UserAccountDirectory uad = business.getUserAccountDirectory();
 
-       
-
         for (UserAccount ua : uad.getUserAccountList()) {
+            if (ua.getAssociatedPersonProfile().getRole().equals("Student")) {
+                AdvisorRecord record = business.getAdvisorRecordDirectory().getOrCreateRecord(ua);
+                Object[] row = new Object[5];
+                row[0] = ua.getAssociatedPersonProfile().getPerson().getPersonId();
+                row[1] = ua.getAssociatedPersonProfile().getPerson().getFullName();
+                row[2] = ua.getAssociatedPersonProfile().getPerson().getDepartment();
+                row[3] = record.getLastMeetingDate();
+                row[4] = record.getAcademicStanding();
 
-    if (ua.getAssociatedPersonProfile().getRole().equals("Student")) {
-        Object[] row = new Object[3];
-        row[0] = ua.getAssociatedPersonProfile().getPerson().getPersonId();
-        row[1] = ua;
-        row[2] = ua.getAssociatedPersonProfile().getPerson().getDepartment();
-
-        ((DefaultTableModel) StudentTable.getModel()).addRow(row);
-    }
+                ((DefaultTableModel) StudentTable.getModel()).addRow(row);
+            }
         }
+    }
+
+    private UserAccount findStudentAccountByPersonId(String personId) {
+        UserAccountDirectory uad = business.getUserAccountDirectory();
+        for (UserAccount ua : uad.getUserAccountList()) {
+            if (ua.getAssociatedPersonProfile().getRole().equals("Student")
+                    && ua.getAssociatedPersonProfile().getPerson().getPersonId().equals(personId)) {
+                return ua;
+            }
+        }
+        return null;
     }
         
     
@@ -87,7 +96,7 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
             }
         });
         add(Back);
-        Back.setBounds(30, 300, 74, 23);
+        Back.setBounds(30, 300, 74, 30);
 
         Refresh.setText("Refresh");
         Refresh.addActionListener(new java.awt.event.ActionListener() {
@@ -96,7 +105,7 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
             }
         });
         add(Refresh);
-        Refresh.setBounds(120, 300, 80, 23);
+        Refresh.setBounds(120, 300, 80, 30);
 
         jLabel1.setText("Student Directory");
         add(jLabel1);
@@ -109,15 +118,23 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
 
         StudentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Student ID", "Student Name", "Department"
+                "Student ID", "Student Name", "Department", "Last Meeting Date", "Academic Standing"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         StudentTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 StudentTableMousePressed(evt);
@@ -126,7 +143,7 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
         jScrollPane.setViewportView(StudentTable);
 
         add(jScrollPane);
-        jScrollPane.setBounds(30, 110, 550, 130);
+        jScrollPane.setBounds(30, 110, 720, 130);
 
         Next.setText("Next >>");
         Next.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +152,7 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
             }
         });
         add(Next);
-        Next.setBounds(500, 300, 80, 23);
+        Next.setBounds(660, 300, 80, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
@@ -153,17 +170,16 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
 
     private void StudentTableMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StudentTableMousePressed
         // Extracts the row (uaser account) in the table that is selected by the user
-        int size = StudentTable.getRowCount();
+         int size = StudentTable.getRowCount();
         int selectedrow = StudentTable.getSelectionModel().getLeadSelectionIndex();
 
         if (selectedrow < 0 || selectedrow > size - 1) {
             return;
         }
-       selectedStudentAccount = (UserAccount) StudentTable.getValueAt(selectedrow, 1);
+        String personId = (String) StudentTable.getValueAt(selectedrow, 0);
+        selectedStudentAccount = findStudentAccountByPersonId(personId);
         if (selectedStudentAccount == null) {
             return;
-        
-        
         }
     }//GEN-LAST:event_StudentTableMousePressed
 

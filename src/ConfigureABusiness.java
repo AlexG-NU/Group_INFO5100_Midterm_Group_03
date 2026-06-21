@@ -6,6 +6,8 @@
 */
 package Business;
 
+//added by janet
+import Business.Advising.AdvisorRecord;
 import Business.Person.Person;
 import Business.Person.PersonDirectory;
 import Business.Profiles.EmployeeDirectory;
@@ -42,6 +44,7 @@ class ConfigureABusiness {
         person003.setDepartment("Information Systems");
         person003.setTitle("Student");
         
+        
         // Person 4 added by Janet 
         Person person004 = persondirectory.newPerson("Janet Chong");
         person004.setFirstName("Janet");
@@ -77,6 +80,18 @@ class ConfigureABusiness {
         UserAccount ua3 = uadirectory.newUserAccount(employeeprofile0, "admin", "****"); 
         UserAccount ua4 = uadirectory.newUserAccount(studentprofile0, "adam", "****"); 
         UserAccount ua5 = uadirectory.newUserAccount(advisorprofile0, "advisor", "****"); //  4 added by Janet 
+       
+        AdvisorRecord adamRecord = business.getAdvisorRecordDirectory().getOrCreateRecord(ua4);
+        adamRecord.setCreditsCompleted(92);
+        adamRecord.setCreditsRequired(120);
+        adamRecord.setGpa(3.45);
+        adamRecord.setAcademicStanding("On Track");
+        adamRecord.setPotentialGraduationDate("May 2027");
+        adamRecord.setRecommendedCourses("INFO 5100, INFO 6205, Database Design");
+        adamRecord.setAdvisorNotes("Student is progressing well. Review elective planning next meeting.");
+        adamRecord.setLastMeetingDate("2026-06-20");
+        
+        
         return business;
 
     }

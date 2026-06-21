@@ -180,6 +180,9 @@ public class AcademicAdvisorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+        GraduationAuditJPanel panel = new GraduationAuditJPanel(business, CardSequencePanel);
+        CardSequencePanel.add("GraduationAuditJPanel", panel);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 
 
 
@@ -187,6 +190,9 @@ public class AcademicAdvisorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
+        CourseRecommendationsJPanel panel = new CourseRecommendationsJPanel(business, CardSequencePanel);
+        CardSequencePanel.add("CourseRecommendationsJPanel", panel);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 
 
     }//GEN-LAST:event_jButton10ActionPerformed
