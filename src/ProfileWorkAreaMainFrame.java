@@ -15,6 +15,8 @@ import Business.UserAccounts.UserAccountDirectory;
 import UserInterface.WorkAreas.AdminRole.AdminRoleWorkAreaJPanel;
 import UserInterface.WorkAreas.FacultyRole.FacultyWorkAreaJPanel;
 import UserInterface.WorkAreas.StudentRole.StudentWorkAreaJPanel;
+import Business.Profiles.AcademicAdvisorProfile;
+import UserInterface.WorkAreas.AcademicAdvisorRole.AcademicAdvisorWorkAreaJPanel;
 import javax.swing.JPanel;
 
 /**
@@ -143,6 +145,7 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
         StudentWorkAreaJPanel studentworkareajpanel;
         FacultyWorkAreaJPanel facultyworkarea;
         AdminRoleWorkAreaJPanel adminworkarea;
+        AcademicAdvisorWorkAreaJPanel advisorworkarea;
         String r = useraccount.getRole();
         Profile profile = useraccount.getAssociatedPersonProfile();
 
@@ -162,6 +165,16 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
             studentworkareajpanel = new StudentWorkAreaJPanel(business, spp, CardSequencePanel);
             CardSequencePanel.removeAll();
             CardSequencePanel.add("student", studentworkareajpanel);
+            ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+
+        }
+        
+        if (profile instanceof AcademicAdvisorProfile) {
+
+            AcademicAdvisorProfile app = (AcademicAdvisorProfile) profile;
+            advisorworkarea = new AcademicAdvisorWorkAreaJPanel(business, app, CardSequencePanel, useraccount);
+            CardSequencePanel.removeAll();
+            CardSequencePanel.add("Academic Advisor", advisorworkarea);
             ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 
         }
