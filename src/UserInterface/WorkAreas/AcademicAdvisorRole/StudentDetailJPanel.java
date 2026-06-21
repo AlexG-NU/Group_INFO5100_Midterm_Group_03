@@ -37,7 +37,7 @@ public class StudentDetailJPanel extends javax.swing.JPanel {
     txtEmail.setText(selectedStudentAccount.getAssociatedPersonProfile().getPerson().getEmail());
     txtNUID.setText(selectedStudentAccount.getAssociatedPersonProfile().getPerson().getNuid());
     txtDepartment.setText(selectedStudentAccount.getAssociatedPersonProfile().getPerson().getDepartment());
-    txtAdvisorNotes.setText("Review academic progress and course planning with this student.");
+    txtAdvisorNotes.setText("Student requested meeting to review academic progress and course planning with this student.");
 }
        
     /**
@@ -161,6 +161,8 @@ public class StudentDetailJPanel extends javax.swing.JPanel {
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
+         CardSequencePanel.remove(this);
+    ((java.awt.CardLayout) CardSequencePanel.getLayout()).previous(CardSequencePanel);
         
 
     }//GEN-LAST:event_BackActionPerformed

@@ -172,7 +172,7 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
         if (profile instanceof AcademicAdvisorProfile) {
 
             AcademicAdvisorProfile app = (AcademicAdvisorProfile) profile;
-            advisorworkarea = new AcademicAdvisorWorkAreaJPanel(business, app, CardSequencePanel);
+            advisorworkarea = new AcademicAdvisorWorkAreaJPanel(business, app, CardSequencePanel, useraccount);
             CardSequencePanel.removeAll();
             CardSequencePanel.add("Academic Advisor", advisorworkarea);
             ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);

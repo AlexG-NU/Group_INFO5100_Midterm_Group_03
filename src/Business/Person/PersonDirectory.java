@@ -28,6 +28,14 @@ public class PersonDirectory {
         return p;
     }
 
+    public void removePerson(Person p) {
+        personlist.remove(p);
+    }
+
+    public ArrayList<Person> getPersonList() {
+        return personlist;
+    }
+
     public Person findPerson(String id) {
 
         for (Person p : personlist) {
@@ -38,5 +46,17 @@ public class PersonDirectory {
         }
             return null; //not found after going through the whole list
          }
+    
+
+    public Person findPersonByNUID(String nuid) {
+
+        for (Person p : personlist) {
+
+            if (p.getNuid() != null && p.getNuid().equals(nuid)) {
+                return p;
+            }
+        }
+        return null;
+    }
     
 }

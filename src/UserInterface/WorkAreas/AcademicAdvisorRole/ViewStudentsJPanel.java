@@ -98,10 +98,9 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
         add(Refresh);
         Refresh.setBounds(120, 300, 80, 23);
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setText("Student Directory");
         add(jLabel1);
-        jLabel1.setBounds(30, 90, 190, 19);
+        jLabel1.setBounds(30, 90, 190, 16);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel2.setText("View Students");
@@ -143,7 +142,7 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         CardSequencePanel.remove(this);
         ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
- //       ((java.awt.CardLayout)CardSequencePanel.getLayout()).show(CardSequencePanel, "IdentifyEventTypes");
+ //     
 
     }//GEN-LAST:event_BackActionPerformed
 

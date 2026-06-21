@@ -3,42 +3,42 @@
  * and open the template in the editor.
  */
 
- /*
- * WorkAreaJPanel.java
- *
- * Created on May 17, 2020, 8:35:29 AM
- */
+
 package UserInterface.WorkAreas.AcademicAdvisorRole;
 
-import UserInterface.WorkAreas.StudentRole.*;
+
 import Business.Business;
 import Business.Profiles.AcademicAdvisorProfile;
 import UserInterface.WorkAreas.AcademicAdvisorRole.ViewStudentsJPanel;
+import UserInterface.WorkAreas.AcademicAdvisorRole.AdvisorProfileJPanel;
+import Business.UserAccounts.UserAccount;
 import javax.swing.JPanel;
 
 /**
  *
- * @author kal
+ * @author janet
  */
 public class AcademicAdvisorWorkAreaJPanel extends javax.swing.JPanel {
 
     javax.swing.JPanel CardSequencePanel;
     Business business;
     AcademicAdvisorProfile advisor;
+    UserAccount useraccount;
 
     /**
-     * Creates new form UnitRiskWorkArea
+     
      * @param b
      * @param spp
      * @param clp
      */
 
-    public AcademicAdvisorWorkAreaJPanel(Business b, AcademicAdvisorProfile app, JPanel clp) {
+    public AcademicAdvisorWorkAreaJPanel(Business b, AcademicAdvisorProfile app, JPanel clp, UserAccount ua) {
+            business = b;
+            this.CardSequencePanel = clp;
+            advisor = app;
+            useraccount = ua;
+            initComponents();
 
-        business = b;
-        this.CardSequencePanel = clp;
-        advisor = app;
-        initComponents();
 
     }
 
@@ -165,9 +165,9 @@ public class AcademicAdvisorWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
+                .addGap(53, 53, 53)
                 .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -199,6 +199,9 @@ public class AcademicAdvisorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
+         AdvisorProfileJPanel panel = new AdvisorProfileJPanel(useraccount, CardSequencePanel);
+        CardSequencePanel.add("AdvisorProfileJPanel", panel);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
     }//GEN-LAST:event_jButton12ActionPerformed
 
 
