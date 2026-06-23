@@ -79,7 +79,7 @@
                       <Component id="lblSectionAdvisor" min="-2" pref="250" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="lblLastMeetingDate" min="-2" pref="140" max="-2" attributes="0"/>
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="txtLastMeetingDate" min="-2" pref="200" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -152,11 +152,11 @@
               <EmptySpace min="34" pref="34" max="-2" attributes="0"/>
               <Component id="lblSectionAdvisor" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblLastMeetingDate" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtLastMeetingDate" min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblLastMeetingDate" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="txtLastMeetingDate" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblRecommendedCourses" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="55" max="-2" attributes="0"/>
@@ -166,7 +166,7 @@
                   <Component id="lblAdvisorNotes" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="74" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="37" max="32767" attributes="0"/>
+              <EmptySpace pref="34" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Back" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="btnEditRecommendations" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
