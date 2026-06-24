@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package info5100.university.example.Degree;
+package Degree;
 
-import info5100.university.example.CourseCatalog.Course;
-import info5100.university.example.CourseSchedule.SeatAssignment;
-import info5100.university.example.Persona.StudentProfile;
+import CourseCatalog.Course;
+import CourseSchedule.SeatAssignment;
+import Persona.StudentProfile;
 import java.util.ArrayList;
 
 /**

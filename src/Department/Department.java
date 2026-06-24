@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package info5100.university.example.Department;
+package Department;
 
-import info5100.university.example.CourseCatalog.Course;
-import info5100.university.example.CourseCatalog.CourseCatalog;
-import info5100.university.example.CourseSchedule.CourseLoad;
-import info5100.university.example.CourseSchedule.CourseOffer;
-import info5100.university.example.CourseSchedule.CourseSchedule;
-import info5100.university.example.Degree.Degree;
-import info5100.university.example.Employer.EmployerDirectory;
-import info5100.university.example.Persona.Faculty.FacultyDirectory;
-import info5100.university.example.Persona.PersonDirectory;
-import info5100.university.example.Persona.StudentDirectory;
-import info5100.university.example.Persona.StudentProfile;
+import CourseCatalog.Course;
+import CourseCatalog.CourseCatalog;
+import CourseSchedule.CourseLoad;
+import CourseSchedule.CourseOffer;
+import CourseSchedule.CourseSchedule;
+import Degree.Degree;
+import Employer.EmployerDirectory;
+import Persona.Faculty.FacultyDirectory;
+import Persona.PersonDirectory;
+import Persona.StudentDirectory;
+import Persona.StudentProfile;
 import java.util.HashMap;
 
 /**

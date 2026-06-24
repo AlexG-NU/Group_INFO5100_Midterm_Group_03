@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package info5100.university.example.Employer;
+package Employer;
 
-import info5100.university.example.Persona.Faculty.*;
-import info5100.university.example.Persona.*;
-import info5100.university.example.Department.Department;
+import Persona.Faculty.*;
+import Persona.*;
+import Department.Department;
 import java.util.ArrayList;
 
 /**

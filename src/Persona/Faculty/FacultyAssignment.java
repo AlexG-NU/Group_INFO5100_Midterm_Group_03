@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package info5100.university.example.Persona.Faculty;
+package Persona.Faculty;
 
-import info5100.university.example.CourseSchedule.CourseOffer;
+import CourseSchedule.CourseOffer;
 
 /**
  *

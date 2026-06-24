@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package info5100.university.example;
 
-import info5100.university.example.CourseCatalog.Course;
-import info5100.university.example.CourseCatalog.CourseCatalog;
-import info5100.university.example.CourseSchedule.CourseLoad;
-import info5100.university.example.CourseSchedule.CourseOffer;
-import info5100.university.example.CourseSchedule.CourseSchedule;
-import info5100.university.example.Department.Department;
-import info5100.university.example.Persona.Person;
-import info5100.university.example.Persona.PersonDirectory;
-import info5100.university.example.Persona.StudentDirectory;
-import info5100.university.example.Persona.StudentProfile;
+
+import CourseCatalog.Course;
+import CourseCatalog.CourseCatalog;
+import CourseSchedule.CourseLoad;
+import CourseSchedule.CourseOffer;
+import CourseSchedule.CourseSchedule;
+import Department.Department;
+import Persona.Person;
+import Persona.PersonDirectory;
+import Persona.StudentDirectory;
+import Persona.StudentProfile;
 
 /**
  *
