@@ -146,7 +146,9 @@ public class StudentCourseworkJPanel extends JPanel {
         java.awt.Container parent = getParent();
         
         if(parent != null && parent.getLayout() instanceof java.awt.CardLayout){
-            ((java.awt.CardLayout) parent.getLayout()).previous(parent);
+            ((java.awt.CardLayout) parent.getLayout()).show(parent, "student");
+            parent.revalidate();
+            parent.repaint();
         }
     }
 }
