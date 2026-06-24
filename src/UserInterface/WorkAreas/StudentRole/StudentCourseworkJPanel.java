@@ -30,6 +30,7 @@ public class StudentCourseworkJPanel extends JPanel {
     private JTextArea txtSubmission;
     private JButton btnSubmit;
     private JButton btnRefresh;
+    private JButton btnBack;
 
     public StudentCourseworkJPanel() {
         courseworkList = new ArrayList<>();
@@ -68,16 +69,20 @@ public class StudentCourseworkJPanel extends JPanel {
         JScrollPane submissionScrollPane = new JScrollPane(txtSubmission);
         bottomPanel.add(submissionScrollPane, BorderLayout.CENTER);
 
-        JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 3));
 
         btnSubmit = new JButton("Submit Assignment");
         btnSubmit.addActionListener(e -> submitSelectedAssignment());
 
         btnRefresh = new JButton("Refresh");
         btnRefresh.addActionListener(e -> populateCourseworkTable());
+        
+        btnBack = new JButton("Back");
+        btnBack.addActionListener(e -> goBack());
 
         buttonPanel.add(btnSubmit);
         buttonPanel.add(btnRefresh);
+        buttonPanel.add(btnBack);
 
         bottomPanel.add(buttonPanel, BorderLayout.SOUTH);
 
@@ -135,6 +140,13 @@ public class StudentCourseworkJPanel extends JPanel {
             JOptionPane.showMessageDialog(this, "Assignment submitted successfully.");
         } catch (IllegalArgumentException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+    private void goBack() {
+        java.awt.Container parent = getParent();
+        
+        if(parent != null && parent.getLayout() instanceof java.awt.CardLayout){
+            ((java.awt.CardLayout) parent.getLayout()).previous(parent);
         }
     }
 }

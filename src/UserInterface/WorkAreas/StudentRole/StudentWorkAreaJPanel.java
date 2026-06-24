@@ -170,7 +170,11 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4IdentifyResourceAssetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4IdentifyResourceAssetsActionPerformed
-        
+        StudentCourseworkJPanel panel = new StudentCourseworkJPanel();
+        CardSequencePanel.add("StudentCoursework", panel);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+        CardSequencePanel.revalidate();
+        CardSequencePanel.repaint();
 
     }//GEN-LAST:event_jButton4IdentifyResourceAssetsActionPerformed
 
