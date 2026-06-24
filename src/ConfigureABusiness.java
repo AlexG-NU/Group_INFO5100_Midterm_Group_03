@@ -4,9 +4,9 @@
  * and open the template in the editor.
 
 */
-package Business;
 
 //added by janet
+import Business.Business;
 import Business.Advising.AdvisorRecord;
 import Business.Person.Person;
 import Business.Person.PersonDirectory;
