@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * StudentTranscriptJPanel allows student users to review completed courses,
  * grades, credits earned, and GPA.
  *
- * Author: Connor Ewart
+ * Author: @connorewart
  */
 public class StudentTranscriptJPanel extends JPanel {
 

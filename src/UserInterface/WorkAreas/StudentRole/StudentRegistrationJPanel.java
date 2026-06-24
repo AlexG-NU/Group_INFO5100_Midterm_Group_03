@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * StudentRegistrationJPanel allows student users to view available courses,
  * register for courses, drop registered courses, and view current registration.
  *
- * Author: Connor Ewart
+ * Author: @connorewart
  */
 public class StudentRegistrationJPanel extends JPanel {
 

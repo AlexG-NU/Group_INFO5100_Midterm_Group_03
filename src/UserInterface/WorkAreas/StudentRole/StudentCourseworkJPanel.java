@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  * StudentCourseworkJPanel allows student users to view coursework,
  * submit assignments, and track assignment progress.
  *
- * Author: Connor Ewart
+ * Author: @connorewart
  */
 public class StudentCourseworkJPanel extends JPanel {
 
