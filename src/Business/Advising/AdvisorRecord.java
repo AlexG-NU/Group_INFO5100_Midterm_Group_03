@@ -1,6 +1,15 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Business.Advising;
 
 import Business.UserAccounts.UserAccount;
+
+/**
+ *
+ * @author janet
+ */
 
 public class AdvisorRecord {
 
@@ -32,6 +41,10 @@ public class AdvisorRecord {
 
     public String getStudentId() {
         return studentAccount.getAssociatedPersonProfile().getPerson().getPersonId();
+    }
+
+    public String getStudentNuid() {
+        return studentAccount.getAssociatedPersonProfile().getPerson().getNuid();
     }
 
     public String getStudentName() {
@@ -76,6 +89,16 @@ public class AdvisorRecord {
 
     public void setAcademicStanding(String academicStanding) {
         this.academicStanding = academicStanding;
+    }
+
+    public String getGraduationStatus() {
+        if (getRemainingCredits() == 0) {
+            return "Eligible to Graduate";
+        }
+        if (getRemainingCredits() <= 15) {
+            return "Near Completion";
+        }
+        return "In Progress";
     }
 
     public String getPotentialGraduationDate() {
