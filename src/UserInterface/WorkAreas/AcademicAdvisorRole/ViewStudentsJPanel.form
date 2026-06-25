@@ -85,7 +85,7 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="5" rowCount="4">
-                <Column editable="false" title="Student ID" type="java.lang.Object"/>
+                <Column editable="false" title="NUID" type="java.lang.Object"/>
                 <Column editable="false" title="Student Name" type="java.lang.Object"/>
                 <Column editable="false" title="Department" type="java.lang.Object"/>
                 <Column editable="false" title="Last Meeting Date" type="java.lang.Object"/>

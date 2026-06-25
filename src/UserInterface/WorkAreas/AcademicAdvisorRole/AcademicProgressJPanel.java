@@ -30,7 +30,7 @@ public class AcademicProgressJPanel extends javax.swing.JPanel {
             if (ua.getAssociatedPersonProfile().getRole().equals("Student")) {
                 AdvisorRecord record = business.getAdvisorRecordDirectory().getOrCreateRecord(ua);
                 Object[] row = new Object[6];
-                row[0] = record.getStudentId();
+                row[0] = record.getStudentNuid();
                 row[1] = record.getStudentName();
                 row[2] = record.getCreditsCompleted();
                 row[3] = record.getGpa();
@@ -72,7 +72,7 @@ public class AcademicProgressJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Student ID", "Student Name", "Credits Completed", "GPA", "Academic Standing", "Last Meeting Date"
+                "NUID", "Student Name", "Credits Completed", "GPA", "Academic Standing", "Last Meeting Date"
             }
         ) {
             boolean[] canEdit = new boolean [] {
