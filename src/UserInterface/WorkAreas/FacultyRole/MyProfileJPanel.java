@@ -35,6 +35,8 @@ public class MyProfileJPanel extends javax.swing.JPanel {
         txtName.setText(person.getFullName());
         txtEmail.setText(person.getEmail());
         txtDepartment.setText(person.getDepartment());
+        txtPhone.setText(person.getPhone());
+        txtProfileTitle.setText(person.getTitle());
     }
 
     /**
@@ -48,8 +50,6 @@ public class MyProfileJPanel extends javax.swing.JPanel {
 
         lblTitle = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
-        MyProfileTable = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         lblFacultyID = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         lblName = new javax.swing.JLabel();
@@ -59,7 +59,12 @@ public class MyProfileJPanel extends javax.swing.JPanel {
         txtName = new javax.swing.JTextField();
         txtDepartment = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
+        txtPhone = new javax.swing.JTextField();
+        lblPhone = new javax.swing.JLabel();
+        txtProfileTitle = new javax.swing.JTextField();
+        lblTitleProfile = new javax.swing.JLabel();
 
+        lblTitle.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
         lblTitle.setText("My Profile");
 
         btnBack.setText("<< Back");
@@ -69,19 +74,6 @@ public class MyProfileJPanel extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        MyProfileTable.setViewportView(jTable1);
-
         lblFacultyID.setText("Faculty ID");
 
         lblName.setText("Name");
@@ -90,6 +82,9 @@ public class MyProfileJPanel extends javax.swing.JPanel {
 
         lblEmail.setText("Email ");
 
+        txtFacultyID.setEditable(false);
+
+        txtDepartment.setEditable(false);
         txtDepartment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDepartmentActionPerformed(evt);
@@ -97,31 +92,22 @@ public class MyProfileJPanel extends javax.swing.JPanel {
         });
 
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        lblPhone.setText("Phone ");
+
+        txtProfileTitle.setEditable(false);
+
+        lblTitleProfile.setText("Title");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(MyProfileTable, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBack)
-                                .addGap(169, 169, 169)
-                                .addComponent(lblTitle))
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblFacultyID)
-                                .addGap(247, 247, 247)
-                                .addComponent(lblName))
-                            .addComponent(lblEmail)
-                            .addComponent(txtFacultyID, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,11 +115,30 @@ public class MyProfileJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblDepartment)
-                            .addComponent(txtDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtProfileTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTitleProfile))
                         .addGap(165, 165, 165))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnUpdate)
                         .addGap(48, 48, 48))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPhone)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnBack)
+                        .addGap(169, 169, 169)
+                        .addComponent(lblTitle))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblFacultyID)
+                        .addGap(247, 247, 247)
+                        .addComponent(lblName))
+                    .addComponent(lblEmail)
+                    .addComponent(txtFacultyID, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(249, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,9 +165,17 @@ public class MyProfileJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(MyProfileTable, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTitleProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtProfileTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addComponent(btnUpdate)
                 .addGap(9, 9, 9))
         );
@@ -181,20 +194,42 @@ public class MyProfileJPanel extends javax.swing.JPanel {
         layout.next(CardSequencePanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        Person person = facultyProfile.getPerson();
+        
+        person.setEmail(txtEmail.getText());
+        person.setPhone(txtPhone.getText());
+        
+        String fullName = txtName.getText().trim();
+        int space = fullName.indexOf(' ');
+        if (space>0){
+            person.setFirstName(fullName.substring(0,space));
+            person.setLastName(fullName.substring(space +1));
+            
+        } else{
+            person.setFirstName(fullName);
+            person.setLastName("");
+        }
+        javax.swing.JOptionPane.showMessageDialog(this, "Profile updated successfully.");
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane MyProfileTable;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblDepartment;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblFacultyID;
     private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblPhone;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblTitleProfile;
     private javax.swing.JTextField txtDepartment;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFacultyID;
     private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPhone;
+    private javax.swing.JTextField txtProfileTitle;
     // End of variables declaration//GEN-END:variables
 }
