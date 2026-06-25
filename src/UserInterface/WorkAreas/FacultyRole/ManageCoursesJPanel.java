@@ -10,6 +10,7 @@ import CourseCatalog.CourseCatalog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Business.Profiles.FacultyProfile;
 
 /**
  *
@@ -20,14 +21,15 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
     private Business business;
     private JPanel CardSequencePanel;
     private CourseCatalog courseCatalog;
+    private FacultyProfile facultyProfile;
 
     /**
      * Creates new form ManageCoursesJPanel
      */
-    public ManageCoursesJPanel(Business business, JPanel CardSequencePanel) {
+    public ManageCoursesJPanel(Business business, FacultyProfile facultyProfile, JPanel CardSequencePanel) {
         this.business=business;
         this.CardSequencePanel= CardSequencePanel;
-        
+        this.facultyProfile= facultyProfile;
         this.courseCatalog = business.getDepartment().getCourseCatalog();
         
         initComponents();
@@ -131,7 +133,7 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
     CardSequencePanel.removeAll();
-    FacultyWorkAreaJPanel facultyWorkArea = new FacultyWorkAreaJPanel(business, CardSequencePanel);
+    FacultyWorkAreaJPanel facultyWorkArea = new FacultyWorkAreaJPanel(business,facultyProfile, CardSequencePanel);
     CardSequencePanel.add("FacultyWorkArea", facultyWorkArea);
     java.awt.CardLayout layout = (java.awt.CardLayout) CardSequencePanel.getLayout();
     layout.next(CardSequencePanel);
