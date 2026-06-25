@@ -4,19 +4,36 @@
  */
 package UserInterface.WorkAreas.FacultyRole;
 
+import Business.Business;
+import CourseCatalog.Course;
+import CourseCatalog.CourseCatalog;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author abhit
  */
 public class ManageCoursesJPanel extends javax.swing.JPanel {
 
+    private Business business;
+    private JPanel CardSequencePanel;
+    private CourseCatalog courseCatalog;
+
     /**
      * Creates new form ManageCoursesJPanel
      */
-    public ManageCoursesJPanel() {
-        initComponents();
+    public ManageCoursesJPanel(Business business, JPanel CardSequencePanel) {
+        this.business=business;
+        this.CardSequencePanel= CardSequencePanel;
+        
+        
+        
+        
+       
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,7 +62,7 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Course ID", "Course Name", "Description", "Credits"
+                "Course ID", "Course Name", "Price", "Credits"
             }
         ));
         jScrollPane1.setViewportView(CourseTable);
@@ -53,6 +70,11 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
         btnViewDetails.setText("View/Update");
 
         btnBack.setText("<< Back ");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -83,6 +105,13 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
 
         add(jPanel1, "card2");
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+    CardSequencePanel.remove(this);
+    java.awt.CardLayout layout = (java.awt.CardLayout) CardSequencePanel.getLayout();
+    layout.previous(CardSequencePanel);
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

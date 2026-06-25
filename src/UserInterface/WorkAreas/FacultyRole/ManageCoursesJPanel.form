@@ -74,7 +74,7 @@
                   <Table columnCount="4" rowCount="4">
                     <Column editable="true" title="Course ID" type="java.lang.Object"/>
                     <Column editable="true" title="Course Name" type="java.lang.Object"/>
-                    <Column editable="true" title="Description" type="java.lang.Object"/>
+                    <Column editable="true" title="Price" type="java.lang.Object"/>
                     <Column editable="true" title="Credits" type="java.lang.Object"/>
                   </Table>
                 </Property>
@@ -118,6 +118,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&lt;&lt; Back "/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
