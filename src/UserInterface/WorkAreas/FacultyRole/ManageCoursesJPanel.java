@@ -28,10 +28,27 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
         this.business=business;
         this.CardSequencePanel= CardSequencePanel;
         
+        this.courseCatalog = business.getDepartment().getCourseCatalog();
+        
+        initComponents();
+        populateTable();
         
         
         
-       
+       }
+    
+    private void populateTable(){
+        DefaultTableModel model = (DefaultTableModel) CourseTable.getModel();
+        model.setRowCount(0);
+        
+        for (Course c : courseCatalog.getCourseList()){
+            Object[] row = new Object [4];
+            row[0]= c.getCOurseNumber();
+            row[1]= c.getName();
+            row[2]= c.getCoursePrice();
+            row[3]= c.getCredits();
+            model.addRow(row);
+        }
     }
     
     /**
@@ -68,6 +85,11 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(CourseTable);
 
         btnViewDetails.setText("View/Update");
+        btnViewDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewDetailsActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("<< Back ");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -108,10 +130,48 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-    CardSequencePanel.remove(this);
+    CardSequencePanel.removeAll();
+    FacultyWorkAreaJPanel facultyWorkArea = new FacultyWorkAreaJPanel(business, CardSequencePanel);
+    CardSequencePanel.add("FacultyWorkArea", facultyWorkArea);
     java.awt.CardLayout layout = (java.awt.CardLayout) CardSequencePanel.getLayout();
-    layout.previous(CardSequencePanel);
+    layout.next(CardSequencePanel);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnViewDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDetailsActionPerformed
+        // TODO add your handling code here:
+     int selectedRow = CourseTable.getSelectedRow();
+if (selectedRow < 0) {
+    JOptionPane.showMessageDialog(this, "Please select a course first.");
+    return;
+}
+
+String courseId = (String) CourseTable.getValueAt(selectedRow, 0);
+Course c = courseCatalog.getCourseByNumber(courseId);
+if (c == null) {
+    JOptionPane.showMessageDialog(this, "Course not found.");
+    return;
+}
+
+String newName = JOptionPane.showInputDialog(this, "Course Name:", c.getName());
+if (newName == null) return;
+
+String creditsStr = JOptionPane.showInputDialog(this, "Credits:", c.getCredits());
+if (creditsStr == null) return;
+
+int newCredits;
+try {
+    newCredits = Integer.parseInt(creditsStr.trim());
+} catch (NumberFormatException ex) {
+    JOptionPane.showMessageDialog(this, "Credits must be a whole number.");
+    return;
+}
+
+c.setName(newName);
+c.setCredits(newCredits);
+
+populateTable();
+JOptionPane.showMessageDialog(this, "Course updated.");   
+    }//GEN-LAST:event_btnViewDetailsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

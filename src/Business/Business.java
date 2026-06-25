@@ -9,6 +9,7 @@ import Business.Advising.AdvisorRecordDirectory;
 import Business.Person.PersonDirectory;
 import Business.Profiles.EmployeeDirectory;
 import Business.Profiles.StudentDirectory;
+import Department.Department;
 
 import Business.UserAccounts.UserAccountDirectory;
 
@@ -25,6 +26,7 @@ public class Business {
     UserAccountDirectory useraccountdirectory;
     StudentDirectory studentdirectory;
     AdvisorRecordDirectory advisorrecorddirectory;
+    Department department;
     
 
 
@@ -36,6 +38,7 @@ public class Business {
         useraccountdirectory = new UserAccountDirectory();
         studentdirectory = new StudentDirectory();
         advisorrecorddirectory = new AdvisorRecordDirectory();
+        department = new Department ("MSIS");
 
 
     }
@@ -59,6 +62,10 @@ public class Business {
 
     public AdvisorRecordDirectory getAdvisorRecordDirectory() {
         return advisorrecorddirectory;
+    }
+    
+    public Department getDepartment(){
+        return department;
     }
 
 }

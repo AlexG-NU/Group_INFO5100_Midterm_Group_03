@@ -15,7 +15,8 @@ import Business.Profiles.EmployeeProfile;
 import Business.Profiles.StudentDirectory;
 import Business.Profiles.StudentProfile;
 import Business.Profiles.AcademicAdvisorProfile;
-
+//added by Abhi
+import Business.Profiles.FacultyProfile;
 import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
 
@@ -90,6 +91,25 @@ class ConfigureABusiness {
         adamRecord.setRecommendedCourses("INFO 5100, INFO 6205, Database Design");
         adamRecord.setAdvisorNotes("Student is progressing well. Review elective planning next meeting.");
         adamRecord.setLastMeetingDate("2026-06-20");
+        
+        //creating Courses by Abhi
+        
+        business.getDepartment().getCourseCatalog().newCourse("Application Engineering and Design", "INFO5100", 4);
+        business.getDepartment().getCourseCatalog().newCourse("Process Design", "INFO5200", 4);
+        business.getDepartment().getCourseCatalog().newCourse("Database Management", "INFO5300", 4);
+        
+        //creating faculty user
+        Person person010 = persondirectory.newPerson("Maria Garcia");
+        person010.setFirstName("Maria");
+        person010.setLastName("Garcia");
+        person010.setEmail("maria.garcia@northeastern.edu");
+        person010.setPhone("978-333-2222");
+        person010.setNuid("21000032");
+        person010.setDepartment("Information Systems");
+        person010.setTitle("Faculty");
+        
+        FacultyProfile facultyprofile0 = new FacultyProfile(person010);
+        UserAccount ua6 = uadirectory.newUserAccount(facultyprofile0,"maria", "****");
         
         
         return business;
