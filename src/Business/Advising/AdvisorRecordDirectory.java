@@ -26,18 +26,33 @@ public class AdvisorRecordDirectory {
     }
 
     public AdvisorRecord getOrCreateRecord(UserAccount studentAccount) {
-        AdvisorRecord existing = findRecordByStudentAccount(studentAccount);
+        AdvisorRecord existing = findRecordByUserAccount(studentAccount);
         if (existing != null) {
             return existing;
         }
+
         AdvisorRecord record = new AdvisorRecord(studentAccount);
         advisorRecords.add(record);
         return record;
     }
 
-    public AdvisorRecord findRecordByStudentAccount(UserAccount studentAccount) {
+    public AdvisorRecord findRecordByUserAccount(UserAccount studentAccount) {
+        if (studentAccount == null) {
+            return null;
+        }
+
+        String nuid = studentAccount.getAssociatedPersonProfile().getPerson().getNuid();
+        AdvisorRecord byNuid = findRecordByStudentNuid(nuid);
+        if (byNuid != null) {
+            return byNuid;
+        }
+
+        return findRecordByStudentId(studentAccount.getAssociatedPersonProfile().getPerson().getPersonId());
+    }
+
+    public AdvisorRecord findRecordByStudentId(String studentId) {
         for (AdvisorRecord record : advisorRecords) {
-            if (record.getStudentAccount() == studentAccount) {
+            if (record.getStudentId().equals(studentId)) {
                 return record;
             }
         }
@@ -45,17 +60,12 @@ public class AdvisorRecordDirectory {
     }
 
     public AdvisorRecord findRecordByStudentNuid(String nuid) {
+        if (nuid == null) {
+            return null;
+        }
+
         for (AdvisorRecord record : advisorRecords) {
             if (record.getStudentNuid().equals(nuid)) {
-                return record;
-            }
-        }
-        return null;
-    }
-
-    public AdvisorRecord findRecordByStudentId(String studentId) {
-        for (AdvisorRecord record : advisorRecords) {
-            if (record.getStudentId().equals(studentId)) {
                 return record;
             }
         }

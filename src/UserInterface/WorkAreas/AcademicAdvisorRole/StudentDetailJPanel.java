@@ -28,7 +28,7 @@ public class StudentDetailJPanel extends javax.swing.JPanel {
         displayStudentDetails();
     }
 
-    private void displayStudentDetails() {
+    public void displayStudentDetails() {
         if (selectedStudentAccount == null) {
             return;
         }
@@ -111,7 +111,7 @@ public class StudentDetailJPanel extends javax.swing.JPanel {
         lblSectionStudent.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblSectionStudent.setText("Student Information");
 
-        lblStudentId.setText("Student ID:");
+        lblStudentId.setText("Person ID:");
 
         txtStudentId.setEditable(false);
 
@@ -165,6 +165,7 @@ public class StudentDetailJPanel extends javax.swing.JPanel {
 
         txtRecommendedCourses.setEditable(false);
         txtRecommendedCourses.setColumns(20);
+        txtRecommendedCourses.setLineWrap(true);
         txtRecommendedCourses.setRows(5);
         jScrollPane1.setViewportView(txtRecommendedCourses);
 
@@ -172,10 +173,11 @@ public class StudentDetailJPanel extends javax.swing.JPanel {
 
         txtAdvisorNotes.setEditable(false);
         txtAdvisorNotes.setColumns(20);
+        txtAdvisorNotes.setLineWrap(true);
         txtAdvisorNotes.setRows(5);
         jScrollPane2.setViewportView(txtAdvisorNotes);
 
-        btnEditRecommendations.setText("Edit");
+        btnEditRecommendations.setText("Edit Latest Advisor Information");
         btnEditRecommendations.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditRecommendationsActionPerformed(evt);
@@ -252,7 +254,7 @@ public class StudentDetailJPanel extends javax.swing.JPanel {
                             .addGap(61, 61, 61)
                             .addComponent(Back, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(19, 19, 19)
-                            .addComponent(btnEditRecommendations, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnEditRecommendations, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(139, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -325,9 +327,9 @@ public class StudentDetailJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_BackActionPerformed
 
     private void btnEditRecommendationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditRecommendationsActionPerformed
-        CourseRecommendationsJPanel panel = new CourseRecommendationsJPanel(business, CardSequencePanel, selectedStudentAccount);
+ CourseRecommendationsJPanel panel = new CourseRecommendationsJPanel(business, CardSequencePanel, selectedStudentAccount);
         CardSequencePanel.add("CourseRecommendationsJPanel", panel);
-        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);   
     }//GEN-LAST:event_btnEditRecommendationsActionPerformed
 
 

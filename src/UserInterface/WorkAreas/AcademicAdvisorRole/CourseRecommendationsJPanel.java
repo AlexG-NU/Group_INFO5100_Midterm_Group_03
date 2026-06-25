@@ -4,6 +4,8 @@ import Business.Advising.AdvisorRecord;
 import Business.Business;
 import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
+import UserInterface.WorkAreas.AcademicAdvisorRole.StudentDetailJPanel;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -13,10 +15,12 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
     JPanel CardSequencePanel;
     Business business;
     AdvisorRecord selectedRecord;
+    UserAccount selectedStudentAccount;
 
     public CourseRecommendationsJPanel(Business bz, JPanel jp) {
         this.business = bz;
         this.CardSequencePanel = jp;
+        this.selectedStudentAccount = null;
         initComponents();
         loadAvailableCourses();
         refreshTable();
@@ -26,6 +30,7 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
     public CourseRecommendationsJPanel(Business bz, JPanel jp, UserAccount selectedStudentAccount) {
         this.business = bz;
         this.CardSequencePanel = jp;
+        this.selectedStudentAccount = selectedStudentAccount;
         initComponents();
         loadAvailableCourses();
         refreshTable();
@@ -74,6 +79,9 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
 
     private void displayRecord(AdvisorRecord record) {
         selectedRecord = record;
+        if (record != null) {
+            selectedStudentAccount = record.getStudentAccount();
+        }
         if (record == null) {
             clearFields();
             return;
@@ -269,6 +277,7 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        refreshOpenStudentDetailPanel();
         CardSequencePanel.remove(this);
         ((java.awt.CardLayout) CardSequencePanel.getLayout()).previous(CardSequencePanel);
     }//GEN-LAST:event_btnBackActionPerformed
@@ -288,6 +297,8 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
         selectedRecord.setAdvisorNotes(txtAdvisorNotes.getText().trim());
         JOptionPane.showMessageDialog(this, "Advisor recommendation saved.");
         refreshTable();
+        displayRecord(selectedRecord);
+        refreshOpenStudentDetailPanel();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnAddCourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCourseActionPerformed
@@ -295,10 +306,29 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please select a student first.");
             return;
         }
-        String course = (String) cmbAvailableCourses.getSelectedItem();
-        selectedRecord.addRecommendedCourse(course);
-        txtRecommendedCourses.setText(selectedRecord.getRecommendedCourses());
-        refreshTable();
+        Object selectedCourse = cmbAvailableCourses.getSelectedItem();
+        if (selectedCourse == null) {
+            JOptionPane.showMessageDialog(this, "Please select an available course first.");
+            return;
+        }
+
+        String course = selectedCourse.toString().trim();
+        if (course.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please select an available course first.");
+            return;
+        }
+
+        String currentCourses = txtRecommendedCourses.getText().trim();
+        if (currentCourses.contains(course)) {
+            JOptionPane.showMessageDialog(this, "This course is already listed for the selected student.");
+            return;
+        }
+
+        if (currentCourses.isEmpty()) {
+            txtRecommendedCourses.setText(course);
+        } else {
+            txtRecommendedCourses.setText(currentCourses + ", " + course);
+        }
     }//GEN-LAST:event_btnAddCourseActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
@@ -306,6 +336,8 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please select a student first.");
             return;
         }
+        txtLastMeetingDate.setText("");
+        txtPotentialGradDate.setText("");
         txtRecommendedCourses.setText("");
         txtAdvisorNotes.setText("");
     }//GEN-LAST:event_btnClearActionPerformed
@@ -319,6 +351,17 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
         displayRecord(findRecordByStudentNuid(nuid));
     }//GEN-LAST:event_tblRecommendationsMousePressed
 
+    private void refreshOpenStudentDetailPanel() {
+        if (CardSequencePanel == null) {
+            return;
+        }
+        for (Component component : CardSequencePanel.getComponents()) {
+            if (component instanceof StudentDetailJPanel) {
+                ((StudentDetailJPanel) component).displayStudentDetails();
+            }
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddCourse;
     private javax.swing.JButton btnBack;
