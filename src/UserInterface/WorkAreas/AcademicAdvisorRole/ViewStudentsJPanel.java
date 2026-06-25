@@ -46,7 +46,7 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
             if (ua.getAssociatedPersonProfile().getRole().equals("Student")) {
                 AdvisorRecord record = business.getAdvisorRecordDirectory().getOrCreateRecord(ua);
                 Object[] row = new Object[5];
-                row[0] = ua.getAssociatedPersonProfile().getPerson().getPersonId();
+                row[0] = ua.getAssociatedPersonProfile().getPerson().getNuid();
                 row[1] = ua.getAssociatedPersonProfile().getPerson().getFullName();
                 row[2] = ua.getAssociatedPersonProfile().getPerson().getDepartment();
                 row[3] = record.getLastMeetingDate();
@@ -57,11 +57,11 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
         }
     }
 
-    private UserAccount findStudentAccountByPersonId(String personId) {
+    private UserAccount findStudentAccountByNuid(String nuid) {
         UserAccountDirectory uad = business.getUserAccountDirectory();
         for (UserAccount ua : uad.getUserAccountList()) {
             if (ua.getAssociatedPersonProfile().getRole().equals("Student")
-                    && ua.getAssociatedPersonProfile().getPerson().getPersonId().equals(personId)) {
+                    && ua.getAssociatedPersonProfile().getPerson().getNuid().equals(nuid)) {
                 return ua;
             }
         }
@@ -124,7 +124,7 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Student ID", "Student Name", "Department", "Last Meeting Date", "Academic Standing"
+                "NUID", "Student Name", "Department", "Last Meeting Date", "Academic Standing"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -176,8 +176,8 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
         if (selectedrow < 0 || selectedrow > size - 1) {
             return;
         }
-        String personId = (String) StudentTable.getValueAt(selectedrow, 0);
-        selectedStudentAccount = findStudentAccountByPersonId(personId);
+        String nuid = (String) StudentTable.getValueAt(selectedrow, 0);
+        selectedStudentAccount = findStudentAccountByNuid(nuid);
         if (selectedStudentAccount == null) {
             return;
         }
