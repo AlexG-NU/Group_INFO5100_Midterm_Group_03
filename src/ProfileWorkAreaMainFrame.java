@@ -18,6 +18,7 @@ import UserInterface.WorkAreas.AdminRole.AdminRoleWorkAreaJPanel;
 import UserInterface.WorkAreas.FacultyRole.FacultyWorkAreaJPanel;
 import UserInterface.WorkAreas.StudentRole.StudentWorkAreaJPanel;
 import Business.Profiles.AcademicAdvisorProfile;
+import Business.Profiles.FacultyProfile;
 import UserInterface.WorkAreas.AcademicAdvisorRole.AcademicAdvisorWorkAreaJPanel;
 import javax.swing.JPanel;
 
@@ -35,6 +36,8 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
 
     public ProfileWorkAreaMainFrame() {
         initComponents();
+        setSize(1000, 700);
+        setLocationRelativeTo(null);
         business = ConfigureABusiness.initialize();
         
 
