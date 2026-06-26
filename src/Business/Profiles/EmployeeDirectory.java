@@ -28,20 +28,28 @@ public class EmployeeDirectory {
 
     public EmployeeProfile newEmployeeProfile(Person p) {
 
-        EmployeeProfile sp = new EmployeeProfile(p);
-        employeelist.add(sp);
-        return sp;
+        EmployeeProfile ep = new EmployeeProfile(p);
+        employeelist.add(ep);
+        return ep;
     }
 
     public EmployeeProfile findEmployee(String id) {
 
-        for (EmployeeProfile sp : employeelist) {
+        for (EmployeeProfile ep : employeelist) {
 
-            if (sp.isMatch(id)) {
-                return sp;
+            if (ep.isMatch(id)) {
+                return ep;
             }
         }
             return null; //not found after going through the whole list
          }
+    
+    public ArrayList<EmployeeProfile> getEmployeeList() {
+        return employeelist;
+    }
+    
+    public void removeEmployeeProfile(EmployeeProfile ep) {
+        employeelist.remove(ep);
+    }
     
 }

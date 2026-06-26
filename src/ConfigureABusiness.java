@@ -15,7 +15,7 @@ import Business.Profiles.EmployeeProfile;
 import Business.Profiles.StudentDirectory;
 import Business.Profiles.StudentProfile;
 import Business.Profiles.AcademicAdvisorProfile;
-//added by Abhi
+import Business.Profiles.FacultyDirectory;
 import Business.Profiles.FacultyProfile;
 import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
@@ -58,6 +58,13 @@ class ConfigureABusiness {
 
  
         Person person005 = persondirectory.newPerson("Jim Dellon");
+        person005.setFirstName("Jim");
+        person005.setLastName("Dellon");
+        person005.setEmail("jim.dellon@northeastern.edu");
+        person005.setPhone("100-1010");
+        person005.setNuid("100003333");
+        person005.setDepartment("Information Systems");
+        person005.setTitle("Faculty");
         Person person006 = persondirectory.newPerson("Anna Shnider");
         Person person007 = persondirectory.newPerson("Laura Brown");
         Person person008 = persondirectory.newPerson("Jack While");
@@ -73,6 +80,9 @@ class ConfigureABusiness {
         // 4 added by Janet 
         AcademicAdvisorProfile advisorprofile0 = new AcademicAdvisorProfile(person004);
         
+        //FacultyDirectory facultydirectory = business.getFacultyDirectory();
+        //FacultyProfile facultyprofile0 = facultydirectory.newFacultyProfile(person005);
+        
 
 
    
@@ -81,7 +91,8 @@ class ConfigureABusiness {
         UserAccount ua3 = uadirectory.newUserAccount(employeeprofile0, "admin", "****"); 
         UserAccount ua4 = uadirectory.newUserAccount(studentprofile0, "adam", "****"); 
         UserAccount ua5 = uadirectory.newUserAccount(advisorprofile0, "advisor", "****"); //  4 added by Janet 
-       
+        //UserAccount ua6 = uadirectory.newUserAccount(facultyprofile0, "jim", "****");
+        
         AdvisorRecord adamRecord = business.getAdvisorRecordDirectory().getOrCreateRecord(ua4);
         adamRecord.setCreditsCompleted(92);
         adamRecord.setCreditsRequired(120);
