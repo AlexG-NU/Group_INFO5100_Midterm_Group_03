@@ -8,6 +8,8 @@ import Business.Business;
 import Business.Profiles.EmployeeProfile;
 import Business.Profiles.Profile;
 import Business.Profiles.StudentProfile;
+//added by Abhi
+import Business.Profiles.FacultyProfile;
 
 import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
@@ -183,7 +185,8 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
         }
 
        if (profile instanceof FacultyProfile) {
-            facultyworkarea = new FacultyWorkAreaJPanel(business, CardSequencePanel);
+           FacultyProfile fp = (FacultyProfile) profile;
+            facultyworkarea = new FacultyWorkAreaJPanel(business,fp, CardSequencePanel);
             CardSequencePanel.removeAll();
             CardSequencePanel.add("faculty", facultyworkarea);
             ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);

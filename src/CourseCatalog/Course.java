@@ -36,5 +36,15 @@ public class Course {
         return credits;
     
 }
+    public void setName(String name) {
+    this.name = name;
+}
+
+public void setCredits(int credits) {
+    this.credits = credits;
+}
+    public String getName() {
+    return name;
+}
     
 }

@@ -29,9 +29,9 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
         for (UserAccount ua : uad.getUserAccountList()) {
             if (ua.getAssociatedPersonProfile().getRole().equals("Student")) {
                 AdvisorRecord record = business.getAdvisorRecordDirectory().getOrCreateRecord(ua);
-                String status = record.getRemainingCredits() == 0 ? "Eligible" : "In Progress";
+                String status = record.getGraduationStatus();
                 Object[] row = new Object[7];
-                row[0] = record.getStudentId();
+                row[0] = record.getStudentNuid();
                 row[1] = record.getStudentName();
                 row[2] = record.getCreditsCompleted();
                 row[3] = record.getCreditsRequired();

@@ -1,6 +1,17 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
 package Business.Advising;
 
 import Business.UserAccounts.UserAccount;
+
+/**
+ *
+ * @author janet
+ */
+
 
 public class AdvisorRecord {
 
@@ -32,6 +43,10 @@ public class AdvisorRecord {
 
     public String getStudentId() {
         return studentAccount.getAssociatedPersonProfile().getPerson().getPersonId();
+    }
+
+    public String getStudentNuid() {
+        return studentAccount.getAssociatedPersonProfile().getPerson().getNuid();
     }
 
     public String getStudentName() {
@@ -94,6 +109,18 @@ public class AdvisorRecord {
         this.recommendedCourses = recommendedCourses;
     }
 
+    public void addRecommendedCourse(String course) {
+        if (course == null || course.trim().isEmpty()) {
+            return;
+        }
+
+        if (recommendedCourses == null || recommendedCourses.trim().isEmpty()) {
+            recommendedCourses = course;
+        } else if (!recommendedCourses.contains(course)) {
+            recommendedCourses = recommendedCourses + ", " + course;
+        }
+    }
+
     public String getAdvisorNotes() {
         return advisorNotes;
     }
@@ -108,5 +135,25 @@ public class AdvisorRecord {
 
     public void setLastMeetingDate(String lastMeetingDate) {
         this.lastMeetingDate = lastMeetingDate;
+    }
+
+    public String getGraduationStatus() {
+        if (creditsCompleted >= creditsRequired) {
+            return "Eligible to Graduate";
+        }
+        if (getRemainingCredits() <= 15) {
+            return "Near Completion";
+        }
+        return "In Progress";
+    }
+
+    public String getReviewPriority() {
+        if (lastMeetingDate == null || lastMeetingDate.equals("Not recorded") || lastMeetingDate.trim().isEmpty()) {
+            return "Needs First Meeting";
+        }
+        if (academicStanding != null && academicStanding.toLowerCase().contains("review")) {
+            return "Advisor Review Needed";
+        }
+        return "Routine Follow Up";
     }
 }

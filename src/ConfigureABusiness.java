@@ -17,7 +17,6 @@ import Business.Profiles.StudentProfile;
 import Business.Profiles.AcademicAdvisorProfile;
 import Business.Profiles.FacultyDirectory;
 import Business.Profiles.FacultyProfile;
-
 import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
 
@@ -81,8 +80,8 @@ class ConfigureABusiness {
         // 4 added by Janet 
         AcademicAdvisorProfile advisorprofile0 = new AcademicAdvisorProfile(person004);
         
-        FacultyDirectory facultydirectory = business.getFacultyDirectory();
-        FacultyProfile facultyprofile0 = facultydirectory.newFacultyProfile(person005);
+        //FacultyDirectory facultydirectory = business.getFacultyDirectory();
+        //FacultyProfile facultyprofile0 = facultydirectory.newFacultyProfile(person005);
         
 
 
@@ -92,7 +91,7 @@ class ConfigureABusiness {
         UserAccount ua3 = uadirectory.newUserAccount(employeeprofile0, "admin", "****"); 
         UserAccount ua4 = uadirectory.newUserAccount(studentprofile0, "adam", "****"); 
         UserAccount ua5 = uadirectory.newUserAccount(advisorprofile0, "advisor", "****"); //  4 added by Janet 
-        UserAccount ua6 = uadirectory.newUserAccount(facultyprofile0, "jim", "****");
+        //UserAccount ua6 = uadirectory.newUserAccount(facultyprofile0, "jim", "****");
         
         AdvisorRecord adamRecord = business.getAdvisorRecordDirectory().getOrCreateRecord(ua4);
         adamRecord.setCreditsCompleted(92);
@@ -103,6 +102,25 @@ class ConfigureABusiness {
         adamRecord.setRecommendedCourses("INFO 5100, INFO 6205, Database Design");
         adamRecord.setAdvisorNotes("Student is progressing well. Review elective planning next meeting.");
         adamRecord.setLastMeetingDate("2026-06-20");
+        
+        //creating Courses by Abhi
+        
+        business.getDepartment().getCourseCatalog().newCourse("Application Engineering and Design", "INFO5100", 4);
+        business.getDepartment().getCourseCatalog().newCourse("Process Design", "INFO5200", 4);
+        business.getDepartment().getCourseCatalog().newCourse("Database Management", "INFO5300", 4);
+        
+        //creating faculty user
+        Person person010 = persondirectory.newPerson("Maria Garcia");
+        person010.setFirstName("Maria");
+        person010.setLastName("Garcia");
+        person010.setEmail("maria.garcia@northeastern.edu");
+        person010.setPhone("978-333-2222");
+        person010.setNuid("21000032");
+        person010.setDepartment("Information Systems");
+        person010.setTitle("Faculty");
+        
+        FacultyProfile facultyprofile0 = new FacultyProfile(person010);
+        UserAccount ua6 = uadirectory.newUserAccount(facultyprofile0,"maria", "****");
         
         
         return business;
