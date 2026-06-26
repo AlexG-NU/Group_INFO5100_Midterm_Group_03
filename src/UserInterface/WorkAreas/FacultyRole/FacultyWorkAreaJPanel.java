@@ -162,6 +162,10 @@ public class FacultyWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageStudentProfilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageStudentProfilesActionPerformed
         // TODO add your handling code here:
+        CardSequencePanel.removeAll();
+        ManageStudentProfile msp = new ManageStudentProfile(business, facultyProfile, CardSequencePanel);
+        CardSequencePanel.add("ManageStudentProfile", msp);
+        ((java.awt.CardLayout)CardSequencePanel.getLayout()).next(CardSequencePanel);
 
   
     }//GEN-LAST:event_btnManageStudentProfilesActionPerformed
@@ -177,7 +181,10 @@ public class FacultyWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnPerformanceReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerformanceReportsActionPerformed
         // TODO add your handling code here:
-
+        CardSequencePanel.removeAll();
+        PerformanceReports pr = new PerformanceReports (business, facultyProfile, CardSequencePanel);
+        CardSequencePanel.add("PerformanceReports", pr);
+        ((java.awt.CardLayout)CardSequencePanel.getLayout()).next(CardSequencePanel);
 }//GEN-LAST:event_btnPerformanceReportsActionPerformed
 
 

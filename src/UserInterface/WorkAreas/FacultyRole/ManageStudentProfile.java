@@ -9,11 +9,16 @@ package UserInterface.WorkAreas.FacultyRole;
  * @author abhit
  */
 public class ManageStudentProfile extends javax.swing.JPanel {
-
+      private Business.Business business;
+      private Business.Profiles.FacultyProfile facultyProfile;
+      private javax.swing.JPanel CardSequencePanel;
     /**
      * Creates new form ManageStudentProfile
      */
-    public ManageStudentProfile() {
+    public ManageStudentProfile(Business.Business business, Business.Profiles.FacultyProfile facultyProfile, javax.swing.JPanel CardSequencePanel) {
+        this.business= business;
+        this.facultyProfile = facultyProfile;
+        this.CardSequencePanel= CardSequencePanel;
         initComponents();
     }
 
@@ -41,6 +46,11 @@ public class ManageStudentProfile extends javax.swing.JPanel {
         jLabel1.setText("Manage Student Profiles");
 
         btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         StudentProfileTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -128,6 +138,15 @@ public class ManageStudentProfile extends javax.swing.JPanel {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        CardSequencePanel.remove(this);
+        FacultyWorkAreaJPanel facultyWorkArea = new FacultyWorkAreaJPanel(business, facultyProfile, CardSequencePanel);
+        CardSequencePanel.add("FacultyWorkArea", facultyWorkArea);
+        java.awt.CardLayout layout = (java.awt.CardLayout) CardSequencePanel.getLayout();
+        layout.next(CardSequencePanel);
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

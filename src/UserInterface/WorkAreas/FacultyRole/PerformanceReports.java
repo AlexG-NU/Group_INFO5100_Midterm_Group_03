@@ -9,11 +9,18 @@ package UserInterface.WorkAreas.FacultyRole;
  * @author abhit
  */
 public class PerformanceReports extends javax.swing.JPanel {
+    
+    private Business.Business business;
+    private Business.Profiles.FacultyProfile facultyProfile;
+    private javax.swing.JPanel CardSequencePanel;
 
     /**
      * Creates new form PerformanceReports
      */
-    public PerformanceReports() {
+    public PerformanceReports(Business.Business business, Business.Profiles.FacultyProfile facultyProfile, javax.swing.JPanel CardSequencePanel) {
+        this.business= business;
+        this.facultyProfile= facultyProfile;
+        this.CardSequencePanel= CardSequencePanel;
         initComponents();
     }
 
@@ -60,6 +67,11 @@ public class PerformanceReports extends javax.swing.JPanel {
         lblStudentsEnrolled.setText("Students Enrolled");
 
         btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -110,6 +122,15 @@ public class PerformanceReports extends javax.swing.JPanel {
                 .addGap(95, 95, 95))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        CardSequencePanel.remove(this);
+        FacultyWorkAreaJPanel facultyWorkArea = new FacultyWorkAreaJPanel(business, facultyProfile, CardSequencePanel);
+        CardSequencePanel.add("FacultyWorkArea", facultyWorkArea);
+        java.awt.CardLayout layout = (java.awt.CardLayout) CardSequencePanel.getLayout();
+        layout.next(CardSequencePanel);
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
