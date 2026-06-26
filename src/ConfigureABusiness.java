@@ -59,13 +59,13 @@ class ConfigureABusiness {
 
  
         Person person005 = persondirectory.newPerson("Jim Dellon");
-        person004.setFirstName("Jim");
-        person004.setLastName("Dellon");
-        person004.setEmail("jim.dellon@northeastern.edu");
-        person004.setPhone("100-1010");
-        person004.setNuid("100003333");
-        person004.setDepartment("Information Systems");
-        person004.setTitle("Faculty");
+        person005.setFirstName("Jim");
+        person005.setLastName("Dellon");
+        person005.setEmail("jim.dellon@northeastern.edu");
+        person005.setPhone("100-1010");
+        person005.setNuid("100003333");
+        person005.setDepartment("Information Systems");
+        person005.setTitle("Faculty");
         Person person006 = persondirectory.newPerson("Anna Shnider");
         Person person007 = persondirectory.newPerson("Laura Brown");
         Person person008 = persondirectory.newPerson("Jack While");
