@@ -42,4 +42,12 @@ public class FacultyDirectory {
             return null; //not found after going through the whole list
          }
     
+    public ArrayList<FacultyProfile> getFacultyList() {
+        return facultylist;
+    }
+    
+    public void removeFacultyProfile(FacultyProfile fp) {
+        facultylist.remove(fp);
+    }
+    
 }
