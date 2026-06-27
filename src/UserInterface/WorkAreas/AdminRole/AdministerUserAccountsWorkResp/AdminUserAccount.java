@@ -38,8 +38,11 @@ public class AdminUserAccount extends javax.swing.JPanel {
         //display user details here
         
         txtID.setText(sua.getPersonId());
+        txtID.setEnabled(false);
         txtUsername.setText(sua.getUserLoginName());
+        txtPassword.setText("");
         cmbStatus.setSelectedItem(sua.getStatus());
+        lblPasswordHelper.setVisible(true);
 
     }
     
@@ -50,6 +53,12 @@ public class AdminUserAccount extends javax.swing.JPanel {
         parentPanel=parent;
         initComponents();
         //display user details here
+        txtID.setText("");
+        txtID.setEnabled(true);
+        txtUsername.setText("");
+        txtPassword.setText("");
+        cmbStatus.setSelectedItem("Active");
+        lblPasswordHelper.setVisible(false);
 
     }
 
@@ -73,6 +82,7 @@ public class AdminUserAccount extends javax.swing.JPanel {
         cmbStatus = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
+        lblPasswordHelper = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 153));
 
@@ -115,6 +125,9 @@ public class AdminUserAccount extends javax.swing.JPanel {
             }
         });
 
+        lblPasswordHelper.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        lblPasswordHelper.setText("Leave blank to keep existing password.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,9 +161,11 @@ public class AdminUserAccount extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel6)))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
-                            .addComponent(txtUsername))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPasswordHelper)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                                .addComponent(txtUsername)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -170,7 +185,9 @@ public class AdminUserAccount extends javax.swing.JPanel {
                     .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(127, 127, 127)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblPasswordHelper)
+                .addGap(105, 105, 105)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Back1)
                     .addComponent(btnSave))
@@ -195,21 +212,12 @@ public class AdminUserAccount extends javax.swing.JPanel {
     }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
-        String id = txtID.getText().trim();
-        String username = txtUsername.getText().trim();
-        String password = txtPassword.getText();
-        String status = cmbStatus.getSelectedItem().toString();
-
-        if (id.isBlank() || username.isBlank() || password.isBlank()) {
-            JOptionPane.showMessageDialog(this, "Please complete all required fields.");
-            return;
-        }
+        // TODO add your handling code here:        
         boolean success;
         if (selecteduseraccount == null) {
-            success = createNewAccount(id, username, password, status);
+            success = createNewAccount();
         } else {
-            success = updateExistingAccount(id, username, password, status);
+            success = updateExistingAccount();
         }
         if (parentPanel != null) {
             parentPanel.refreshTable();
@@ -220,8 +228,16 @@ public class AdminUserAccount extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
-    private boolean updateExistingAccount(String id, String username, String password, String status) {
+    private boolean updateExistingAccount() {
 
+        String username = txtUsername.getText().trim();
+        String password = txtPassword.getText();
+        String status = cmbStatus.getSelectedItem().toString();
+        if (username.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Username is required.");
+            return false;
+        }
+        
         UserAccount existingUsernameAccount = business.getUserAccountDirectory().findUserAccountByUsername(username);
 
         if (existingUsernameAccount != null && existingUsernameAccount != selecteduseraccount) {
@@ -240,8 +256,15 @@ public class AdminUserAccount extends javax.swing.JPanel {
         return true;
     }
     
-    private boolean createNewAccount(String id, String username, String password, String status) {
-
+    private boolean createNewAccount() {
+        String id = txtID.getText().trim();
+        String username = txtUsername.getText().trim();
+        String password = txtPassword.getText();
+        String status = cmbStatus.getSelectedItem().toString();
+        if (id.isBlank() || username.isBlank() || password.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Please complete all required fields.");
+            return false;
+        }
         //Person person = null;
         Profile profile = null;
         /*if (role.equals("Student")) {
@@ -288,6 +311,7 @@ public class AdminUserAccount extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel lblPasswordHelper;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUsername;

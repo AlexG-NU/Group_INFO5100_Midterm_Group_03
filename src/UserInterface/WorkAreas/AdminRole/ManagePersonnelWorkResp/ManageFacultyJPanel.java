@@ -30,6 +30,7 @@ public class ManageFacultyJPanel extends javax.swing.JPanel {
         CardSequencePanel = jp;
         initComponents();
         refreshTable();
+        setFormMode(false);
     }
 
     /**
@@ -63,6 +64,7 @@ public class ManageFacultyJPanel extends javax.swing.JPanel {
         txtDepartment = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         txtTitle = new javax.swing.JTextField();
+        btnClear = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 153, 153));
 
@@ -132,6 +134,13 @@ public class ManageFacultyJPanel extends javax.swing.JPanel {
 
         jLabel9.setText("Title:");
 
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -190,8 +199,10 @@ public class ManageFacultyJPanel extends javax.swing.JPanel {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(60, 60, 60)
                 .addComponent(btnAdd)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnClear)
                 .addGap(18, 18, 18)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
@@ -235,7 +246,8 @@ public class ManageFacultyJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
                     .addComponent(btnUpdate)
-                    .addComponent(btnDelete))
+                    .addComponent(btnDelete)
+                    .addComponent(btnClear))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -270,7 +282,7 @@ public class ManageFacultyJPanel extends javax.swing.JPanel {
         }
 
         Person person = selectedFaculty.getPerson();
-        person.setPersonId(facultyId);
+        //person.setPersonId(facultyId);
         person.setFirstName(txtFirstName.getText().trim());
         person.setLastName(txtLastName.getText().trim());
         person.setEmail(txtEmail.getText().trim());
@@ -283,6 +295,7 @@ public class ManageFacultyJPanel extends javax.swing.JPanel {
         clearFields();
         selectedFaculty = null;
         refreshTable();
+        setFormMode(false);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void tblFacultyMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFacultyMousePressed
@@ -292,7 +305,7 @@ public class ManageFacultyJPanel extends javax.swing.JPanel {
         if (selectedRow < 0) {
             return;
         }
-
+        
         String facultyId = tblFaculty.getValueAt(selectedRow, 0).toString();
 
         selectedFaculty = business.getFacultyDirectory().findFaculty(facultyId);
@@ -301,15 +314,17 @@ public class ManageFacultyJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Could not find selected faculty member.");
             return;
         }
-
+        
         Person person = selectedFaculty.getPerson();
         txtNUID.setText(person.getPersonId());
+        txtNUID.setEnabled(false);
         txtFirstName.setText(person.getFirstName());
         txtLastName.setText(person.getLastName());
         txtEmail.setText(person.getEmail());
         txtPhone.setText(person.getPhone());
         txtDepartment.setText(person.getDepartment());
         txtTitle.setText(person.getTitle());
+        setFormMode(true);
     }//GEN-LAST:event_tblFacultyMousePressed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -322,7 +337,7 @@ public class ManageFacultyJPanel extends javax.swing.JPanel {
             return;
         }
 
-        if (business.getFacultyDirectory().findFaculty(facultyId) != null) {
+        if (business.getPersonDirectory().findPerson(facultyId) != null) {
             JOptionPane.showMessageDialog(this, "A faculty member with this ID already exists.");
             return;
         }
@@ -343,6 +358,7 @@ public class ManageFacultyJPanel extends javax.swing.JPanel {
         clearFields();
         selectedFaculty = null;
         refreshTable();
+        setFormMode(false);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -382,12 +398,20 @@ public class ManageFacultyJPanel extends javax.swing.JPanel {
         clearFields();
         selectedFaculty = null;
         refreshTable();
+        setFormMode(false);
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        clearFields();
+        setFormMode(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClearActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
@@ -429,7 +453,11 @@ public class ManageFacultyJPanel extends javax.swing.JPanel {
         }
     }
     private void clearFields() {
+        selectedFaculty = null;
+        tblFaculty.clearSelection();
+        
         txtNUID.setText("");
+        txtNUID.setEnabled(true);
         txtFirstName.setText("");
         txtLastName.setText("");
         txtEmail.setText("");
@@ -437,6 +465,13 @@ public class ManageFacultyJPanel extends javax.swing.JPanel {
         txtDepartment.setText("");
         txtTitle.setText("");
 
+    }
+    
+    private void setFormMode(boolean editMode) {
+        btnAdd.setEnabled(!editMode);
+        btnUpdate.setEnabled(editMode);
+        btnDelete.setEnabled(editMode);
+        btnClear.setEnabled(editMode);
     }
 
 }

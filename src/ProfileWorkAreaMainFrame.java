@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
 
 import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
-
 import UserInterface.WorkAreas.AdminRole.AdminRoleWorkAreaJPanel;
 import UserInterface.WorkAreas.FacultyRole.FacultyWorkAreaJPanel;
 import UserInterface.WorkAreas.StudentRole.StudentWorkAreaJPanel;
@@ -25,6 +24,7 @@ import Business.Profiles.FacultyProfile;
 //added by Janet 
 import UserInterface.WorkAreas.AcademicAdvisorRole.AcademicAdvisorWorkAreaJPanel;
 import java.time.LocalDateTime;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -163,8 +163,7 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
         UserAccountDirectory uad = business.getUserAccountDirectory();
         UserAccount useraccount = uad.AuthenticateUser(un, pw);
         if (useraccount == null) {
-            //added by Janet
-            JOptionPane.showMessageDialog(this, "Please enter a valid username or password.");
+            JOptionPane.showMessageDialog(this, "Invalid username/password or inactive account.");
             return;
         }
         useraccount.setLastLoginDate(LocalDateTime.now());
@@ -236,7 +235,7 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
         CardSequencePanel.repaint();
 
         //txtUserName.setText("");
-        //txtPassword.setText("");
+        txtPassword.setText("");
 
         txtUserName.setVisible(true);
         txtPassword.setVisible(true);

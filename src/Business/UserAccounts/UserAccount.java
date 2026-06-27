@@ -25,19 +25,23 @@ public class UserAccount {
     private LocalDateTime lastLoginDate;
 
     public void setUserLoginName(String username) {
+        setLastUpdatedDate(LocalDateTime.now());
         this.username = username;
     }
 
     public void setPassword(String password) {
+        setLastUpdatedDate(LocalDateTime.now());
         this.password = password;
     }
     private LocalDateTime lastUpdatedDate;
 
     public String getStatus() {
+        
         return status;
     }
 
     public void setStatus(String status) {
+        setLastUpdatedDate(LocalDateTime.now());
         this.status = status;
     }
 
@@ -77,6 +81,7 @@ public class UserAccount {
         username = un;
          password = pw;
          this.profile = profile;
+         setLastUpdatedDate(LocalDateTime.now());
 
     }
 

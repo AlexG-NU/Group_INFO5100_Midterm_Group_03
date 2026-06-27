@@ -53,11 +53,11 @@ public class ManageUserAccountsJPanel extends javax.swing.JPanel {
 
         for (UserAccount ua : uad.getUserAccountList()) {
 
-            Object[] row = new Object[5];
+            Object[] row = new Object[4];
             row[0] = ua;
             row[1] = ua.getStatus(); //complete this..
-            row[2] = ua.getLastUpdatedDateString();
-            row[3] = ua.getLastLoginDateString();
+            row[2] = ua.getLastLoginDateString();
+            row[3] = ua.getLastUpdatedDateString();
 
             ((DefaultTableModel) UserAccountTable.getModel()).addRow(row);
         }

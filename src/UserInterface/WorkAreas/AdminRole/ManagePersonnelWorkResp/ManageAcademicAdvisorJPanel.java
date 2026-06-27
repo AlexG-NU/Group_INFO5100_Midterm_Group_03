@@ -31,6 +31,7 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
         CardSequencePanel = jp;
         initComponents();
         refreshTable();
+        setFormMode(false);
     }
 
     /**
@@ -64,6 +65,7 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtDepartment = new javax.swing.JTextField();
+        btnClear = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 153, 153));
 
@@ -133,22 +135,21 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
 
         jLabel8.setText("Department:");
 
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnAdd)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(btnDelete)
-                        .addGap(97, 97, 97))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -196,7 +197,17 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(20, 20, 20)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 39, Short.MAX_VALUE)))
+                        .addGap(0, 39, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(btnAdd)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnClear)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnDelete)
+                        .addGap(97, 97, 97)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -236,7 +247,8 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
                     .addComponent(btnUpdate)
-                    .addComponent(btnDelete))
+                    .addComponent(btnDelete)
+                    .addComponent(btnClear))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -260,7 +272,14 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
 
         Person person = selectedAcademicAdvisor.getPerson();
         txtNuid.setText(person.getPersonId());
+        txtNuid.setEnabled(false);
         txtFirstName.setText(person.getFirstName());
+        txtLastName.setText(person.getLastName());
+        txtEmail.setText(person.getEmail());
+        txtPhone.setText(person.getPhone());
+        txtDepartment.setText(person.getDepartment());
+        txtTitle.setText(person.getTitle());
+        setFormMode(true);
     }//GEN-LAST:event_tblAcademicAdvisorMousePressed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
@@ -280,7 +299,7 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
             return;
         }
 
-        if (business.getAcademicAdvisorDirectory().findAcademicAdvisor(academicadvisorId) != null) {
+        if (business.getPersonDirectory().findPerson(academicadvisorId) != null) {
             JOptionPane.showMessageDialog(this, "An advisor member with this ID already exists.");
             return;
         }
@@ -300,6 +319,7 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
         clearFields();
         selectedAcademicAdvisor = null;
         refreshTable();
+        setFormMode(false);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -339,6 +359,7 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
         clearFields();
         selectedAcademicAdvisor = null;
         refreshTable();
+        setFormMode(false);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -364,7 +385,7 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
         }
 
         Person person = selectedAcademicAdvisor.getPerson();
-        person.setPersonId(academicadvisorId);
+        //person.setPersonId(academicadvisorId);
         person.setFirstName(txtFirstName.getText().trim());
         person.setLastName(txtLastName.getText().trim());
         person.setEmail(txtEmail.getText().trim());
@@ -377,12 +398,20 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
         clearFields();
         selectedAcademicAdvisor = null;
         refreshTable();
+        setFormMode(false);
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        clearFields();
+        setFormMode(false);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClearActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
@@ -425,13 +454,23 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
     }
     
     private void clearFields() {
+        selectedAcademicAdvisor = null;
+        tblAcademicAdvisor.clearSelection();
         txtNuid.setText("");
+        txtNuid.setEnabled(true);
         txtFirstName.setText("");
         txtLastName.setText("");
         txtEmail.setText("");
         txtPhone.setText("");
         txtDepartment.setText("");
         txtTitle.setText("");
+    }
+    
+    private void setFormMode(boolean editMode) {
+        btnAdd.setEnabled(!editMode);
+        btnUpdate.setEnabled(editMode);
+        btnDelete.setEnabled(editMode);
+        btnClear.setEnabled(editMode);
     }
 
 }

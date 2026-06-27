@@ -135,7 +135,7 @@ public class AdminRoleWorkAreaJPanel extends javax.swing.JPanel {
         btnManageEmployees.setBackground(new java.awt.Color(102, 153, 255));
         btnManageEmployees.setFont(getFont());
         btnManageEmployees.setForeground(new java.awt.Color(255, 255, 255));
-        btnManageEmployees.setText("Manage Employees");
+        btnManageEmployees.setText("Manage Staff");
         btnManageEmployees.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnManageEmployees.setMaximumSize(new java.awt.Dimension(200, 40));
         btnManageEmployees.setMinimumSize(new java.awt.Dimension(20, 20));
