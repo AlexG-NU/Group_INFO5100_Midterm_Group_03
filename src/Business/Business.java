@@ -18,6 +18,8 @@ import Business.Profiles.Profile;
 import Business.Profiles.StudentDirectory;
 import Business.Profiles.StudentProfile;
 import Department.Department;
+import CourseCatalog.StudentGrade;
+import java.util.ArrayList;
 
 import Business.UserAccounts.UserAccountDirectory;
 
@@ -37,6 +39,7 @@ public class Business {
     FacultyDirectory facultydirectory;
     AcademicAdvisorDirectory academicadvisordirectory;
     Department department;
+    ArrayList<StudentGrade> gradeList;
 
     
 
@@ -52,6 +55,7 @@ public class Business {
         facultydirectory = new FacultyDirectory();
         academicadvisordirectory = new AcademicAdvisorDirectory(this);
         department = new Department ("MSIS");
+        gradeList = new ArrayList<>();
 
 
     }
@@ -116,6 +120,9 @@ public class Business {
         }
 
         return null;
+    }
+    public ArrayList<StudentGrade> getGradeList() {
+    return gradeList;
     }
 
 }

@@ -22,7 +22,71 @@ public class PerformanceReports extends javax.swing.JPanel {
         this.facultyProfile= facultyProfile;
         this.CardSequencePanel= CardSequencePanel;
         initComponents();
+        populateCourseDropdown();
+    populateTable();
+    updateStats();
     }
+    private void populateCourseDropdown() {
+    StudentPerformanceCombo.removeAllItems();
+    java.util.ArrayList<String> seen = new java.util.ArrayList<>();
+    for (CourseCatalog.StudentGrade g : business.getGradeList()) {
+        if (!seen.contains(g.getCourseNumber())) {
+            seen.add(g.getCourseNumber());
+            StudentPerformanceCombo.addItem(g.getCourseNumber());
+        }
+    }
+}
+
+private void populateTable() {
+    javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0);
+    String selectedCourse = (String) StudentPerformanceCombo.getSelectedItem();
+    if (selectedCourse == null) return;
+    for (CourseCatalog.StudentGrade g : business.getGradeList()) {
+        if (g.getCourseNumber().equals(selectedCourse)) {
+            Object[] row = new Object[4];
+            row[0] = g.getStudentName();
+            row[1] = g.getNuid();
+            row[2] = g.getGrade();
+            row[3] = String.format("%.1f", convertGradeToPoints(g.getGrade()));
+            model.addRow(row);
+        }
+    }
+}
+
+private void updateStats() {
+    String selectedCourse = (String) StudentPerformanceCombo.getSelectedItem();
+    System.out.println("updateStats called, course=" + selectedCourse);
+    int count = 0;
+    double totalPoints = 0.0;
+    for (CourseCatalog.StudentGrade g : business.getGradeList()) {
+        if (selectedCourse != null && g.getCourseNumber().equals(selectedCourse)) {
+            count++;
+            totalPoints += convertGradeToPoints(g.getGrade());
+        }
+    }
+    double avg = (count == 0) ? 0.0 : totalPoints / count;
+    System.out.println("count=" + count + " avg=" + avg);
+
+    lblStudentsEnrolled.setText("Students Enrolled " + count);
+    lblClassAverage.setText("Class Average (GPA): " + String.format("%.2f", avg));
+}
+
+private double convertGradeToPoints(String grade) {
+    if (grade == null) return 0.0;
+    switch (grade) {
+        case "A":  return 4.0;
+        case "A-": return 3.7;
+        case "B+": return 3.3;
+        case "B":  return 3.0;
+        case "B-": return 2.7;
+        case "C+": return 2.3;
+        case "C":  return 2.0;
+        case "D":  return 1.0;
+        case "F":  return 0.0;
+        default:   return 0.0;
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,9 +102,11 @@ public class PerformanceReports extends javax.swing.JPanel {
         StudentPerformanceCombo = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        lblClassAverage = new javax.swing.JLabel();
-        lblStudentsEnrolled = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        lblStudentsEnrolled = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lblClassAverage = new javax.swing.JLabel();
 
         lblTitle.setFont(new java.awt.Font("Sitka Text", 1, 36)); // NOI18N
         lblTitle.setText("Student Performance Report");
@@ -48,6 +114,11 @@ public class PerformanceReports extends javax.swing.JPanel {
         lblCourse.setText("Course");
 
         StudentPerformanceCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        StudentPerformanceCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StudentPerformanceComboActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -62,16 +133,53 @@ public class PerformanceReports extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        lblClassAverage.setText("Class Average (GPA)");
-
-        lblStudentsEnrolled.setText("Students Enrolled");
-
         btnBack.setText("<< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
+
+        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+
+        lblStudentsEnrolled.setFont(new java.awt.Font("SimSun", 1, 24)); // NOI18N
+        lblStudentsEnrolled.setText("Students Enrolled");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblStudentsEnrolled, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblStudentsEnrolled, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+        );
+
+        jPanel2.setBackground(new java.awt.Color(255, 204, 204));
+
+        lblClassAverage.setFont(new java.awt.Font("SimSun", 1, 24)); // NOI18N
+        lblClassAverage.setText("Class Average (GPA)");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblClassAverage, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(lblClassAverage, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                .addGap(17, 17, 17))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -95,12 +203,12 @@ public class PerformanceReports extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addComponent(lblStudentsEnrolled, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblClassAverage, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,11 +223,11 @@ public class PerformanceReports extends javax.swing.JPanel {
                     .addComponent(StudentPerformanceCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblClassAverage)
-                    .addComponent(lblStudentsEnrolled))
-                .addGap(95, 95, 95))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -132,10 +240,18 @@ public class PerformanceReports extends javax.swing.JPanel {
         layout.next(CardSequencePanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void StudentPerformanceComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StudentPerformanceComboActionPerformed
+        // TODO add your handling code here:
+        populateTable();
+       updateStats();
+    }//GEN-LAST:event_StudentPerformanceComboActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> StudentPerformanceCombo;
     private javax.swing.JButton btnBack;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblClassAverage;

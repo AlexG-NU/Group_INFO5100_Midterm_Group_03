@@ -20,7 +20,7 @@ import Business.Profiles.FacultyDirectory;
 import Business.Profiles.FacultyProfile;
 import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
-
+import CourseCatalog.StudentGrade;
 
 /**
  *
@@ -124,6 +124,13 @@ class ConfigureABusiness {
         FacultyProfile facultyprofile0 = facultydirectory.newFacultyProfile(person010);
         
         UserAccount ua6 = uadirectory.newUserAccount(facultyprofile0,"maria", "****");
+        
+        // Student grades by Abhi
+business.getGradeList().add(new StudentGrade("Adam Rollen", "900002001", "INFO5100", "A"));
+business.getGradeList().add(new StudentGrade("Jim Dellon", "900002002", "INFO5100", "B+"));
+business.getGradeList().add(new StudentGrade("Anna Shnider", "900002003", "INFO5100", "A-"));
+business.getGradeList().add(new StudentGrade("Laura Brown", "900002004", "INFO5200", "B"));
+business.getGradeList().add(new StudentGrade("Jack White", "900002005", "INFO5200", "A"));
         
         
         return business;
