@@ -24,6 +24,8 @@ public class AdvisorRecord {
     private String recommendedCourses;
     private String advisorNotes;
     private String lastMeetingDate;
+    private String graduationPlanStatus;
+    private String graduationReviewNotes;
 
     public AdvisorRecord(UserAccount studentAccount) {
         this.studentAccount = studentAccount;
@@ -35,6 +37,8 @@ public class AdvisorRecord {
         this.recommendedCourses = "";
         this.advisorNotes = "";
         this.lastMeetingDate = "Not recorded";
+        this.graduationPlanStatus = "Needs Review";
+        this.graduationReviewNotes = "";
     }
 
     public UserAccount getStudentAccount() {
@@ -135,6 +139,23 @@ public class AdvisorRecord {
 
     public void setLastMeetingDate(String lastMeetingDate) {
         this.lastMeetingDate = lastMeetingDate;
+    }
+
+
+    public String getGraduationPlanStatus() {
+        return graduationPlanStatus;
+    }
+
+    public void setGraduationPlanStatus(String graduationPlanStatus) {
+        this.graduationPlanStatus = graduationPlanStatus;
+    }
+
+    public String getGraduationReviewNotes() {
+        return graduationReviewNotes;
+    }
+
+    public void setGraduationReviewNotes(String graduationReviewNotes) {
+        this.graduationReviewNotes = graduationReviewNotes;
     }
 
     public String getGraduationStatus() {

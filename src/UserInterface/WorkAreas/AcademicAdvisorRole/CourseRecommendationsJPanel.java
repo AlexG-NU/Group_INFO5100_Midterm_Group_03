@@ -1,10 +1,12 @@
 package UserInterface.WorkAreas.AcademicAdvisorRole;
 
 import Business.Advising.AdvisorRecord;
+import Business.Advising.AdvisorAcademicData;
 import Business.Business;
 import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
 import UserInterface.WorkAreas.AcademicAdvisorRole.StudentDetailJPanel;
+import CourseCatalog.Course;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -44,12 +46,19 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
 
     private void loadAvailableCourses() {
         cmbAvailableCourses.removeAllItems();
-        cmbAvailableCourses.addItem("INFO 5100 - Application Engineering and Development");
-        cmbAvailableCourses.addItem("INFO 6150 - Web Design and User Experience Engineering");
-        cmbAvailableCourses.addItem("DAMG 6210 - Data Management and Database Design");
-        cmbAvailableCourses.addItem("INFO 6205 - Program Structure and Algorithms");
-        cmbAvailableCourses.addItem("CSYE 6200 - Concepts of Object-Oriented Design");
-        cmbAvailableCourses.addItem("INFO 7250 - Engineering Big Data Systems");
+        cmbAvailableCourses.addItem("-- Select Course --");
+
+        if (business != null
+                && business.getDepartment() != null
+                && business.getDepartment().getCourseCatalog() != null) {
+            for (Course course : business.getDepartment().getCourseCatalog().getCourseList()) {
+                cmbAvailableCourses.addItem(AdvisorAcademicData.courseDisplay(course));
+            }
+        }
+
+        if (cmbAvailableCourses.getItemCount() == 1) {
+            cmbAvailableCourses.addItem("No courses available");
+        }
     }
 
     public void refreshTable() {
@@ -313,8 +322,8 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
         }
 
         String course = selectedCourse.toString().trim();
-        if (course.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please select an available course first.");
+        if (course.isEmpty() || course.equals("-- Select Course --") || course.equals("No courses available")) {
+            JOptionPane.showMessageDialog(this, "Please select a valid available course first.");
             return;
         }
 
@@ -329,6 +338,7 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
         } else {
             txtRecommendedCourses.setText(currentCourses + ", " + course);
         }
+   
     }//GEN-LAST:event_btnAddCourseActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
