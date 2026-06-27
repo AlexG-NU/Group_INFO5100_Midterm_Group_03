@@ -20,6 +20,7 @@ import UserInterface.WorkAreas.StudentRole.StudentWorkAreaJPanel;
 import Business.Profiles.AcademicAdvisorProfile;
 import Business.Profiles.FacultyProfile;
 import UserInterface.WorkAreas.AcademicAdvisorRole.AcademicAdvisorWorkAreaJPanel;
+import java.time.LocalDateTime;
 import javax.swing.JPanel;
 
 /**
@@ -39,6 +40,7 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
         setSize(1000, 700);
         setLocationRelativeTo(null);
         business = ConfigureABusiness.initialize();
+        btnLogout.setVisible(false);
         
 
     }
@@ -58,11 +60,12 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
 
         SplitHomeArea = new javax.swing.JSplitPane();
         actionsidejpanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        UserNameTextField = new javax.swing.JTextField();
-        PasswordTextField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        btnLogin = new javax.swing.JButton();
+        lblUserName = new javax.swing.JLabel();
+        txtUserName = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
+        lblPassword = new javax.swing.JLabel();
+        btnLogout = new javax.swing.JButton();
         CardSequencePanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -71,25 +74,32 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
         actionsidejpanel.setBackground(new java.awt.Color(0, 153, 153));
         actionsidejpanel.setMinimumSize(new java.awt.Dimension(200, 200));
 
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LoginButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("User Name");
+        lblUserName.setText("User Name");
 
-        UserNameTextField.setText("admin");
+        txtUserName.setText("admin");
 
-        PasswordTextField.setText("****");
-        PasswordTextField.addActionListener(new java.awt.event.ActionListener() {
+        txtPassword.setText("****");
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PasswordTextFieldActionPerformed(evt);
+                txtPasswordActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Password");
+        lblPassword.setText("Password");
+
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout actionsidejpanelLayout = new javax.swing.GroupLayout(actionsidejpanel);
         actionsidejpanel.setLayout(actionsidejpanelLayout);
@@ -98,25 +108,29 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
             .addGroup(actionsidejpanelLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(actionsidejpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(UserNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(PasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnLogout)
+                    .addComponent(lblUserName)
+                    .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPassword)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         actionsidejpanelLayout.setVerticalGroup(
             actionsidejpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(actionsidejpanelLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jLabel1)
+                .addComponent(lblUserName)
                 .addGap(4, 4, 4)
-                .addComponent(UserNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(PasswordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnLogout)
+                .addContainerGap())
         );
 
         SplitHomeArea.setLeftComponent(actionsidejpanel);
@@ -139,14 +153,15 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         //      WorkAreaJPanel ura = new WorkAreaJPanel(workareajpanl);
 
-        String un = UserNameTextField.getText();
-        String pw = PasswordTextField.getText();
+        String un = txtUserName.getText();
+        String pw = txtPassword.getText();
 
         UserAccountDirectory uad = business.getUserAccountDirectory();
         UserAccount useraccount = uad.AuthenticateUser(un, pw);
         if (useraccount == null) {
             return;
         }
+        useraccount.setLastLoginDate(LocalDateTime.now());
         StudentWorkAreaJPanel studentworkareajpanel;
         FacultyWorkAreaJPanel facultyworkarea;
         AdminRoleWorkAreaJPanel adminworkarea;
@@ -157,7 +172,7 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
 
         if (profile instanceof EmployeeProfile) {
 
-            adminworkarea = new AdminRoleWorkAreaJPanel(business, CardSequencePanel);
+            adminworkarea = new AdminRoleWorkAreaJPanel(business, useraccount, CardSequencePanel);
             CardSequencePanel.removeAll();
             CardSequencePanel.add("Admin", adminworkarea);
             ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
@@ -192,13 +207,42 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
             ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 
         }
+       
+        txtUserName.setVisible(false);
+        txtPassword.setVisible(false);
+        btnLogin.setVisible(false);
 
+        lblUserName.setVisible(false);
+        lblPassword.setVisible(false);
+
+        btnLogout.setVisible(true);
 
     }//GEN-LAST:event_LoginButtonActionPerformed
 
-    private void PasswordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordTextFieldActionPerformed
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PasswordTextFieldActionPerformed
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        
+        CardSequencePanel.removeAll();
+        CardSequencePanel.revalidate();
+        CardSequencePanel.repaint();
+
+        //txtUserName.setText("");
+        //txtPassword.setText("");
+
+        txtUserName.setVisible(true);
+        txtPassword.setVisible(true);
+        btnLogin.setVisible(true);
+
+        lblUserName.setVisible(true);
+        lblPassword.setVisible(true);
+
+        btnLogout.setVisible(false);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,13 +284,14 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CardSequencePanel;
-    private javax.swing.JTextField PasswordTextField;
     private javax.swing.JSplitPane SplitHomeArea;
-    private javax.swing.JTextField UserNameTextField;
     private javax.swing.JPanel actionsidejpanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblUserName;
+    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
 }

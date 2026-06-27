@@ -43,29 +43,34 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         Back = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblStudents = new javax.swing.JTable();
         btnAdd = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
+        txtTitle = new javax.swing.JTextField();
         txtNuid = new javax.swing.JTextField();
-        txtName = new javax.swing.JTextField();
+        txtLastName = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        txtPhone = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtFirstName = new javax.swing.JTextField();
+        btnUpdate = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtDepartment = new javax.swing.JTextField();
+
+        setBackground(new java.awt.Color(0, 153, 153));
 
         Back.setText("<< Back");
         Back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackActionPerformed(evt);
-            }
-        });
-
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
             }
         });
 
@@ -100,6 +105,8 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel9.setText("Title:");
+
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,9 +114,24 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel5.setText("Last Name:");
+
+        jLabel6.setText("Email:");
+
+        jLabel7.setText("Phone Number:");
+
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("NUID:");
 
-        jLabel4.setText("Name:");
+        jLabel4.setText("First Name:");
+
+        jLabel8.setText("Department:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -128,21 +150,51 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel7)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel6)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel5)
+                                                .addComponent(jLabel4))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                    .addGap(6, 6, 6)
+                                                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jLabel3)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(txtNuid, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jLabel8)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(txtDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jLabel9)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnAdd)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(44, 44, 44)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(44, 44, 44)
-                                        .addComponent(btnDelete))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                                        .addComponent(txtNuid, javax.swing.GroupLayout.Alignment.LEADING)))))))
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(27, 27, 27)
+                                    .addComponent(btnDelete)
+                                    .addGap(97, 97, 97)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -156,20 +208,34 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(1, 1, 1)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNuid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtNuid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete))
-                .addGap(99, 99, 99))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -179,39 +245,6 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
         ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
         //       ((java.awt.CardLayout)CardSequencePanel.getLayout()).show(CardSequencePanel, "IdentifyEventTypes");
     }//GEN-LAST:event_BackActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-        if (selectedStudent == null) {
-            JOptionPane.showMessageDialog(this, "Please select a student to update.");
-            return;
-        }
-
-        String nuid = txtNuid.getText().trim();
-        String name = txtName.getText().trim();
-
-        if (nuid.isBlank() || name.isBlank()) {
-            JOptionPane.showMessageDialog(this, "Please enter both NUID and name.");
-            return;
-        }
-
-        StudentProfile existing = business.getStudentDirectory().findStudent(nuid);
-
-        if (existing != null && existing != selectedStudent) {
-            JOptionPane.showMessageDialog(this, "Another student already has this NUID.");
-            return;
-        }
-
-        Person person = selectedStudent.getPerson();
-        person.setPersonId(nuid);
-        person.setFirstName(name);
-
-        JOptionPane.showMessageDialog(this, "Student updated successfully.");
-
-        clearFields();
-        selectedStudent = null;
-        refreshTable();
-    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void tblStudentsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblStudentsMousePressed
         // Extracts the row (uaser account) in the table that is selected by the user
@@ -225,59 +258,70 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
 
         Person person = selectedStudent.getPerson();
         txtNuid.setText(person.getPersonId());
-        txtName.setText(person.getFirstName());
+        txtFirstName.setText(person.getFirstName());
+        txtLastName.setText(person.getLastName());
+        txtEmail.setText(person.getEmail());
+        txtPhone.setText(person.getPhone());
+        txtDepartment.setText(person.getDepartment());
+        txtTitle.setText(person.getTitle());
 
     }//GEN-LAST:event_tblStudentsMousePressed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        String nuid = txtNuid.getText().trim();
-        String name = txtName.getText().trim();
+        String studentId = txtNuid.getText().trim();
+        String name = txtFirstName.getText().trim();
 
-        if (nuid.isBlank() || name.isBlank()) {
-            JOptionPane.showMessageDialog(this, "Please enter both NUID and name.");
+        if (studentId.isBlank() || name.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Please enter both Student ID and name.");
             return;
         }
 
-        if (business.getStudentDirectory().findStudent(nuid) != null) {
-            JOptionPane.showMessageDialog(this, "A student with this NUID already exists.");
+        if (business.getStudentDirectory().findStudent(studentId) != null) {
+            JOptionPane.showMessageDialog(this, "A student member with this ID already exists.");
             return;
         }
 
-        Person person = business.getPersonDirectory().newPerson(nuid);
-        person.setFirstName(name);
+        Person person = business.getPersonDirectory().newPerson(studentId);
+        person.setFirstName(txtFirstName.getText().trim());
+        person.setLastName(txtLastName.getText().trim());
+        person.setEmail(txtEmail.getText().trim());
+        person.setPhone(txtPhone.getText().trim());
+        person.setDepartment(txtDepartment.getText().trim());
+        person.setTitle(txtTitle.getText().trim());
 
         business.getStudentDirectory().newStudentProfile(person);
 
-        JOptionPane.showMessageDialog(this, "Student added successfully.");
+        JOptionPane.showMessageDialog(this, "Student member added successfully.");
 
         clearFields();
+        selectedStudent = null;
         refreshTable();
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         if (selectedStudent == null) {
-            JOptionPane.showMessageDialog(this, "Please select a student to delete.");
+            JOptionPane.showMessageDialog(this, "Please select a student member to delete.");
             return;
         }
 
         Person person = selectedStudent.getPerson();
 
         UserAccount account = business.getUserAccountDirectory()
-                .findUserAccount(person.getPersonId());
+        .findUserAccount(person.getPersonId());
 
         if (account != null) {
             JOptionPane.showMessageDialog(this,
-                    "This student already has a user account. Delete the account first.");
+                "This student member already has a user account. Delete the account first.");
             return;
         }
 
         int result = JOptionPane.showConfirmDialog(
-                this,
-                "Are you sure you want to delete this student?",
-                "Confirm Delete",
-                JOptionPane.YES_NO_OPTION
+            this,
+            "Are you sure you want to delete this student member?",
+            "Confirm Delete",
+            JOptionPane.YES_NO_OPTION
         );
 
         if (result != JOptionPane.YES_OPTION) {
@@ -287,12 +331,50 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
         business.getStudentDirectory().removeStudentProfile(selectedStudent);
         business.getPersonDirectory().removePerson(person);
 
-        JOptionPane.showMessageDialog(this, "Student deleted successfully.");
+        JOptionPane.showMessageDialog(this, "Student member deleted successfully.");
 
         clearFields();
         selectedStudent = null;
         refreshTable();
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        if (selectedStudent == null) {
+            JOptionPane.showMessageDialog(this, "Please select a student member to update.");
+            return;
+        }
+
+        String studentId = txtNuid.getText().trim();
+        String name = txtFirstName.getText().trim();
+
+        if (studentId.isBlank() || name.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Please enter both Student ID and name.");
+            return;
+        }
+
+        StudentProfile existing = business.getStudentDirectory().findStudent(studentId);
+
+        if (existing != null && existing != selectedStudent) {
+            JOptionPane.showMessageDialog(this, "Another student member already has this ID.");
+            return;
+        }
+
+        Person person = selectedStudent.getPerson();
+        person.setPersonId(studentId);
+        person.setFirstName(txtFirstName.getText().trim());
+        person.setLastName(txtLastName.getText().trim());
+        person.setEmail(txtEmail.getText().trim());
+        person.setPhone(txtPhone.getText().trim());
+        person.setDepartment(txtDepartment.getText().trim());
+        person.setTitle(txtTitle.getText().trim());
+
+        JOptionPane.showMessageDialog(this, "Student member updated successfully.");
+
+        clearFields();
+        selectedStudent = null;
+        refreshTable();
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -304,10 +386,20 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblStudents;
-    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtDepartment;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtNuid;
+    private javax.swing.JTextField txtPhone;
+    private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables
 
     public void refreshTable() {
@@ -320,8 +412,8 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
                     .findUserAccount(person.getPersonId());
 
             Object[] row = new Object[3];
-            row[0] = sp;
-            row[1] = person.getFirstName();
+            row[0] = person.getPersonId();
+            row[1] = person.getFullName();
             row[2] = account == null ? "No" : "Yes";
 
             model.addRow(row);
@@ -329,7 +421,12 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
     }
     private void clearFields() {
         txtNuid.setText("");
-        txtName.setText("");
+        txtFirstName.setText("");
+        txtLastName.setText("");
+        txtEmail.setText("");
+        txtPhone.setText("");
+        txtDepartment.setText("");
+        txtTitle.setText("");
     }
 
 }

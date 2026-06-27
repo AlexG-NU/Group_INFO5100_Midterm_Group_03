@@ -39,7 +39,17 @@ public class UserAccountDirectory {
             }
         }
             return null; //not found after going through the whole list
-         }
+    }
+    public UserAccount findUserAccountByUsername(String un) {
+
+        for (UserAccount ua : useraccountlist) {
+            if (ua.getUserLoginName().equalsIgnoreCase(un)) {
+                return ua;
+            }
+        }
+
+        return null;
+    }
      public UserAccount AuthenticateUser(String un, String pw) {
 
         for (UserAccount ua : useraccountlist) {

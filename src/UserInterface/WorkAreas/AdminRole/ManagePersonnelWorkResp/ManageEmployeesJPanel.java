@@ -11,22 +11,22 @@ package UserInterface.WorkAreas.AdminRole.ManagePersonnelWorkResp;
 
 import Business.Business;
 import Business.Person.Person;
-import Business.Profiles.AcademicAdvisorProfile;
+import Business.Profiles.EmployeeProfile;
 import Business.UserAccounts.UserAccount;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
-public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
+public class ManageEmployeesJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ManageAcademicAdvisorJPanel
+     * Creates new form ManageEmployeesJPanel
      */
     JPanel CardSequencePanel;
     Business business;
-    AcademicAdvisorProfile selectedAcademicAdvisor;
+    EmployeeProfile selectedEmployee;
     
-    public ManageAcademicAdvisorJPanel(Business b, JPanel jp) {
+    public ManageEmployeesJPanel(Business b, JPanel jp) {
         business = b;
         CardSequencePanel = jp;
         initComponents();
@@ -42,11 +42,11 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblAcademicAdvisor = new javax.swing.JTable();
         Back = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblEmployees = new javax.swing.JTable();
         btnAdd = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
@@ -67,24 +67,6 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(0, 153, 153));
 
-        tblAcademicAdvisor.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "ID", "Name", "Has Account?"
-            }
-        ));
-        tblAcademicAdvisor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                tblAcademicAdvisorMousePressed(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tblAcademicAdvisor);
-
         Back.setText("<< Back");
         Back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,10 +75,28 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
         });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel1.setText("Academic Advisors");
+        jLabel1.setText("Employees");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabel2.setText("Manage Academic Advisors");
+        jLabel2.setText("Manage Employees");
+
+        tblEmployees.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "NUID", "Name", "Has Account?"
+            }
+        ));
+        tblEmployees.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblEmployeesMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblEmployees);
 
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -140,64 +140,62 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnAdd)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(btnDelete)
-                        .addGap(97, 97, 97))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel4))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addGap(6, 6, 6)
-                                                .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel8))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtNuid)))))
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Back)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGap(11, 11, 11)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(Back)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(20, 20, 20)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(20, 20, 20)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 39, Short.MAX_VALUE)))
-                .addContainerGap())
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel7)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel6)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel5)
+                                                .addComponent(jLabel4))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                    .addGap(6, 6, 6)
+                                                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jLabel3)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(txtNuid, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jLabel8)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(txtDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jLabel9)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(txtTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnAdd)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(27, 27, 27)
+                                    .addComponent(btnDelete)
+                                    .addGap(97, 97, 97)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,28 +239,6 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tblAcademicAdvisorMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAcademicAdvisorMousePressed
-        // Extracts the row (uaser account) in the table that is selected by the user
-        int selectedRow = tblAcademicAdvisor.getSelectedRow();
-
-        if (selectedRow < 0) {
-            return;
-        }
-
-        String academicadvisorId = tblAcademicAdvisor.getValueAt(selectedRow, 0).toString();
-
-        selectedAcademicAdvisor = business.getAcademicAdvisorDirectory().findAcademicAdvisor(academicadvisorId);
-
-        if (selectedAcademicAdvisor == null) {
-            JOptionPane.showMessageDialog(this, "Could not find selected advisor.");
-            return;
-        }
-
-        Person person = selectedAcademicAdvisor.getPerson();
-        txtNuid.setText(person.getPersonId());
-        txtFirstName.setText(person.getFirstName());
-    }//GEN-LAST:event_tblAcademicAdvisorMousePressed
-
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         // TODO add your handling code here:
         CardSequencePanel.remove(this);
@@ -270,22 +246,43 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
         //       ((java.awt.CardLayout)CardSequencePanel.getLayout()).show(CardSequencePanel, "IdentifyEventTypes");
     }//GEN-LAST:event_BackActionPerformed
 
+    private void tblEmployeesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmployeesMousePressed
+        // Extracts the row (uaser account) in the table that is selected by the user
+        int selectedRow = tblEmployees.getSelectedRow();
+
+        if (selectedRow < 0) {
+            return;
+        }
+
+        selectedEmployee = (EmployeeProfile) tblEmployees.getValueAt(selectedRow, 0);
+
+        Person person = selectedEmployee.getPerson();
+        txtNuid.setText(person.getPersonId());
+        txtFirstName.setText(person.getFirstName());
+        txtLastName.setText(person.getLastName());
+        txtEmail.setText(person.getEmail());
+        txtPhone.setText(person.getPhone());
+        txtDepartment.setText(person.getDepartment());
+        txtTitle.setText(person.getTitle());
+
+    }//GEN-LAST:event_tblEmployeesMousePressed
+
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        String academicadvisorId = txtNuid.getText().trim();
+        String employeeId = txtNuid.getText().trim();
         String name = txtFirstName.getText().trim();
 
-        if (academicadvisorId.isBlank() || name.isBlank()) {
-            JOptionPane.showMessageDialog(this, "Please enter both Advisor ID and name.");
+        if (employeeId.isBlank() || name.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Please enter both Employee ID and name.");
             return;
         }
 
-        if (business.getAcademicAdvisorDirectory().findAcademicAdvisor(academicadvisorId) != null) {
-            JOptionPane.showMessageDialog(this, "An advisor member with this ID already exists.");
+        if (business.getEmployeeDirectory().findEmployee(employeeId) != null) {
+            JOptionPane.showMessageDialog(this, "An employee member with this ID already exists.");
             return;
         }
 
-        Person person = business.getPersonDirectory().newPerson(academicadvisorId);
+        Person person = business.getPersonDirectory().newPerson(employeeId);
         person.setFirstName(txtFirstName.getText().trim());
         person.setLastName(txtLastName.getText().trim());
         person.setEmail(txtEmail.getText().trim());
@@ -293,36 +290,36 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
         person.setDepartment(txtDepartment.getText().trim());
         person.setTitle(txtTitle.getText().trim());
 
-        business.getAcademicAdvisorDirectory().newAcademicAdvisorProfile(person);
+        business.getEmployeeDirectory().newEmployeeProfile(person);
 
-        JOptionPane.showMessageDialog(this, "Advisor member added successfully.");
+        JOptionPane.showMessageDialog(this, "Employee member added successfully.");
 
         clearFields();
-        selectedAcademicAdvisor = null;
+        selectedEmployee = null;
         refreshTable();
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        if (selectedAcademicAdvisor == null) {
-            JOptionPane.showMessageDialog(this, "Please select an advisor member to delete.");
+        if (selectedEmployee == null) {
+            JOptionPane.showMessageDialog(this, "Please select an employee member to delete.");
             return;
         }
 
-        Person person = selectedAcademicAdvisor.getPerson();
+        Person person = selectedEmployee.getPerson();
 
         UserAccount account = business.getUserAccountDirectory()
         .findUserAccount(person.getPersonId());
 
         if (account != null) {
             JOptionPane.showMessageDialog(this,
-                "This advisor member already has a user account. Delete the account first.");
+                "This employee member already has a user account. Delete the account first.");
             return;
         }
 
         int result = JOptionPane.showConfirmDialog(
             this,
-            "Are you sure you want to delete this advisor member?",
+            "Are you sure you want to delete this employee member?",
             "Confirm Delete",
             JOptionPane.YES_NO_OPTION
         );
@@ -331,40 +328,40 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
             return;
         }
 
-        business.getAcademicAdvisorDirectory().removeAcademicAdvisorProfile(selectedAcademicAdvisor);
+        business.getEmployeeDirectory().removeEmployeeProfile(selectedEmployee);
         business.getPersonDirectory().removePerson(person);
 
-        JOptionPane.showMessageDialog(this, "Advisor member deleted successfully.");
+        JOptionPane.showMessageDialog(this, "Employee member deleted successfully.");
 
         clearFields();
-        selectedAcademicAdvisor = null;
+        selectedEmployee = null;
         refreshTable();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        if (selectedAcademicAdvisor == null) {
-            JOptionPane.showMessageDialog(this, "Please select an advisor member to update.");
+        if (selectedEmployee == null) {
+            JOptionPane.showMessageDialog(this, "Please select an employee member to update.");
             return;
         }
 
-        String academicadvisorId = txtNuid.getText().trim();
+        String employeeId = txtNuid.getText().trim();
         String name = txtFirstName.getText().trim();
 
-        if (academicadvisorId.isBlank() || name.isBlank()) {
-            JOptionPane.showMessageDialog(this, "Please enter both Advisor ID and name.");
+        if (employeeId.isBlank() || name.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Please enter both Employee ID and name.");
             return;
         }
 
-        AcademicAdvisorProfile existing = business.getAcademicAdvisorDirectory().findAcademicAdvisor(academicadvisorId);
+        EmployeeProfile existing = business.getEmployeeDirectory().findEmployee(employeeId);
 
-        if (existing != null && existing != selectedAcademicAdvisor) {
-            JOptionPane.showMessageDialog(this, "Another advisor member already has this ID.");
+        if (existing != null && existing != selectedEmployee) {
+            JOptionPane.showMessageDialog(this, "Another employee member already has this ID.");
             return;
         }
 
-        Person person = selectedAcademicAdvisor.getPerson();
-        person.setPersonId(academicadvisorId);
+        Person person = selectedEmployee.getPerson();
+        person.setPersonId(employeeId);
         person.setFirstName(txtFirstName.getText().trim());
         person.setLastName(txtLastName.getText().trim());
         person.setEmail(txtEmail.getText().trim());
@@ -372,10 +369,10 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
         person.setDepartment(txtDepartment.getText().trim());
         person.setTitle(txtTitle.getText().trim());
 
-        JOptionPane.showMessageDialog(this, "Advisor member updated successfully.");
+        JOptionPane.showMessageDialog(this, "Employee member updated successfully.");
 
         clearFields();
-        selectedAcademicAdvisor = null;
+        selectedEmployee = null;
         refreshTable();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -395,7 +392,7 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblAcademicAdvisor;
+    private javax.swing.JTable tblEmployees;
     private javax.swing.JTextField txtDepartment;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFirstName;
@@ -406,12 +403,11 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     public void refreshTable() {
-        DefaultTableModel model = (DefaultTableModel) tblAcademicAdvisor.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblEmployees.getModel();
         model.setRowCount(0);
 
-        for (AcademicAdvisorProfile ep : business.getAcademicAdvisorDirectory().getAcademicAdvisorList()) {
-            Person person = ep.getPerson();
-
+        for (EmployeeProfile sp : business.getEmployeeDirectory().getEmployeeList()) {
+            Person person = sp.getPerson();
             UserAccount account = business.getUserAccountDirectory()
                     .findUserAccount(person.getPersonId());
 
@@ -423,7 +419,6 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
-    
     private void clearFields() {
         txtNuid.setText("");
         txtFirstName.setText("");

@@ -5,7 +5,11 @@
  */
 package UserInterface.WorkAreas.AdminRole.AdministerUserAccountsWorkResp;
 
+import Business.Business;
+import Business.Person.Person;
+import Business.Profiles.Profile;
 import Business.UserAccounts.UserAccount;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -21,11 +25,29 @@ public class AdminUserAccount extends javax.swing.JPanel {
     JPanel CardSequencePanel;
 
     UserAccount selecteduseraccount;
+    Business business;
+    ManageUserAccountsJPanel parentPanel;
 
-    public AdminUserAccount(UserAccount sua, JPanel jp) {
+    public AdminUserAccount(UserAccount sua, JPanel jp, Business b, ManageUserAccountsJPanel parent) {
 
         CardSequencePanel = jp;
         selecteduseraccount= sua;
+        business = b;
+        parentPanel=parent;
+        initComponents();
+        //display user details here
+        
+        txtID.setText(sua.getPersonId());
+        txtUsername.setText(sua.getUserLoginName());
+        cmbStatus.setSelectedItem(sua.getStatus());
+
+    }
+    
+    public AdminUserAccount(JPanel jp, Business b, ManageUserAccountsJPanel parent) {
+
+        CardSequencePanel = jp;
+        business = b;
+        parentPanel=parent;
         initComponents();
         //display user details here
 
@@ -40,26 +62,22 @@ public class AdminUserAccount extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Back = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         Back1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        cmbStatus = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        btnSave = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 153, 153));
-        setLayout(null);
-
-        Back.setText("Update>>");
-        Back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackActionPerformed(evt);
-            }
-        });
-        add(Back);
-        Back.setBounds(480, 290, 100, 32);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel2.setText("Administer User Account");
-        add(jLabel2);
-        jLabel2.setBounds(21, 20, 550, 29);
 
         Back1.setText("<< Back");
         Back1.addActionListener(new java.awt.event.ActionListener() {
@@ -67,17 +85,98 @@ public class AdminUserAccount extends javax.swing.JPanel {
                 Back1ActionPerformed(evt);
             }
         });
-        add(Back1);
-        Back1.setBounds(40, 290, 100, 32);
+
+        jLabel3.setText("NUID:");
+
+        txtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Username:");
+
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Password:");
+
+        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Inactive" }));
+
+        jLabel7.setText("Status:");
+
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(Back1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(330, 330, 330)
+                        .addComponent(btnSave))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel7)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(83, 83, 83)
+                                .addComponent(jLabel5))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                            .addComponent(txtUsername))))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel2)
+                .addGap(62, 62, 62)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5)
+                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(cmbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(127, 127, 127)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Back1)
+                    .addComponent(btnSave))
+                .addGap(9, 9, 9))
+        );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-        // TODO add your handling code here:
-
-        CardSequencePanel.remove(this);
-        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
-
-    }//GEN-LAST:event_BackActionPerformed
 
     private void Back1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Back1ActionPerformed
         // TODO add your handling code here:
@@ -87,11 +186,111 @@ public class AdminUserAccount extends javax.swing.JPanel {
 
     }//GEN-LAST:event_Back1ActionPerformed
 
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDActionPerformed
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        String id = txtID.getText().trim();
+        String username = txtUsername.getText().trim();
+        String password = txtPassword.getText();
+        String status = cmbStatus.getSelectedItem().toString();
+
+        if (id.isBlank() || username.isBlank() || password.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Please complete all required fields.");
+            return;
+        }
+        boolean success;
+        if (selecteduseraccount == null) {
+            success = createNewAccount(id, username, password, status);
+        } else {
+            success = updateExistingAccount(id, username, password, status);
+        }
+        if (parentPanel != null) {
+            parentPanel.refreshTable();
+        }
+        if (success) {
+            CardSequencePanel.remove(this);
+            ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private boolean updateExistingAccount(String id, String username, String password, String status) {
+
+        UserAccount existingUsernameAccount = business.getUserAccountDirectory().findUserAccountByUsername(username);
+
+        if (existingUsernameAccount != null && existingUsernameAccount != selecteduseraccount) {
+            JOptionPane.showMessageDialog(this, "This username is already taken.");
+            return false;
+        }
+
+        selecteduseraccount.setUserLoginName(username);
+        selecteduseraccount.setStatus(status);
+
+        if (!password.isBlank()) {
+            selecteduseraccount.setPassword(password);
+        }
+
+        JOptionPane.showMessageDialog(this, "Account updated successfully.");
+        return true;
+    }
+    
+    private boolean createNewAccount(String id, String username, String password, String status) {
+
+        //Person person = null;
+        Profile profile = null;
+        /*if (role.equals("Student")) {
+            profile = business.getStudentDirectory().findStudent(id);
+        } else if (role.equals("Faculty")) {
+            profile = business.getFacultyDirectory().findFaculty(id);
+        } else if (role.equals("Admin")) {
+            profile = business.getEmployeeDirectory().findEmployee(id);
+        }*/
+        profile = business.findProfileByPersonId(id);
+        //person = business.getPersonDirectory().findPerson(id);
+        if (profile == null) {
+            JOptionPane.showMessageDialog(this,
+                    "No matching profile found. Register the person/profile first.");
+            return false;
+        }
+
+        if (business.getUserAccountDirectory().findUserAccount(id) != null) {
+            JOptionPane.showMessageDialog(this,
+                    "This person already has a user account.");
+            return false;
+        }
+
+        if (business.getUserAccountDirectory().findUserAccountByUsername(username) != null) {
+            JOptionPane.showMessageDialog(this,
+                    "This username is already taken.");
+            return false;
+        }
+             
+       
+        UserAccount ua = business.getUserAccountDirectory().newUserAccount(profile, username, password);
+        ua.setStatus(status);
+
+        JOptionPane.showMessageDialog(this, "Account created successfully.");
+        return true;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Back;
     private javax.swing.JButton Back1;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JComboBox<String> cmbStatus;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
 }

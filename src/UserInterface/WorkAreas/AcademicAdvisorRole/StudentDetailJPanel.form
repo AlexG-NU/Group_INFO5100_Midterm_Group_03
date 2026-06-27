@@ -21,86 +21,108 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel2" min="-2" pref="270" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="Back" min="-2" pref="90" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="446" max="-2" attributes="0"/>
+                      <Component id="btnEditRecommendations" min="-2" pref="224" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblSectionStudent" min="-2" pref="220" max="-2" attributes="0"/>
-                          <EmptySpace min="180" pref="180" max="-2" attributes="0"/>
-                          <Component id="lblSectionAcademic" min="-2" pref="220" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblStudentId" min="-2" pref="120" max="-2" attributes="0"/>
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="txtStudentId" min="-2" pref="220" max="-2" attributes="0"/>
-                          <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
-                          <Component id="lblAcademicStanding" min="-2" pref="140" max="-2" attributes="0"/>
-                          <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                          <Component id="txtAcademicStanding" min="-2" pref="220" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblName" min="-2" pref="120" max="-2" attributes="0"/>
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="txtName" min="-2" pref="220" max="-2" attributes="0"/>
-                          <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
-                          <Component id="lblGPA" min="-2" pref="140" max="-2" attributes="0"/>
-                          <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                          <Component id="txtGPA" min="-2" pref="220" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblEmail" min="-2" pref="120" max="-2" attributes="0"/>
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="txtEmail" min="-2" pref="220" max="-2" attributes="0"/>
-                          <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
-                          <Component id="lblCreditsCompleted" min="-2" pref="140" max="-2" attributes="0"/>
-                          <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                          <Component id="txtCreditsCompleted" min="-2" pref="220" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblNUID" min="-2" pref="120" max="-2" attributes="0"/>
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="txtNUID" min="-2" pref="220" max="-2" attributes="0"/>
-                          <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
-                          <Component id="lblCreditsRemaining" min="-2" pref="140" max="-2" attributes="0"/>
-                          <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                          <Component id="txtCreditsRemaining" min="-2" pref="220" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblDepartment" min="-2" pref="120" max="-2" attributes="0"/>
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                          <Component id="txtDepartment" min="-2" pref="220" max="-2" attributes="0"/>
-                          <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
-                          <Component id="lblPotentialGradDate" min="-2" pref="140" max="-2" attributes="0"/>
-                          <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                          <Component id="txtPotentialGradDate" min="-2" pref="220" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="lblSectionAdvisor" min="-2" pref="250" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblLastMeetingDate" min="-2" pref="140" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="txtLastMeetingDate" min="-2" pref="200" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblRecommendedCourses" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="lblRecommendedCourses" max="32767" attributes="0"/>
+                                  <Component id="lblLastMeetingDate" pref="140" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="lblAdvisorNotes" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jScrollPane2" pref="632" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="txtLastMeetingDate" min="-2" pref="202" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblAdvisorNotes" min="-2" pref="150" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                          <Component id="Back" min="-2" pref="90" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                          <Component id="btnEditRecommendations" min="-2" pref="224" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblSectionStudent" min="-2" pref="220" max="-2" attributes="0"/>
+                              <EmptySpace min="180" pref="180" max="-2" attributes="0"/>
+                              <Component id="lblSectionAcademic" min="-2" pref="220" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblSectionAdvisor" min="-2" pref="250" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblDepartment" min="-2" pref="120" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                              <Component id="txtDepartment" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblNUID" min="-2" pref="120" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                              <Component id="txtNUID" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblEmail" min="-2" pref="120" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                              <Component id="txtEmail" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblName" min="-2" pref="120" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                              <Component id="txtName" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="lblStudentId" min="-2" pref="120" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                              <Component id="txtStudentId" min="-2" pref="201" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="lblPotentialGradDate" min="-2" pref="140" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Component id="txtPotentialGradDate" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="lblCreditsRemaining" min="-2" pref="140" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Component id="txtCreditsRemaining" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="lblCreditsCompleted" min="-2" pref="140" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Component id="txtCreditsCompleted" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="lblGPA" min="-2" pref="140" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Component id="txtGPA" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="lblAcademicStanding" min="-2" pref="140" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Component id="txtAcademicStanding" min="-2" pref="200" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
+                  <Component id="jLabel2" min="-2" pref="270" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="139" max="32767" attributes="0"/>
+              <EmptySpace pref="373" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -114,42 +136,63 @@
                   <Component id="lblSectionStudent" min="-2" pref="20" max="-2" attributes="0"/>
                   <Component id="lblSectionAcademic" min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblStudentId" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtStudentId" min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="lblAcademicStanding" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtAcademicStanding" min="-2" pref="26" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="15" pref="15" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblAcademicStanding" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="txtAcademicStanding" min="-2" pref="26" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblGPA" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="txtGPA" min="-2" pref="26" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblCreditsCompleted" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="txtCreditsCompleted" min="-2" pref="26" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblCreditsRemaining" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="txtCreditsRemaining" min="-2" pref="26" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblPotentialGradDate" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="txtPotentialGradDate" min="-2" pref="26" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblStudentId" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="txtStudentId" min="-2" pref="26" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblName" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="txtName" min="-2" pref="26" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblEmail" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="txtEmail" min="-2" pref="26" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblNUID" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="txtNUID" min="-2" pref="26" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblDepartment" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="txtDepartment" min="-2" pref="26" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblName" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtName" min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="lblGPA" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtGPA" min="-2" pref="26" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblEmail" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtEmail" min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="lblCreditsCompleted" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtCreditsCompleted" min="-2" pref="26" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblNUID" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtNUID" min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="lblCreditsRemaining" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtCreditsRemaining" min="-2" pref="26" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="9" pref="9" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblDepartment" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtDepartment" min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="lblPotentialGradDate" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="txtPotentialGradDate" min="-2" pref="26" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="34" pref="34" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Component id="lblSectionAdvisor" min="-2" pref="20" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -158,20 +201,20 @@
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblRecommendedCourses" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="lblRecommendedCourses" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="82" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane2" min="-2" pref="102" max="-2" attributes="0"/>
                   <Component id="lblAdvisorNotes" min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" min="-2" pref="74" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="34" max="32767" attributes="0"/>
+              <EmptySpace pref="90" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="Back" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="btnEditRecommendations" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="Back" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
