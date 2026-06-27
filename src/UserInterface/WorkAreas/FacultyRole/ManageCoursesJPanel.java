@@ -32,12 +32,23 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
         this.facultyProfile= facultyProfile;
         this.courseCatalog = business.getDepartment().getCourseCatalog();
         
+        
+        
         initComponents();
         populateTable();
         
         
         
+        
+        
        }
+    private boolean isValidCourseName(String courseName) {
+    if (courseName == null || courseName.trim().isEmpty()) {
+        return false;
+    }
+
+    // Requires at least one alphabetic letter
+    return courseName.trim().matches("[a-zA-Z ]+");}
     
     private void populateTable(){
         DefaultTableModel model = (DefaultTableModel) CourseTable.getModel();
@@ -194,6 +205,11 @@ if (newNumber == null) return;
 String newName = JOptionPane.showInputDialog(this, "Course Name:", c.getName());
 if (newName == null) return;
 
+if (!isValidCourseName(newName)) {
+    JOptionPane.showMessageDialog(this, "Course name must only contain letters.");
+    return;
+}
+
 String creditsStr = JOptionPane.showInputDialog(this, "Credits:", c.getCredits());
 if (creditsStr == null) return;
 
@@ -243,7 +259,12 @@ if (confirm == javax.swing.JOptionPane.YES_OPTION) {
         if (number == null || number.trim().isEmpty()) return;
         
         String name = javax.swing.JOptionPane.showInputDialog(this,"Course Name:");
-        if (name == null || name.trim().isEmpty()) return;
+if (name == null || name.trim().isEmpty()) return;
+
+if (!isValidCourseName(name)) {
+    javax.swing.JOptionPane.showMessageDialog(this, "Course name must only contain letters.");
+    return;
+}
         
         String creditsStr = javax.swing.JOptionPane.showInputDialog(this,"Credits:");
         if (creditsStr ==null) return;

@@ -22,9 +22,11 @@ public class PerformanceReports extends javax.swing.JPanel {
         this.facultyProfile= facultyProfile;
         this.CardSequencePanel= CardSequencePanel;
         initComponents();
+        jTable1.setDefaultEditor(Object.class, null);
         populateCourseDropdown();
     populateTable();
     updateStats();
+   
     }
     private void populateCourseDropdown() {
     StudentPerformanceCombo.removeAllItems();
