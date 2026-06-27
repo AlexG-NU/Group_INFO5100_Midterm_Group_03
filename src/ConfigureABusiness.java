@@ -15,6 +15,7 @@ import Business.Profiles.EmployeeProfile;
 import Business.Profiles.StudentDirectory;
 import Business.Profiles.StudentProfile;
 import Business.Profiles.AcademicAdvisorProfile;
+import Business.Profiles.AcademicAdvisorDirectory;
 import Business.Profiles.FacultyDirectory;
 import Business.Profiles.FacultyProfile;
 import Business.UserAccounts.UserAccount;
@@ -78,10 +79,10 @@ class ConfigureABusiness {
         StudentProfile studentprofile0 = studentdirectory.newStudentProfile(person003);
         
         // 4 added by Janet 
-        AcademicAdvisorProfile advisorprofile0 = new AcademicAdvisorProfile(person004);
+        AcademicAdvisorDirectory academicadvisordirectory = business.getAcademicAdvisorDirectory();
+        AcademicAdvisorProfile advisorprofile0 = academicadvisordirectory.newAcademicAdvisorProfile(person004);
         
-        //FacultyDirectory facultydirectory = business.getFacultyDirectory();
-        //FacultyProfile facultyprofile0 = facultydirectory.newFacultyProfile(person005);
+
         
 
 
@@ -119,7 +120,9 @@ class ConfigureABusiness {
         person010.setDepartment("Information Systems");
         person010.setTitle("Faculty");
         
-        FacultyProfile facultyprofile0 = new FacultyProfile(person010);
+        FacultyDirectory facultydirectory = business.getFacultyDirectory();
+        FacultyProfile facultyprofile0 = facultydirectory.newFacultyProfile(person010);
+        
         UserAccount ua6 = uadirectory.newUserAccount(facultyprofile0,"maria", "****");
         
         // Student grades by Abhi
