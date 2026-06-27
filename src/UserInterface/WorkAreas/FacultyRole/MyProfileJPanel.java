@@ -28,6 +28,23 @@ public class MyProfileJPanel extends javax.swing.JPanel {
         initComponents();
         populateFields();
     }
+    private boolean isValidName(String name) {
+    if (name == null || name.trim().isEmpty()) {
+        return false;
+    }
+
+   
+    return name.trim().matches("[a-zA-Z ]+");
+}
+
+private boolean isValidPhone(String phone) {
+    if (phone == null || phone.trim().isEmpty()) {
+        return false;
+    }
+
+   
+    return phone.trim().matches("\\d+");
+}
     
     private void populateFields(){
         Person person = facultyProfile.getPerson();
