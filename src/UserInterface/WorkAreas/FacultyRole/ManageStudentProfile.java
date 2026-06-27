@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package UserInterface.WorkAreas.FacultyRole;
+import Business.Person.Person;
+import Business.Profiles.StudentProfile;
+import Business.Advising.AdvisorRecord;
 
 /**
  *
@@ -20,7 +23,53 @@ public class ManageStudentProfile extends javax.swing.JPanel {
         this.facultyProfile = facultyProfile;
         this.CardSequencePanel= CardSequencePanel;
         initComponents();
+        populateStudentTable();
+        setupTableSelectionListener();
     }
+    private void populateStudentTable() {
+    javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel();
+    model.addColumn("Name");
+    model.addColumn("NUID");
+    model.addColumn("Email");
+    model.addColumn("Department");
+    for (StudentProfile sp : business.getStudentDirectory().getStudentList()) {
+        Person p = sp.getPerson();
+        model.addRow(new Object[]{ p.getFullName(), p.getNuid(), p.getEmail(), p.getDepartment() });
+    }
+    StudentProfileTable.setModel(model);
+}
+
+private void setupTableSelectionListener() {
+    StudentProfileTable.getSelectionModel().addListSelectionListener(e -> {
+        if (!e.getValueIsAdjusting()) {
+            showSelectedStudentDetails();
+        }
+    });
+}
+
+private void showSelectedStudentDetails() {
+    int row = StudentProfileTable.getSelectedRow();
+    if (row < 0) return;
+
+    String nuid = (String) StudentProfileTable.getValueAt(row, 1);
+    String name = (String) StudentProfileTable.getValueAt(row, 0);
+    String email = (String) StudentProfileTable.getValueAt(row, 2);
+    String dept = (String) StudentProfileTable.getValueAt(row, 3);
+
+    
+    txtSelectedStudent.setText(name + " | " + nuid + " | " + email + " | " + dept);
+
+   
+    AdvisorRecord rec = business.getAdvisorRecordDirectory().findRecordByStudentNuid(nuid);
+    if (rec != null) {
+        lblProgressData.setText("GPA: " + rec.getGpa()
+            + " | Credits: " + rec.getCreditsCompleted() + "/" + rec.getCreditsRequired()
+            + " | Standing: " + rec.getAcademicStanding()
+            + " | Grad: " + rec.getPotentialGraduationDate());
+    } else {
+        lblProgressData.setText("No advisor record found.");
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,12 +84,12 @@ public class ManageStudentProfile extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         StudentProfileTable = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
         lblInterests = new javax.swing.JLabel();
         lblSelectedStudentDetails = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtSelectedStudent = new javax.swing.JTextField();
+        txtInterests = new javax.swing.JTextField();
         lblAcademicProgress = new javax.swing.JLabel();
+        lblProgressData = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         jLabel1.setText("Manage Student Profiles");
@@ -65,16 +114,25 @@ public class ManageStudentProfile extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(StudentProfileTable);
 
-        jLabel2.setText("jLabel2");
-
         lblInterests.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         lblInterests.setText("Interests");
 
         lblSelectedStudentDetails.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
-        lblSelectedStudentDetails.setText("Selected Student Details");
+        lblSelectedStudentDetails.setText("Hobbies");
+
+        txtSelectedStudent.setEditable(false);
+        txtSelectedStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSelectedStudentActionPerformed(evt);
+            }
+        });
+
+        txtInterests.setEditable(false);
 
         lblAcademicProgress.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         lblAcademicProgress.setText("Academic Progress");
+
+        lblProgressData.setText("lblProgressData");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -82,32 +140,30 @@ public class ManageStudentProfile extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(btnBack)
-                .addGap(127, 127, 127)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAcademicProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSelectedStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSelectedStudentDetails, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblAcademicProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(170, 170, 170)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblSelectedStudentDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE)
+                        .addGap(36, 36, 36)
+                        .addComponent(txtInterests, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                         .addComponent(lblInterests, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel2)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(btnBack)
+                        .addGap(127, 127, 127)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(lblProgressData, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,22 +174,19 @@ public class ManageStudentProfile extends javax.swing.JPanel {
                     .addComponent(btnBack))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblInterests)
                     .addComponent(lblSelectedStudentDetails))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtInterests, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(txtSelectedStudent))
+                .addGap(28, 28, 28)
                 .addComponent(lblAcademicProgress)
-                .addContainerGap(62, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel2)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblProgressData, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(143, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -146,17 +199,21 @@ public class ManageStudentProfile extends javax.swing.JPanel {
         layout.next(CardSequencePanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void txtSelectedStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSelectedStudentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSelectedStudentActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable StudentProfileTable;
     private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblAcademicProgress;
     private javax.swing.JLabel lblInterests;
+    private javax.swing.JLabel lblProgressData;
     private javax.swing.JLabel lblSelectedStudentDetails;
+    private javax.swing.JTextField txtInterests;
+    private javax.swing.JTextField txtSelectedStudent;
     // End of variables declaration//GEN-END:variables
 }
