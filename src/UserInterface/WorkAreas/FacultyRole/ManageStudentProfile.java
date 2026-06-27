@@ -27,14 +27,38 @@ public class ManageStudentProfile extends javax.swing.JPanel {
         setupTableSelectionListener();
     }
     private void populateStudentTable() {
-    javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel();
+    javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+    
+
     model.addColumn("Name");
     model.addColumn("NUID");
     model.addColumn("Email");
     model.addColumn("Department");
+
+    if (business == null || business.getStudentDirectory() == null) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Student directory is not available.");
+        StudentProfileTable.setModel(model);
+        return;
+    }
+
     for (StudentProfile sp : business.getStudentDirectory().getStudentList()) {
+        if (sp == null || sp.getPerson() == null) {
+            continue;
+        }
+
         Person p = sp.getPerson();
-        model.addRow(new Object[]{ p.getFullName(), p.getNuid(), p.getEmail(), p.getDepartment() });
+
+        model.addRow(new Object[]{
+            safeText(p.getFullName()),
+            safeText(p.getNuid()),
+            safeText(p.getEmail()),
+            safeText(p.getDepartment())
+     });
     }
     StudentProfileTable.setModel(model);
 }
@@ -47,25 +71,61 @@ private void setupTableSelectionListener() {
     });
 }
 
+private String safeText(String value) {
+    return value == null ? "" : value;
+}
+
+private StudentProfile findStudentProfileByNuid(String nuid) {
+    if (business == null || business.getStudentDirectory() == null || nuid == null) {
+        return null;
+    }
+
+    for (StudentProfile sp : business.getStudentDirectory().getStudentList()) {
+        if (sp == null || sp.getPerson() == null) {
+            continue;
+        }
+
+        String studentNuid = sp.getPerson().getNuid();
+
+        if (studentNuid != null && studentNuid.equals(nuid)) {
+            return sp;
+        }
+    }
+
+    return null;
+}
+
 private void showSelectedStudentDetails() {
     int row = StudentProfileTable.getSelectedRow();
-    if (row < 0) return;
 
-    String nuid = (String) StudentProfileTable.getValueAt(row, 1);
-    String name = (String) StudentProfileTable.getValueAt(row, 0);
-    String email = (String) StudentProfileTable.getValueAt(row, 2);
-    String dept = (String) StudentProfileTable.getValueAt(row, 3);
+    if (row < 0) {
+        return;
+    }
 
-    
-    txtSelectedStudent.setText(name + " | " + nuid + " | " + email + " | " + dept);
+    String nuid = safeText((String) StudentProfileTable.getValueAt(row, 1));
 
-   
+    StudentProfile selectedStudent = findStudentProfileByNuid(nuid);
+
+    if (selectedStudent != null) {
+        txtSelectedStudent.setText(safeText(selectedStudent.getHobbies()));
+        txtInterests.setText(safeText(selectedStudent.getInterests()));
+    } else {
+        txtSelectedStudent.setText("");
+        txtInterests.setText("");
+    }
+
+    if (business == null || business.getAdvisorRecordDirectory() == null) {
+        lblProgressData.setText("Advisor record directory is not available.");
+        return;
+    }
+
     AdvisorRecord rec = business.getAdvisorRecordDirectory().findRecordByStudentNuid(nuid);
+
     if (rec != null) {
         lblProgressData.setText("GPA: " + rec.getGpa()
-            + " | Credits: " + rec.getCreditsCompleted() + "/" + rec.getCreditsRequired()
-            + " | Standing: " + rec.getAcademicStanding()
-            + " | Grad: " + rec.getPotentialGraduationDate());
+                + " | Credits: " + rec.getCreditsCompleted() + "/" + rec.getCreditsRequired()
+                + " | Standing: " + rec.getAcademicStanding()
+                + " | Grad: " + rec.getPotentialGraduationDate());
     } else {
         lblProgressData.setText("No advisor record found.");
     }
@@ -111,7 +171,15 @@ private void showSelectedStudentDetails() {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(StudentProfileTable);
 
         lblInterests.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
@@ -121,6 +189,7 @@ private void showSelectedStudentDetails() {
         lblSelectedStudentDetails.setText("Hobbies");
 
         txtSelectedStudent.setEditable(false);
+        txtSelectedStudent.setBackground(new java.awt.Color(204, 204, 204));
         txtSelectedStudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSelectedStudentActionPerformed(evt);
@@ -128,6 +197,12 @@ private void showSelectedStudentDetails() {
         });
 
         txtInterests.setEditable(false);
+        txtInterests.setBackground(new java.awt.Color(204, 204, 204));
+        txtInterests.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtInterestsActionPerformed(evt);
+            }
+        });
 
         lblAcademicProgress.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
         lblAcademicProgress.setText("Academic Progress");
@@ -145,14 +220,14 @@ private void showSelectedStudentDetails() {
                     .addComponent(lblAcademicProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSelectedStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSelectedStudentDetails, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(txtInterests, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                         .addComponent(lblInterests, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(txtInterests, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(106, 106, 106))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -186,7 +261,7 @@ private void showSelectedStudentDetails() {
                 .addComponent(lblAcademicProgress)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblProgressData, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -202,6 +277,10 @@ private void showSelectedStudentDetails() {
     private void txtSelectedStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSelectedStudentActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSelectedStudentActionPerformed
+
+    private void txtInterestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInterestsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtInterestsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

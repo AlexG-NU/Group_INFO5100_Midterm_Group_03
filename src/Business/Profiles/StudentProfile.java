@@ -7,6 +7,7 @@ package Business.Profiles;
 
 import Business.Person.Person;
 
+
 /**
  *
  * @author kal bugrara
@@ -14,7 +15,8 @@ import Business.Person.Person;
 public class StudentProfile extends Profile {
 //    Transcript transcript;
     //   EmploymentHistroy employmenthistory;
-
+private String hobbies;
+private String interests;
     public StudentProfile(Person p) {
         super(p);
 
@@ -26,6 +28,21 @@ public class StudentProfile extends Profile {
     public String getRole() {
         return "Student";
     }
+    public String getHobbies() {
+    return hobbies;
+}
+
+public void setHobbies(String hobbies) {
+    this.hobbies = hobbies;
+}
+
+public String getInterests() {
+    return interests;
+}
+
+public void setInterests(String interests) {
+    this.interests = interests;
+}
 
     public boolean isMatch(String id) {
         return getPerson().getPersonId().equals(id);

@@ -79,7 +79,7 @@ class ConfigureABusiness {
         person007.setLastName("Brown");
         Person person008 = persondirectory.newPerson("900002005");
         person008.setFirstName("Jack");
-        person008.setLastName("While");
+        person008.setLastName("White");
         
         Person person009 = persondirectory.newPerson("900002006"); //we use this as customer
 
@@ -139,7 +139,7 @@ class ConfigureABusiness {
         
         // Student grades by Abhi
 business.getGradeList().add(new StudentGrade("Adam Rollen", "900002001", "INFO5100", "A"));
-business.getGradeList().add(new StudentGrade("Jim Dellon", "900002002", "INFO5100", "B+"));
+business.getGradeList().add(new StudentGrade("Jack White", "900002005", "INFO5100", "B+"));
 business.getGradeList().add(new StudentGrade("Anna Shnider", "900002003", "INFO5100", "A-"));
 business.getGradeList().add(new StudentGrade("Laura Brown", "900002004", "INFO5200", "B"));
 business.getGradeList().add(new StudentGrade("Jack White", "900002005", "INFO5200", "A"));
@@ -162,6 +162,31 @@ UserAccount uaLaura = uadirectory.newUserAccount(sp2, "laura", "****");
 AdvisorRecord lauraRec = business.getAdvisorRecordDirectory().getOrCreateRecord(uaLaura);
 lauraRec.setCreditsCompleted(30); lauraRec.setCreditsRequired(120); lauraRec.setGpa(3.20);
 lauraRec.setAcademicStanding("Needs Review"); lauraRec.setPotentialGraduationDate("May 2028"); 
+
+StudentProfile sp3 = studentdirectory.newStudentProfile(person008); // Jack White
+sp3.setHobbies("Soccer, gaming, cooking");
+sp3.setInterests("Database systems, cloud computing, cybersecurity");
+
+person008.setEmail("jack.white@northeastern.edu");
+person008.setDepartment("Information Systems");
+person008.setTitle("Student");
+
+UserAccount uaJack = uadirectory.newUserAccount(sp3, "jack", "****");
+AdvisorRecord jackRec = business.getAdvisorRecordDirectory().getOrCreateRecord(uaJack);
+jackRec.setCreditsCompleted(45);
+jackRec.setCreditsRequired(120);
+jackRec.setGpa(3.55);
+jackRec.setAcademicStanding("On Track");
+jackRec.setPotentialGraduationDate("May 2028");
+
+studentprofile0.setHobbies("Basketball, coding, photography");
+studentprofile0.setInterests("Software engineering, healthcare technology, databases");
+
+sp1.setHobbies("Painting, tennis, reading");
+sp1.setInterests("UX design, data analytics, application development");
+
+sp2.setHobbies("Volunteering, music, hiking");
+sp2.setInterests("Project management, information systems, business analysis");
 
         return business;
 
