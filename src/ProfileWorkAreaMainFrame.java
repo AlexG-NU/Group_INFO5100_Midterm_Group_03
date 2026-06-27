@@ -11,6 +11,9 @@ import Business.Profiles.StudentProfile;
 //added by Abhi
 import Business.Profiles.FacultyProfile;
 
+//added by Janet 
+import javax.swing.JOptionPane;
+
 import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
 
@@ -19,6 +22,7 @@ import UserInterface.WorkAreas.FacultyRole.FacultyWorkAreaJPanel;
 import UserInterface.WorkAreas.StudentRole.StudentWorkAreaJPanel;
 import Business.Profiles.AcademicAdvisorProfile;
 import Business.Profiles.FacultyProfile;
+//added by Janet 
 import UserInterface.WorkAreas.AcademicAdvisorRole.AcademicAdvisorWorkAreaJPanel;
 import java.time.LocalDateTime;
 import javax.swing.JPanel;
@@ -159,6 +163,8 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
         UserAccountDirectory uad = business.getUserAccountDirectory();
         UserAccount useraccount = uad.AuthenticateUser(un, pw);
         if (useraccount == null) {
+            //added by Janet
+            JOptionPane.showMessageDialog(this, "Please enter a valid username or password.");
             return;
         }
         useraccount.setLastLoginDate(LocalDateTime.now());
@@ -188,7 +194,7 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
             ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
 
         }
-        
+        //added by Janet
         if (profile instanceof AcademicAdvisorProfile) {
 
             AcademicAdvisorProfile app = (AcademicAdvisorProfile) profile;
