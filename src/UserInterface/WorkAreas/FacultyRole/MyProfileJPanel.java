@@ -76,6 +76,9 @@ public class MyProfileJPanel extends javax.swing.JPanel {
 
         lblFacultyID.setText("Faculty ID");
 
+        txtEmail.setEditable(false);
+        txtEmail.setBackground(new java.awt.Color(204, 204, 204));
+
         lblName.setText("Name");
 
         lblDepartment.setText("Department");
@@ -83,8 +86,16 @@ public class MyProfileJPanel extends javax.swing.JPanel {
         lblEmail.setText("Email ");
 
         txtFacultyID.setEditable(false);
+        txtFacultyID.setBackground(new java.awt.Color(204, 204, 204));
+
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
 
         txtDepartment.setEditable(false);
+        txtDepartment.setBackground(new java.awt.Color(204, 204, 204));
         txtDepartment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDepartmentActionPerformed(evt);
@@ -101,6 +112,7 @@ public class MyProfileJPanel extends javax.swing.JPanel {
         lblPhone.setText("Phone ");
 
         txtProfileTitle.setEditable(false);
+        txtProfileTitle.setBackground(new java.awt.Color(204, 204, 204));
 
         lblTitleProfile.setText("Title");
 
@@ -114,14 +126,18 @@ public class MyProfileJPanel extends javax.swing.JPanel {
                         .addGap(19, 19, 19)
                         .addComponent(btnBack))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(169, 169, 169)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblFacultyID)
-                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPhone)
-                            .addComponent(lblEmail)
-                            .addComponent(txtFacultyID, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(169, 169, 169)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblFacultyID)
+                                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblPhone)
+                                    .addComponent(lblEmail)
+                                    .addComponent(txtFacultyID, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(141, 141, 141)
+                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(106, 106, 106)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -213,6 +229,10 @@ public class MyProfileJPanel extends javax.swing.JPanel {
         }
         javax.swing.JOptionPane.showMessageDialog(this, "Profile updated successfully.");
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
