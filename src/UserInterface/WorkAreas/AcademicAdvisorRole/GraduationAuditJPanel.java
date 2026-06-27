@@ -58,14 +58,12 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
 
         txtSelectedStudent.setText(selectedRecord.getStudentName());
         txtPotentialGraduationDate.setText(selectedRecord.getPotentialGraduationDate());
-        cmbGraduationPlanStatus.setSelectedItem(selectedRecord.getGraduationPlanStatus());
         txtGraduationReviewNotes.setText(selectedRecord.getGraduationReviewNotes());
     }
 
     private void clearReviewFields() {
-     
+        txtSelectedStudent.setText("");
         txtPotentialGraduationDate.setText("");
-        cmbGraduationPlanStatus.setSelectedItem("Needs Review");
         txtGraduationReviewNotes.setText("");
     }
 
@@ -80,8 +78,6 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
         txtSelectedStudent = new javax.swing.JTextField();
         lblPotentialGraduationDate = new javax.swing.JLabel();
         txtPotentialGraduationDate = new javax.swing.JTextField();
-        lblGraduationPlanStatus = new javax.swing.JLabel();
-        cmbGraduationPlanStatus = new javax.swing.JComboBox<>();
         lblGraduationReviewNotes = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtGraduationReviewNotes = new javax.swing.JTextArea();
@@ -89,6 +85,7 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
         btnRefresh = new javax.swing.JButton();
         btnSaveReview = new javax.swing.JButton();
         btnClearFields = new javax.swing.JButton();
+        lblPotentialGraduationDate1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(null);
@@ -125,7 +122,7 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblAudit);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(30, 80, 900, 150);
+        jScrollPane1.setBounds(30, 80, 810, 150);
 
         lblSelectedStudent.setText("Student:");
         add(lblSelectedStudent);
@@ -133,25 +130,17 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
 
         txtSelectedStudent.setEditable(false);
         add(txtSelectedStudent);
-        txtSelectedStudent.setBounds(180, 250, 250, 25);
+        txtSelectedStudent.setBounds(150, 250, 220, 25);
 
-        lblPotentialGraduationDate.setText("Potential Graduation Date:");
+        lblPotentialGraduationDate.setText("Date:");
         add(lblPotentialGraduationDate);
-        lblPotentialGraduationDate.setBounds(30, 285, 160, 25);
+        lblPotentialGraduationDate.setBounds(30, 300, 120, 20);
         add(txtPotentialGraduationDate);
-        txtPotentialGraduationDate.setBounds(180, 285, 250, 25);
-
-        lblGraduationPlanStatus.setText("Graduation Plan Status:");
-        add(lblGraduationPlanStatus);
-        lblGraduationPlanStatus.setBounds(30, 320, 160, 25);
-
-        cmbGraduationPlanStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Needs Review", "On Track", "At Risk", "Ready for Final Review" }));
-        add(cmbGraduationPlanStatus);
-        cmbGraduationPlanStatus.setBounds(180, 320, 250, 25);
+        txtPotentialGraduationDate.setBounds(150, 290, 220, 25);
 
         lblGraduationReviewNotes.setText("Graduation Review Notes:");
         add(lblGraduationReviewNotes);
-        lblGraduationReviewNotes.setBounds(470, 250, 170, 25);
+        lblGraduationReviewNotes.setBounds(390, 250, 170, 25);
 
         txtGraduationReviewNotes.setColumns(20);
         txtGraduationReviewNotes.setLineWrap(true);
@@ -160,7 +149,7 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(txtGraduationReviewNotes);
 
         add(jScrollPane2);
-        jScrollPane2.setBounds(630, 250, 300, 95);
+        jScrollPane2.setBounds(540, 250, 300, 95);
 
         btnBack.setText("<< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -169,7 +158,7 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
             }
         });
         add(btnBack);
-        btnBack.setBounds(30, 390, 90, 30);
+        btnBack.setBounds(30, 370, 90, 30);
 
         btnRefresh.setText("Refresh");
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
@@ -178,7 +167,7 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
             }
         });
         add(btnRefresh);
-        btnRefresh.setBounds(140, 390, 90, 30);
+        btnRefresh.setBounds(140, 370, 90, 30);
 
         btnSaveReview.setText("Save Review");
         btnSaveReview.addActionListener(new java.awt.event.ActionListener() {
@@ -187,7 +176,7 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
             }
         });
         add(btnSaveReview);
-        btnSaveReview.setBounds(630, 390, 120, 30);
+        btnSaveReview.setBounds(560, 370, 120, 30);
 
         btnClearFields.setText("Clear Fields");
         btnClearFields.addActionListener(new java.awt.event.ActionListener() {
@@ -196,7 +185,11 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
             }
         });
         add(btnClearFields);
-        btnClearFields.setBounds(770, 390, 120, 30);
+        btnClearFields.setBounds(700, 370, 120, 30);
+
+        lblPotentialGraduationDate1.setText("Potential Graduation ");
+        add(lblPotentialGraduationDate1);
+        lblPotentialGraduationDate1.setBounds(30, 285, 120, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -229,7 +222,7 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
         }
 
         selectedRecord.setPotentialGraduationDate(txtPotentialGraduationDate.getText().trim());
-        selectedRecord.setGraduationPlanStatus(String.valueOf(cmbGraduationPlanStatus.getSelectedItem()));
+       
         selectedRecord.setGraduationReviewNotes(txtGraduationReviewNotes.getText().trim());
         JOptionPane.showMessageDialog(this, "Graduation review saved.");
         refreshTable();
@@ -245,12 +238,11 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnClearFields;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSaveReview;
-    private javax.swing.JComboBox<String> cmbGraduationPlanStatus;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lblGraduationPlanStatus;
     private javax.swing.JLabel lblGraduationReviewNotes;
     private javax.swing.JLabel lblPotentialGraduationDate;
+    private javax.swing.JLabel lblPotentialGraduationDate1;
     private javax.swing.JLabel lblSelectedStudent;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTable tblAudit;
