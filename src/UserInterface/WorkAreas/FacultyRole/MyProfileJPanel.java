@@ -26,6 +26,18 @@ public class MyProfileJPanel extends javax.swing.JPanel {
         this.facultyProfile = facultyProfile;
         this.CardSequencePanel= CardSequencePanel;
         initComponents();
+        
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+    public void keyTyped(java.awt.event.KeyEvent evt) {
+        txtNameKeyTyped(evt);
+    }
+});
+
+txtPhone.addKeyListener(new java.awt.event.KeyAdapter() {
+    public void keyTyped(java.awt.event.KeyEvent evt) {
+        txtPhoneKeyTyped(evt);
+    }
+});
         populateFields();
     }
     private boolean isValidName(String name) {
@@ -230,27 +242,53 @@ private boolean isValidPhone(String phone) {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         Person person = facultyProfile.getPerson();
-        
-        person.setEmail(txtEmail.getText());
-        person.setPhone(txtPhone.getText());
-        
-        String fullName = txtName.getText().trim();
-        int space = fullName.indexOf(' ');
-        if (space>0){
-            person.setFirstName(fullName.substring(0,space));
-            person.setLastName(fullName.substring(space +1));
-            
-        } else{
-            person.setFirstName(fullName);
-            person.setLastName("");
-        }
-        javax.swing.JOptionPane.showMessageDialog(this, "Profile updated successfully.");
+
+    String fullName = txtName.getText().trim();
+    String phone = txtPhone.getText().trim();
+
+    if (!isValidName(fullName)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Name can only contain letters and spaces.");
+        return;
+    }
+
+    if (!isValidPhone(phone)) {
+        javax.swing.JOptionPane.showMessageDialog(this, "Phone number can only contain numbers.");
+        return;
+    }
+
+    person.setPhone(phone);
+
+    int space = fullName.indexOf(' ');
+    if (space > 0) {
+        person.setFirstName(fullName.substring(0, space));
+        person.setLastName(fullName.substring(space + 1));
+    } else {
+        person.setFirstName(fullName);
+        person.setLastName("");
+    }
+
+    javax.swing.JOptionPane.showMessageDialog(this, "Profile updated successfully.");
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
+private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {                                 
+    char c = evt.getKeyChar();
 
+    if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
+        evt.consume();
+        javax.swing.JOptionPane.showMessageDialog(this, "Name can only contain letters and spaces.");
+    }
+}
+private void txtPhoneKeyTyped(java.awt.event.KeyEvent evt) {                                  
+    char c = evt.getKeyChar();
+
+    if (!Character.isDigit(c)) {
+        evt.consume();
+        javax.swing.JOptionPane.showMessageDialog(this, "Phone number can only contain numbers.");
+    }
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
