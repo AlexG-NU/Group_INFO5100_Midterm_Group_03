@@ -7,6 +7,7 @@ package UserInterface.WorkAreas.AcademicAdvisorRole;
 
 
 import Business.Advising.AdvisorRecord;
+import Business.Advising.AdvisorAcademicData;
 import Business.Business;
 import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
@@ -45,12 +46,13 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
         for (UserAccount ua : uad.getUserAccountList()) {
             if (ua.getAssociatedPersonProfile().getRole().equals("Student")) {
                 AdvisorRecord record = business.getAdvisorRecordDirectory().getOrCreateRecord(ua);
+                AdvisorAcademicData.syncAdvisorRecord(business, record);
                 Object[] row = new Object[5];
-                row[0] = ua.getAssociatedPersonProfile().getPerson().getNuid();
-                row[1] = ua.getAssociatedPersonProfile().getPerson().getFullName();
-                row[2] = ua.getAssociatedPersonProfile().getPerson().getDepartment();
+                row[0] = AdvisorAcademicData.getNuid(ua);
+                row[1] = AdvisorAcademicData.getStudentName(ua);
+                row[2] = AdvisorAcademicData.getDepartment(ua);
                 row[3] = record.getLastMeetingDate();
-                row[4] = record.getAcademicStanding();
+                row[4] = AdvisorAcademicData.calculateAcademicStanding(business, ua, record);
 
                 ((DefaultTableModel) StudentTable.getModel()).addRow(row);
             }
@@ -66,8 +68,7 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
             }
         }
         return null;
-    }
-        
+    }        
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -96,7 +97,7 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
             }
         });
         add(Back);
-        Back.setBounds(30, 300, 74, 30);
+        Back.setBounds(30, 300, 90, 30);
 
         Refresh.setText("Refresh");
         Refresh.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +106,7 @@ public class ViewStudentsJPanel extends javax.swing.JPanel {
             }
         });
         add(Refresh);
-        Refresh.setBounds(120, 300, 80, 30);
+        Refresh.setBounds(140, 300, 100, 30);
 
         jLabel1.setText("Student Directory");
         add(jLabel1);
