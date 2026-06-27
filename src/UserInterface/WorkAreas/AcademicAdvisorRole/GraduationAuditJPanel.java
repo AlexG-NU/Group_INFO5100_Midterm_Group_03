@@ -122,7 +122,7 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblAudit);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(30, 80, 860, 150);
+        jScrollPane1.setBounds(30, 80, 810, 150);
 
         lblSelectedStudent.setText("Student:");
         add(lblSelectedStudent);
@@ -130,17 +130,17 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
 
         txtSelectedStudent.setEditable(false);
         add(txtSelectedStudent);
-        txtSelectedStudent.setBounds(150, 250, 250, 25);
+        txtSelectedStudent.setBounds(150, 250, 220, 25);
 
         lblPotentialGraduationDate.setText("Date:");
         add(lblPotentialGraduationDate);
         lblPotentialGraduationDate.setBounds(30, 300, 120, 20);
         add(txtPotentialGraduationDate);
-        txtPotentialGraduationDate.setBounds(150, 290, 250, 25);
+        txtPotentialGraduationDate.setBounds(150, 290, 220, 25);
 
         lblGraduationReviewNotes.setText("Graduation Review Notes:");
         add(lblGraduationReviewNotes);
-        lblGraduationReviewNotes.setBounds(440, 250, 170, 25);
+        lblGraduationReviewNotes.setBounds(390, 250, 170, 25);
 
         txtGraduationReviewNotes.setColumns(20);
         txtGraduationReviewNotes.setLineWrap(true);
@@ -149,7 +149,7 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(txtGraduationReviewNotes);
 
         add(jScrollPane2);
-        jScrollPane2.setBounds(590, 250, 300, 95);
+        jScrollPane2.setBounds(540, 250, 300, 95);
 
         btnBack.setText("<< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -176,7 +176,7 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
             }
         });
         add(btnSaveReview);
-        btnSaveReview.setBounds(610, 370, 120, 30);
+        btnSaveReview.setBounds(560, 370, 120, 30);
 
         btnClearFields.setText("Clear Fields");
         btnClearFields.addActionListener(new java.awt.event.ActionListener() {
@@ -185,7 +185,7 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
             }
         });
         add(btnClearFields);
-        btnClearFields.setBounds(750, 370, 120, 30);
+        btnClearFields.setBounds(700, 370, 120, 30);
 
         lblPotentialGraduationDate1.setText("Potential Graduation ");
         add(lblPotentialGraduationDate1);
