@@ -19,7 +19,7 @@ public class Person {
     String lastName;
     String email;
     String phone;
-    String nuid;
+    //String nuid;
     String department;
     String title;
     String lastUpdated;
@@ -27,11 +27,11 @@ public class Person {
     public Person(String id) {
 
         this.id = id;
-        this.firstName = id;
+        this.firstName = "";
         this.lastName = "";
         this.email = "";
         this.phone = "";
-        this.nuid = "";
+        //this.nuid = "";
         this.department = "";
         this.title = "";
         touch();
@@ -90,13 +90,13 @@ public class Person {
     }
 
     public String getNuid() {
-        return nuid;
+        return id;
     }
 
-    public void setNuid(String nuid) {
+    /*public void setNuid(String nuid) {
         this.nuid = nuid;
         touch();
-    }
+    }*/
 
     public String getDepartment() {
         return department;

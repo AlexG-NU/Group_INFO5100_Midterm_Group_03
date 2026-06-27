@@ -34,42 +34,54 @@ class ConfigureABusiness {
 // Create Persons
       PersonDirectory persondirectory = business.getPersonDirectory();
 // person representing sales organization        
-        Person person001 = persondirectory.newPerson("John Smith");
-        Person person002 = persondirectory.newPerson("Gina Montana");
+        Person person001 = persondirectory.newPerson("900002007");
+        person001.setFirstName("John");
+        person001.setLastName("Smith");
         
-        Person person003 = persondirectory.newPerson("Adam Rollen");
+        Person person002 = persondirectory.newPerson("900002008");
+        person002.setFirstName("Gina");
+        person002.setLastName("Montana");
+        
+        Person person003 = persondirectory.newPerson("900002001");
         person003.setFirstName("Adam");
         person003.setLastName("Rollen");
         person003.setEmail("adam.rollen@northeastern.edu");
         person003.setPhone("555-3001");
-        person003.setNuid("900002001");
+        //person003.setNuid("900002001");
         person003.setDepartment("Information Systems");
         person003.setTitle("Student");
         
         
         // Person 4 added by Janet 
-        Person person004 = persondirectory.newPerson("Janet Chong");
+        Person person004 = persondirectory.newPerson("100001002");
         person004.setFirstName("Janet");
         person004.setLastName("Chong");
         person004.setEmail("janet.chong@northeastern.edu");
         person004.setPhone("123-4567");
-        person004.setNuid("100001002");
+        //person004.setNuid("100001002");
         person004.setDepartment("Advisement");
         person004.setTitle("Academic Advisor");
 
  
-        Person person005 = persondirectory.newPerson("Jim Dellon");
+        Person person005 = persondirectory.newPerson("100003333");
         person005.setFirstName("Jim");
         person005.setLastName("Dellon");
         person005.setEmail("jim.dellon@northeastern.edu");
         person005.setPhone("100-1010");
-        person005.setNuid("100003333");
+        //person005.setNuid("100003333");
         person005.setDepartment("Information Systems");
         person005.setTitle("Faculty");
-        Person person006 = persondirectory.newPerson("Anna Shnider");
-        Person person007 = persondirectory.newPerson("Laura Brown");
-        Person person008 = persondirectory.newPerson("Jack While");
-        Person person009 = persondirectory.newPerson("Fidelity"); //we use this as customer
+        Person person006 = persondirectory.newPerson("900002003");
+        person006.setFirstName("Anna");
+        person006.setLastName("Shnider");
+        Person person007 = persondirectory.newPerson("900002004");
+        person007.setFirstName("Laura");
+        person007.setLastName("Brown");
+        Person person008 = persondirectory.newPerson("900002005");
+        person008.setFirstName("Jack");
+        person008.setLastName("While");
+        
+        Person person009 = persondirectory.newPerson("900002006"); //we use this as customer
 
 
         EmployeeDirectory employeedirectory = business.getEmployeeDirectory();
@@ -111,12 +123,12 @@ class ConfigureABusiness {
         business.getDepartment().getCourseCatalog().newCourse("Database Management", "INFO5300", 4);
         
         //creating faculty user
-        Person person010 = persondirectory.newPerson("Maria Garcia");
+        Person person010 = persondirectory.newPerson("21000032");
         person010.setFirstName("Maria");
         person010.setLastName("Garcia");
         person010.setEmail("maria.garcia@northeastern.edu");
         person010.setPhone("978-333-2222");
-        person010.setNuid("21000032");
+        //person010.setNuid("21000032");
         person010.setDepartment("Information Systems");
         person010.setTitle("Faculty");
         
