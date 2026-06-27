@@ -60,7 +60,7 @@ public class AcademicProgressJPanel extends javax.swing.JPanel {
         setLayout(null);
 
         lblTitle.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        lblTitle.setText("Academic Progress");
+        lblTitle.setText("View Academic Progress");
         add(lblTitle);
         lblTitle.setBounds(30, 20, 500, 30);
 
