@@ -177,7 +177,7 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblRecommendations);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(30, 95, 900, 130);
+        jScrollPane1.setBounds(30, 95, 860, 130);
 
         btnBack.setText("<< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -231,7 +231,7 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
         add(lblAvailableCourses);
         lblAvailableCourses.setBounds(410, 250, 140, 20);
         add(cmbAvailableCourses);
-        cmbAvailableCourses.setBounds(570, 250, 360, 26);
+        cmbAvailableCourses.setBounds(560, 250, 320, 26);
 
         btnAddCourse.setText("Add Course");
         btnAddCourse.addActionListener(new java.awt.event.ActionListener() {
@@ -240,11 +240,11 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
             }
         });
         add(btnAddCourse);
-        btnAddCourse.setBounds(570, 285, 120, 30);
+        btnAddCourse.setBounds(560, 290, 120, 30);
 
         lblRecommendedCourses.setText("Recommended Courses:");
         add(lblRecommendedCourses);
-        lblRecommendedCourses.setBounds(410, 325, 150, 20);
+        lblRecommendedCourses.setBounds(410, 320, 140, 20);
 
         txtRecommendedCourses.setColumns(20);
         txtRecommendedCourses.setLineWrap(true);
@@ -252,11 +252,11 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(txtRecommendedCourses);
 
         add(jScrollPane2);
-        jScrollPane2.setBounds(570, 325, 360, 80);
+        jScrollPane2.setBounds(560, 330, 320, 80);
 
         lblAdvisorNotes.setText("Advisor Notes:");
         add(lblAdvisorNotes);
-        lblAdvisorNotes.setBounds(410, 425, 150, 20);
+        lblAdvisorNotes.setBounds(410, 430, 140, 20);
 
         txtAdvisorNotes.setColumns(20);
         txtAdvisorNotes.setLineWrap(true);
@@ -264,7 +264,7 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
         jScrollPane3.setViewportView(txtAdvisorNotes);
 
         add(jScrollPane3);
-        jScrollPane3.setBounds(570, 425, 360, 125);
+        jScrollPane3.setBounds(560, 430, 320, 125);
 
         btnSave.setText("Save / Update");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -273,7 +273,7 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
             }
         });
         add(btnSave);
-        btnSave.setBounds(790, 600, 120, 30);
+        btnSave.setBounds(760, 600, 120, 30);
 
         btnClear.setText("Clear Fields");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -282,7 +282,7 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
             }
         });
         add(btnClear);
-        btnClear.setBounds(650, 600, 120, 30);
+        btnClear.setBounds(620, 600, 120, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -368,6 +368,12 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
         for (Component component : CardSequencePanel.getComponents()) {
             if (component instanceof StudentDetailJPanel) {
                 ((StudentDetailJPanel) component).displayStudentDetails();
+            }
+            if (component instanceof ViewStudentsJPanel) {
+                ((ViewStudentsJPanel) component).refreshTable();
+            }
+            if (component instanceof AcademicProgressJPanel) {
+                ((AcademicProgressJPanel) component).refreshTable();
             }
         }
     }

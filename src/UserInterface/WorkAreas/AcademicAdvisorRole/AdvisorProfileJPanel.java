@@ -28,14 +28,13 @@ public class AdvisorProfileJPanel extends javax.swing.JPanel {
     private void displayProfile() {
         Person p = useraccount.getAssociatedPersonProfile().getPerson();
         txtRole.setText(useraccount.getRole());
-        txtPersonID.setText(p.getPersonId());
+       // txtPersonID.setText(p.getPersonId());
         txtName.setText(p.getFullName());
         txtNUID.setText(p.getNuid());
         txtEmail.setText(p.getEmail());
         txtDepartment.setText(p.getDepartment());
         txtTitle.setText(p.getTitle());
-       // txtLastAccess.setText(useraccount.getLastAccess());
-       // I'll add it later txtLastUpdated.setText(useraccount.getLastUpdated());
+
     }
 
     @SuppressWarnings("unchecked")
@@ -51,8 +50,6 @@ public class AdvisorProfileJPanel extends javax.swing.JPanel {
         lblEmail = new javax.swing.JLabel();
         lblDepartment = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
-        lblLastAccess = new javax.swing.JLabel();
-        lblLastUpdated = new javax.swing.JLabel();
         txtRole = new javax.swing.JTextField();
         txtPersonID = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
@@ -60,14 +57,12 @@ public class AdvisorProfileJPanel extends javax.swing.JPanel {
         txtEmail = new javax.swing.JTextField();
         txtDepartment = new javax.swing.JTextField();
         txtTitle = new javax.swing.JTextField();
-        txtLastAccess = new javax.swing.JTextField();
-        txtLastUpdated = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabel1.setText("Advisor Profile");
+        jLabel1.setText("View Advisor Profile");
         add(jLabel1);
         jLabel1.setBounds(30, 20, 300, 28);
 
@@ -78,7 +73,7 @@ public class AdvisorProfileJPanel extends javax.swing.JPanel {
             }
         });
         add(Back);
-        Back.setBounds(40, 490, 90, 23);
+        Back.setBounds(60, 410, 90, 23);
 
         lblRole.setText("Role:");
         add(lblRole);
@@ -108,14 +103,6 @@ public class AdvisorProfileJPanel extends javax.swing.JPanel {
         add(lblTitle);
         lblTitle.setBounds(30, 320, 120, 30);
 
-        lblLastAccess.setText("Last Accessed:");
-        add(lblLastAccess);
-        lblLastAccess.setBounds(30, 360, 120, 30);
-
-        lblLastUpdated.setText("Last Updated:");
-        add(lblLastUpdated);
-        lblLastUpdated.setBounds(30, 400, 120, 30);
-
         txtRole.setEditable(false);
         add(txtRole);
         txtRole.setBounds(160, 80, 230, 30);
@@ -143,14 +130,6 @@ public class AdvisorProfileJPanel extends javax.swing.JPanel {
         txtTitle.setEditable(false);
         add(txtTitle);
         txtTitle.setBounds(160, 320, 230, 30);
-
-        txtLastAccess.setEditable(false);
-        add(txtLastAccess);
-        txtLastAccess.setBounds(160, 360, 230, 30);
-
-        txtLastUpdated.setEditable(false);
-        add(txtLastUpdated);
-        txtLastUpdated.setBounds(160, 400, 230, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
@@ -164,8 +143,6 @@ public class AdvisorProfileJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblDepartment;
     private javax.swing.JLabel lblEmail;
-    private javax.swing.JLabel lblLastAccess;
-    private javax.swing.JLabel lblLastUpdated;
     private javax.swing.JLabel lblNUID;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblPersonID;
@@ -173,8 +150,6 @@ public class AdvisorProfileJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTextField txtDepartment;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtLastAccess;
-    private javax.swing.JTextField txtLastUpdated;
     private javax.swing.JTextField txtNUID;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPersonID;
