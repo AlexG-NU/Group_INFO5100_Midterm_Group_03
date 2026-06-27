@@ -1,6 +1,7 @@
 package UserInterface.WorkAreas.AcademicAdvisorRole;
 
 import Business.Advising.AdvisorRecord;
+import Business.Advising.AdvisorAcademicData;
 import Business.Business;
 import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
@@ -29,13 +30,16 @@ public class AcademicProgressJPanel extends javax.swing.JPanel {
         for (UserAccount ua : uad.getUserAccountList()) {
             if (ua.getAssociatedPersonProfile().getRole().equals("Student")) {
                 AdvisorRecord record = business.getAdvisorRecordDirectory().getOrCreateRecord(ua);
-                Object[] row = new Object[6];
-                row[0] = record.getStudentNuid();
-                row[1] = record.getStudentName();
-                row[2] = record.getCreditsCompleted();
-                row[3] = record.getGpa();
-                row[4] = record.getAcademicStanding();
-                row[5] = record.getLastMeetingDate();
+                AdvisorAcademicData.syncAdvisorRecord(business, record);
+                Object[] row = new Object[8];
+                row[0] = AdvisorAcademicData.getNuid(ua);
+                row[1] = AdvisorAcademicData.getStudentName(ua);
+                row[2] = AdvisorAcademicData.getDepartment(ua);
+                row[3] = AdvisorAcademicData.calculateCreditsCompleted(business, ua);
+                row[4] = AdvisorAcademicData.formatGpa(AdvisorAcademicData.calculateGpa(business, ua));
+                row[5] = AdvisorAcademicData.calculateAcademicStanding(business, ua, record);
+                row[6] = AdvisorAcademicData.getCompletedCourses(business, ua);
+                row[7] = AdvisorAcademicData.calculateReviewPriority(business, ua, record);
                 ((DefaultTableModel) tblProgress.getModel()).addRow(row);
             }
         }

@@ -78,7 +78,7 @@ public class AdvisorProfileJPanel extends javax.swing.JPanel {
             }
         });
         add(Back);
-        Back.setBounds(60, 490, 90, 23);
+        Back.setBounds(40, 490, 90, 23);
 
         lblRole.setText("Role:");
         add(lblRole);
