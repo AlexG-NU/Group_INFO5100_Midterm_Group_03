@@ -144,7 +144,25 @@ business.getGradeList().add(new StudentGrade("Anna Shnider", "900002003", "INFO5
 business.getGradeList().add(new StudentGrade("Laura Brown", "900002004", "INFO5200", "B"));
 business.getGradeList().add(new StudentGrade("Jack White", "900002005", "INFO5200", "A"));
         
-        
+// Additional students + advisor records by Abhi (for Manage Student Profiles)
+StudentProfile sp1 = studentdirectory.newStudentProfile(person006); // Anna Shnider
+person006.setFirstName("Anna"); person006.setLastName("Shnider");
+person006.setEmail("anna.shnider@northeastern.edu"); //person006.setNuid("900002003");
+person006.setDepartment("Information Systems"); person006.setTitle("Student");
+UserAccount uaAnna = uadirectory.newUserAccount(sp1, "anna", "****");
+AdvisorRecord annaRec = business.getAdvisorRecordDirectory().getOrCreateRecord(uaAnna);
+annaRec.setCreditsCompleted(60); annaRec.setCreditsRequired(120); annaRec.setGpa(3.80);
+annaRec.setAcademicStanding("On Track"); annaRec.setPotentialGraduationDate("Dec 2027");
+
+StudentProfile sp2 = studentdirectory.newStudentProfile(person007); // Laura Brown
+person007.setFirstName("Laura"); person007.setLastName("Brown");
+person007.setEmail("laura.brown@northeastern.edu"); //person007.setNuid("900002004");
+person007.setDepartment("Information Systems"); person007.setTitle("Student");
+UserAccount uaLaura = uadirectory.newUserAccount(sp2, "laura", "****");
+AdvisorRecord lauraRec = business.getAdvisorRecordDirectory().getOrCreateRecord(uaLaura);
+lauraRec.setCreditsCompleted(30); lauraRec.setCreditsRequired(120); lauraRec.setGpa(3.20);
+lauraRec.setAcademicStanding("Needs Review"); lauraRec.setPotentialGraduationDate("May 2028"); 
+
         return business;
 
     }
