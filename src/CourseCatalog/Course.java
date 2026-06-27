@@ -46,5 +46,8 @@ public void setCredits(int credits) {
     public String getName() {
     return name;
 }
+    public void setNumber(String number) {
+    this.number = number;
+}
     
 }

@@ -66,10 +66,18 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
         lblTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         CourseTable = new javax.swing.JTable();
-        btnViewDetails = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
 
         setLayout(new java.awt.CardLayout());
+
+        jPanel1.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                jPanel1ComponentAdded(evt);
+            }
+        });
 
         lblTitle.setText("Manage Courses");
 
@@ -86,10 +94,10 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(CourseTable);
 
-        btnViewDetails.setText("View/Update");
-        btnViewDetails.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewDetailsActionPerformed(evt);
+                btnUpdateActionPerformed(evt);
             }
         });
 
@@ -97,6 +105,20 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
             }
         });
 
@@ -112,8 +134,12 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
                         .addGap(271, 271, 271)
                         .addComponent(lblTitle))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(392, 392, 392)
-                        .addComponent(btnViewDetails))
+                        .addGap(284, 284, 284)
+                        .addComponent(btnDelete)
+                        .addGap(36, 36, 36)
+                        .addComponent(btnUpdate)
+                        .addGap(45, 45, 45)
+                        .addComponent(btnAdd))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(130, 130, 130)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 630, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -129,7 +155,10 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
-                .addComponent(btnViewDetails)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUpdate)
+                    .addComponent(btnDelete)
+                    .addComponent(btnAdd))
                 .addContainerGap())
         );
 
@@ -145,7 +174,7 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
     layout.next(CardSequencePanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnViewDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDetailsActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
      int selectedRow = CourseTable.getSelectedRow();
 if (selectedRow < 0) {
@@ -159,6 +188,8 @@ if (c == null) {
     JOptionPane.showMessageDialog(this, "Course not found.");
     return;
 }
+String newNumber = JOptionPane.showInputDialog(this, "Course Number:", c.getCOurseNumber());
+if (newNumber == null) return;
 
 String newName = JOptionPane.showInputDialog(this, "Course Name:", c.getName());
 if (newName == null) return;
@@ -179,13 +210,64 @@ c.setCredits(newCredits);
 
 populateTable();
 JOptionPane.showMessageDialog(this, "Course updated.");   
-    }//GEN-LAST:event_btnViewDetailsActionPerformed
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void jPanel1ComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_jPanel1ComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPanel1ComponentAdded
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = CourseTable.getSelectedRow();
+if (selectedRow < 0) {
+    javax.swing.JOptionPane.showMessageDialog(this, "Please select a course first.");
+    return;
+}
+String courseId = (String) CourseTable.getValueAt(selectedRow, 0);
+Course c = courseCatalog.getCourseByNumber(courseId);
+if (c == null) {
+    javax.swing.JOptionPane.showMessageDialog(this, "Course not found.");
+    return;
+}
+int confirm = javax.swing.JOptionPane.showConfirmDialog(this, "Delete course " + courseId + "?", "Confirm Delete", javax.swing.JOptionPane.YES_NO_OPTION);
+if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+    courseCatalog.deleteCourse(c);
+    populateTable();
+}
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        
+        String number = javax.swing.JOptionPane.showInputDialog(this,"Course Number:");
+        if (number == null || number.trim().isEmpty()) return;
+        
+        String name = javax.swing.JOptionPane.showInputDialog(this,"Course Name:");
+        if (name == null || name.trim().isEmpty()) return;
+        
+        String creditsStr = javax.swing.JOptionPane.showInputDialog(this,"Credits:");
+        if (creditsStr ==null) return;
+        
+        int credits;
+        try{
+            credits = Integer.parseInt(creditsStr.trim());
+        } catch (NumberFormatException ex){
+            javax.swing.JOptionPane.showMessageDialog(this, "Credits must be a whole number.");
+            return;
+        }
+        courseCatalog.newCourse(name, number, credits);
+    populateTable();
+    javax.swing.JOptionPane.showMessageDialog(this, "Course added.");
+        
+    }//GEN-LAST:event_btnAddActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable CourseTable;
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnViewDetails;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitle;
