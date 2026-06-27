@@ -36,6 +36,10 @@ public class AdminUserAccount extends javax.swing.JPanel {
         parentPanel=parent;
         initComponents();
         //display user details here
+        
+        txtID.setText(sua.getPersonId());
+        txtUsername.setText(sua.getUserLoginName());
+        cmbStatus.setSelectedItem(sua.getStatus());
 
     }
     

@@ -11,22 +11,22 @@ package UserInterface.WorkAreas.AdminRole.ManagePersonnelWorkResp;
 
 import Business.Business;
 import Business.Person.Person;
-import Business.Profiles.StudentProfile;
+import Business.Profiles.EmployeeProfile;
 import Business.UserAccounts.UserAccount;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
-public class ManageStudentsJPanel extends javax.swing.JPanel {
+public class ManageEmployeesJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ManageStudentsJPanel
+     * Creates new form ManageEmployeesJPanel
      */
     JPanel CardSequencePanel;
     Business business;
-    StudentProfile selectedStudent;
+    EmployeeProfile selectedEmployee;
     
-    public ManageStudentsJPanel(Business b, JPanel jp) {
+    public ManageEmployeesJPanel(Business b, JPanel jp) {
         business = b;
         CardSequencePanel = jp;
         initComponents();
@@ -46,7 +46,7 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblStudents = new javax.swing.JTable();
+        tblEmployees = new javax.swing.JTable();
         btnAdd = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
@@ -75,12 +75,12 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
         });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel1.setText("Students");
+        jLabel1.setText("Employees");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabel2.setText("Manage Students");
+        jLabel2.setText("Manage Employees");
 
-        tblStudents.setModel(new javax.swing.table.DefaultTableModel(
+        tblEmployees.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -91,12 +91,12 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
                 "NUID", "Name", "Has Account?"
             }
         ));
-        tblStudents.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblEmployees.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                tblStudentsMousePressed(evt);
+                tblEmployeesMousePressed(evt);
             }
         });
-        jScrollPane1.setViewportView(tblStudents);
+        jScrollPane1.setViewportView(tblEmployees);
 
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -246,17 +246,17 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
         //       ((java.awt.CardLayout)CardSequencePanel.getLayout()).show(CardSequencePanel, "IdentifyEventTypes");
     }//GEN-LAST:event_BackActionPerformed
 
-    private void tblStudentsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblStudentsMousePressed
+    private void tblEmployeesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmployeesMousePressed
         // Extracts the row (uaser account) in the table that is selected by the user
-        int selectedRow = tblStudents.getSelectedRow();
+        int selectedRow = tblEmployees.getSelectedRow();
 
         if (selectedRow < 0) {
             return;
         }
 
-        selectedStudent = (StudentProfile) tblStudents.getValueAt(selectedRow, 0);
+        selectedEmployee = (EmployeeProfile) tblEmployees.getValueAt(selectedRow, 0);
 
-        Person person = selectedStudent.getPerson();
+        Person person = selectedEmployee.getPerson();
         txtNuid.setText(person.getPersonId());
         txtFirstName.setText(person.getFirstName());
         txtLastName.setText(person.getLastName());
@@ -265,24 +265,24 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
         txtDepartment.setText(person.getDepartment());
         txtTitle.setText(person.getTitle());
 
-    }//GEN-LAST:event_tblStudentsMousePressed
+    }//GEN-LAST:event_tblEmployeesMousePressed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        String studentId = txtNuid.getText().trim();
+        String employeeId = txtNuid.getText().trim();
         String name = txtFirstName.getText().trim();
 
-        if (studentId.isBlank() || name.isBlank()) {
-            JOptionPane.showMessageDialog(this, "Please enter both Student ID and name.");
+        if (employeeId.isBlank() || name.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Please enter both Employee ID and name.");
             return;
         }
 
-        if (business.getStudentDirectory().findStudent(studentId) != null) {
-            JOptionPane.showMessageDialog(this, "A student member with this ID already exists.");
+        if (business.getEmployeeDirectory().findEmployee(employeeId) != null) {
+            JOptionPane.showMessageDialog(this, "An employee member with this ID already exists.");
             return;
         }
 
-        Person person = business.getPersonDirectory().newPerson(studentId);
+        Person person = business.getPersonDirectory().newPerson(employeeId);
         person.setFirstName(txtFirstName.getText().trim());
         person.setLastName(txtLastName.getText().trim());
         person.setEmail(txtEmail.getText().trim());
@@ -290,36 +290,36 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
         person.setDepartment(txtDepartment.getText().trim());
         person.setTitle(txtTitle.getText().trim());
 
-        business.getStudentDirectory().newStudentProfile(person);
+        business.getEmployeeDirectory().newEmployeeProfile(person);
 
-        JOptionPane.showMessageDialog(this, "Student member added successfully.");
+        JOptionPane.showMessageDialog(this, "Employee member added successfully.");
 
         clearFields();
-        selectedStudent = null;
+        selectedEmployee = null;
         refreshTable();
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        if (selectedStudent == null) {
-            JOptionPane.showMessageDialog(this, "Please select a student member to delete.");
+        if (selectedEmployee == null) {
+            JOptionPane.showMessageDialog(this, "Please select an employee member to delete.");
             return;
         }
 
-        Person person = selectedStudent.getPerson();
+        Person person = selectedEmployee.getPerson();
 
         UserAccount account = business.getUserAccountDirectory()
         .findUserAccount(person.getPersonId());
 
         if (account != null) {
             JOptionPane.showMessageDialog(this,
-                "This student member already has a user account. Delete the account first.");
+                "This employee member already has a user account. Delete the account first.");
             return;
         }
 
         int result = JOptionPane.showConfirmDialog(
             this,
-            "Are you sure you want to delete this student member?",
+            "Are you sure you want to delete this employee member?",
             "Confirm Delete",
             JOptionPane.YES_NO_OPTION
         );
@@ -328,40 +328,40 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
             return;
         }
 
-        business.getStudentDirectory().removeStudentProfile(selectedStudent);
+        business.getEmployeeDirectory().removeEmployeeProfile(selectedEmployee);
         business.getPersonDirectory().removePerson(person);
 
-        JOptionPane.showMessageDialog(this, "Student member deleted successfully.");
+        JOptionPane.showMessageDialog(this, "Employee member deleted successfully.");
 
         clearFields();
-        selectedStudent = null;
+        selectedEmployee = null;
         refreshTable();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        if (selectedStudent == null) {
-            JOptionPane.showMessageDialog(this, "Please select a student member to update.");
+        if (selectedEmployee == null) {
+            JOptionPane.showMessageDialog(this, "Please select an employee member to update.");
             return;
         }
 
-        String studentId = txtNuid.getText().trim();
+        String employeeId = txtNuid.getText().trim();
         String name = txtFirstName.getText().trim();
 
-        if (studentId.isBlank() || name.isBlank()) {
-            JOptionPane.showMessageDialog(this, "Please enter both Student ID and name.");
+        if (employeeId.isBlank() || name.isBlank()) {
+            JOptionPane.showMessageDialog(this, "Please enter both Employee ID and name.");
             return;
         }
 
-        StudentProfile existing = business.getStudentDirectory().findStudent(studentId);
+        EmployeeProfile existing = business.getEmployeeDirectory().findEmployee(employeeId);
 
-        if (existing != null && existing != selectedStudent) {
-            JOptionPane.showMessageDialog(this, "Another student member already has this ID.");
+        if (existing != null && existing != selectedEmployee) {
+            JOptionPane.showMessageDialog(this, "Another employee member already has this ID.");
             return;
         }
 
-        Person person = selectedStudent.getPerson();
-        person.setPersonId(studentId);
+        Person person = selectedEmployee.getPerson();
+        person.setPersonId(employeeId);
         person.setFirstName(txtFirstName.getText().trim());
         person.setLastName(txtLastName.getText().trim());
         person.setEmail(txtEmail.getText().trim());
@@ -369,10 +369,10 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
         person.setDepartment(txtDepartment.getText().trim());
         person.setTitle(txtTitle.getText().trim());
 
-        JOptionPane.showMessageDialog(this, "Student member updated successfully.");
+        JOptionPane.showMessageDialog(this, "Employee member updated successfully.");
 
         clearFields();
-        selectedStudent = null;
+        selectedEmployee = null;
         refreshTable();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -392,7 +392,7 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblStudents;
+    private javax.swing.JTable tblEmployees;
     private javax.swing.JTextField txtDepartment;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFirstName;
@@ -403,10 +403,10 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     public void refreshTable() {
-        DefaultTableModel model = (DefaultTableModel) tblStudents.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblEmployees.getModel();
         model.setRowCount(0);
 
-        for (StudentProfile sp : business.getStudentDirectory().getStudentList()) {
+        for (EmployeeProfile sp : business.getEmployeeDirectory().getEmployeeList()) {
             Person person = sp.getPerson();
             UserAccount account = business.getUserAccountDirectory()
                     .findUserAccount(person.getPersonId());
