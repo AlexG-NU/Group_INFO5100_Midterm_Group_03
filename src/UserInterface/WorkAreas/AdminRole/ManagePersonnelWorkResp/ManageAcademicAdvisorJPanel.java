@@ -417,7 +417,7 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
 
             Object[] row = new Object[3];
             row[0] = person.getPersonId();
-            row[1] = person.getFirstName();
+            row[1] = person.getFullName();
             row[2] = account == null ? "No" : "Yes";
 
             model.addRow(row);

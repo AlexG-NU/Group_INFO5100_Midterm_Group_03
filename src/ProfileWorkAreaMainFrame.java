@@ -20,6 +20,7 @@ import UserInterface.WorkAreas.StudentRole.StudentWorkAreaJPanel;
 import Business.Profiles.AcademicAdvisorProfile;
 import Business.Profiles.FacultyProfile;
 import UserInterface.WorkAreas.AcademicAdvisorRole.AcademicAdvisorWorkAreaJPanel;
+import java.time.LocalDateTime;
 import javax.swing.JPanel;
 
 /**
@@ -160,6 +161,7 @@ public class ProfileWorkAreaMainFrame extends javax.swing.JFrame {
         if (useraccount == null) {
             return;
         }
+        useraccount.setLastLoginDate(LocalDateTime.now());
         StudentWorkAreaJPanel studentworkareajpanel;
         FacultyWorkAreaJPanel facultyworkarea;
         AdminRoleWorkAreaJPanel adminworkarea;
