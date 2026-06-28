@@ -77,7 +77,7 @@ public class AcademicAdvisorWorkAreaJPanel extends javax.swing.JPanel {
         jButton9.setBackground(new java.awt.Color(102, 153, 255));
         jButton9.setFont(getFont());
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
-        jButton9.setText("Graduation Audit");
+        jButton9.setText("Graduation Planning Audit");
         jButton9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton9.setMaximumSize(new java.awt.Dimension(200, 40));
         jButton9.setMinimumSize(new java.awt.Dimension(20, 20));

@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package UserInterface.WorkAreas.AcademicAdvisorRole;
 
 import Business.Advising.AdvisorRecord;
@@ -8,9 +13,17 @@ import Business.UserAccounts.UserAccountDirectory;
 import UserInterface.WorkAreas.AcademicAdvisorRole.StudentDetailJPanel;
 import CourseCatalog.Course;
 import java.awt.Component;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+
+/**
+ *
+ * @author janet
+ */
 
 public class CourseRecommendationsJPanel extends javax.swing.JPanel {
 
@@ -113,6 +126,48 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
         txtAdvisorNotes.setText("");
     }
 
+    private boolean isValidDate(String dateValue) {
+        if (dateValue == null || dateValue.trim().isEmpty()) {
+            return false;
+        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        dateFormat.setLenient(false);
+        try {
+            dateFormat.parse(dateValue.trim());
+            return true;
+        } catch (ParseException ex) {
+            return false;
+        }
+    }
+
+    private boolean validateRecommendationFields() {
+        if (txtLastMeetingDate.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a last meeting date in MM/dd/yyyy format.");
+            return false;
+        }
+        if (!isValidDate(txtLastMeetingDate.getText())) {
+            JOptionPane.showMessageDialog(this, "Last meeting date must use MM/dd/yyyy format.");
+            return false;
+        }
+        if (txtPotentialGradDate.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a potential graduation date in MM/dd/yyyy format.");
+            return false;
+        }
+        if (!isValidDate(txtPotentialGradDate.getText())) {
+            JOptionPane.showMessageDialog(this, "Potential graduation date must use MM/dd/yyyy format.");
+            return false;
+        }
+        if (txtRecommendedCourses.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter at least one recommended course.");
+            return false;
+        }
+        if (txtAdvisorNotes.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter advisor notes.");
+            return false;
+        }
+        return true;
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -141,6 +196,9 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
         txtAdvisorNotes = new javax.swing.JTextArea();
         btnSave = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
+        btnViewCompletedCourses = new javax.swing.JButton();
+        lblLastMeetingDate1 = new javax.swing.JLabel();
+        lblLastMeetingDate2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(null);
@@ -208,24 +266,24 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
 
         lblStudentName.setText("Student Name:");
         add(lblStudentName);
-        lblStudentName.setBounds(30, 285, 100, 20);
+        lblStudentName.setBounds(30, 290, 100, 20);
 
         txtStudentName.setEditable(false);
         txtStudentName.setBackground(new java.awt.Color(204, 204, 204));
         add(txtStudentName);
-        txtStudentName.setBounds(160, 285, 220, 26);
+        txtStudentName.setBounds(160, 290, 220, 26);
 
         lblLastMeetingDate.setText("Last Meeting Date:");
         add(lblLastMeetingDate);
-        lblLastMeetingDate.setBounds(30, 320, 130, 20);
+        lblLastMeetingDate.setBounds(30, 340, 130, 20);
         add(txtLastMeetingDate);
-        txtLastMeetingDate.setBounds(160, 320, 220, 26);
+        txtLastMeetingDate.setBounds(160, 340, 220, 26);
 
         lblPotentialGradDate.setText("Potential Grad Date:");
         add(lblPotentialGradDate);
-        lblPotentialGradDate.setBounds(30, 355, 130, 20);
+        lblPotentialGradDate.setBounds(30, 390, 130, 20);
         add(txtPotentialGradDate);
-        txtPotentialGradDate.setBounds(160, 355, 220, 26);
+        txtPotentialGradDate.setBounds(160, 390, 220, 26);
 
         lblAvailableCourses.setText("Available Course:");
         add(lblAvailableCourses);
@@ -283,6 +341,23 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
         });
         add(btnClear);
         btnClear.setBounds(620, 600, 120, 30);
+
+        btnViewCompletedCourses.setText("View Completed Courses");
+        btnViewCompletedCourses.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewCompletedCoursesActionPerformed(evt);
+            }
+        });
+        add(btnViewCompletedCourses);
+        btnViewCompletedCourses.setBounds(700, 290, 180, 30);
+
+        lblLastMeetingDate1.setText("(MM/dd/yyyy):");
+        add(lblLastMeetingDate1);
+        lblLastMeetingDate1.setBounds(30, 410, 130, 20);
+
+        lblLastMeetingDate2.setText("(MM/dd/yyyy):");
+        add(lblLastMeetingDate2);
+        lblLastMeetingDate2.setBounds(30, 360, 130, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -296,8 +371,11 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        if (selectedRecord == null) {
+       if (selectedRecord == null) {
             JOptionPane.showMessageDialog(this, "Please select a student first.");
+            return;
+        }
+        if (!validateRecommendationFields()) {
             return;
         }
         selectedRecord.setLastMeetingDate(txtLastMeetingDate.getText().trim());
@@ -361,6 +439,18 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
         displayRecord(findRecordByStudentNuid(nuid));
     }//GEN-LAST:event_tblRecommendationsMousePressed
 
+    private void btnViewCompletedCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewCompletedCoursesActionPerformed
+        // TODO add your handling code here:
+        if (selectedRecord == null || selectedStudentAccount == null) {
+            JOptionPane.showMessageDialog(this, "Please select a student first.");
+            return;
+        }
+
+        TranscriptDetailsJPanel panel = new TranscriptDetailsJPanel(business, CardSequencePanel, selectedStudentAccount);
+        CardSequencePanel.add("TranscriptDetailsJPanel", panel);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+    }
+
     private void refreshOpenStudentDetailPanel() {
         if (CardSequencePanel == null) {
             return;
@@ -376,7 +466,10 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
                 ((AcademicProgressJPanel) component).refreshTable();
             }
         }
-    }
+    
+    }//GEN-LAST:event_btnViewCompletedCoursesActionPerformed
+
+   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddCourse;
@@ -384,6 +477,7 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnViewCompletedCourses;
     private javax.swing.JComboBox<String> cmbAvailableCourses;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -391,6 +485,8 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblAdvisorNotes;
     private javax.swing.JLabel lblAvailableCourses;
     private javax.swing.JLabel lblLastMeetingDate;
+    private javax.swing.JLabel lblLastMeetingDate1;
+    private javax.swing.JLabel lblLastMeetingDate2;
     private javax.swing.JLabel lblPotentialGradDate;
     private javax.swing.JLabel lblRecommendedCourses;
     private javax.swing.JLabel lblStudentId;

@@ -5,6 +5,7 @@ import Business.Advising.AdvisorAcademicData;
 import Business.Business;
 import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,15 +32,14 @@ public class AcademicProgressJPanel extends javax.swing.JPanel {
             if (ua.getAssociatedPersonProfile().getRole().equals("Student")) {
                 AdvisorRecord record = business.getAdvisorRecordDirectory().getOrCreateRecord(ua);
                 AdvisorAcademicData.syncAdvisorRecord(business, record);
-                Object[] row = new Object[8];
+                Object[] row = new Object[6];
                 row[0] = AdvisorAcademicData.getNuid(ua);
                 row[1] = AdvisorAcademicData.getStudentName(ua);
                 row[2] = AdvisorAcademicData.getDepartment(ua);
                 row[3] = AdvisorAcademicData.calculateCreditsCompleted(business, ua);
                 row[4] = AdvisorAcademicData.formatGpa(AdvisorAcademicData.calculateGpa(business, ua));
                 row[5] = AdvisorAcademicData.calculateAcademicStanding(business, ua, record);
-                row[6] = AdvisorAcademicData.getCompletedCourses(business, ua);
-                row[7] = AdvisorAcademicData.calculateReviewPriority(business, ua, record);
+              
                 ((DefaultTableModel) tblProgress.getModel()).addRow(row);
             }
         }
@@ -55,6 +55,7 @@ public class AcademicProgressJPanel extends javax.swing.JPanel {
         tblProgress = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
+        btnViewTranscript = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 153, 153));
         setLayout(null);
@@ -76,7 +77,7 @@ public class AcademicProgressJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "NUID", "Student Name", "Credits Completed", "GPA", "Academic Standing", "Last Meeting Date"
+                "NUID", "Student Name", "Department", "Credits Completed", "GPA", "Academic Standing"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -109,6 +110,15 @@ public class AcademicProgressJPanel extends javax.swing.JPanel {
         });
         add(btnRefresh);
         btnRefresh.setBounds(140, 300, 90, 30);
+
+        btnViewTranscript.setText("View Transcript Details");
+        btnViewTranscript.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewTranscriptActionPerformed(evt);
+            }
+        });
+        add(btnViewTranscript);
+        btnViewTranscript.setBounds(640, 300, 180, 30);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -120,9 +130,39 @@ public class AcademicProgressJPanel extends javax.swing.JPanel {
         refreshTable();
     }//GEN-LAST:event_btnRefreshActionPerformed
 
+    private void btnViewTranscriptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewTranscriptActionPerformed
+        // TODO add your handling code here:
+         int selectedRow = tblProgress.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select one student first.");
+            return;
+        }
+
+        String nuid = String.valueOf(tblProgress.getValueAt(selectedRow, 0));
+        UserAccount selectedStudent = null;
+        for (UserAccount ua : business.getUserAccountDirectory().getUserAccountList()) {
+            if (ua.getAssociatedPersonProfile().getRole().equals("Student")
+                    && AdvisorAcademicData.getNuid(ua).equals(nuid)) {
+                selectedStudent = ua;
+                break;
+            }
+        }
+
+        if (selectedStudent == null) {
+            JOptionPane.showMessageDialog(this, "Student transcript data was not found.");
+            return;
+        }
+
+        TranscriptDetailsJPanel panel = new TranscriptDetailsJPanel(business, CardSequencePanel, selectedStudent);
+        CardSequencePanel.add("TranscriptDetailsJPanel", panel);
+        ((java.awt.CardLayout) CardSequencePanel.getLayout()).next(CardSequencePanel);
+    
+    }//GEN-LAST:event_btnViewTranscriptActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnViewTranscript;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTable;
     private javax.swing.JLabel lblTitle;
