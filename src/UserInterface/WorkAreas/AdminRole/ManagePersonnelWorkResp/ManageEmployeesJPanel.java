@@ -381,7 +381,7 @@ public class ManageEmployeesJPanel extends javax.swing.JPanel {
         EmployeeProfile existing = business.getEmployeeDirectory().findEmployee(employeeId);
 
         if (existing != null && existing != selectedEmployee) {
-            JOptionPane.showMessageDialog(this, "Another employee member already has this ID.");
+            JOptionPane.showMessageDialog(this, "This ID is already assigned to another person.");
             return;
         }
 

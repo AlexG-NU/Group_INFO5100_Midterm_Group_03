@@ -277,7 +277,7 @@ public class ManageFacultyJPanel extends javax.swing.JPanel {
         FacultyProfile existing = business.getFacultyDirectory().findFaculty(facultyId);
 
         if (existing != null && existing != selectedFaculty) {
-            JOptionPane.showMessageDialog(this, "Another faculty member already has this ID.");
+            JOptionPane.showMessageDialog(this, "This ID is already assigned to another person.");
             return;
         }
 
