@@ -121,6 +121,9 @@ class ConfigureABusiness {
         business.getDepartment().getCourseCatalog().newCourse("Application Engineering and Design", "INFO5100", 4);
         business.getDepartment().getCourseCatalog().newCourse("Process Design", "INFO5200", 4);
         business.getDepartment().getCourseCatalog().newCourse("Database Management", "INFO5300", 4);
+        business.getDepartment().getCourseCatalog().newCourse("Web Design and User Experience Engineering", "INFO6150", 4);
+        business.getDepartment().getCourseCatalog().newCourse("Program Structure and Algorithms", "INFO6205", 4);
+        business.getDepartment().getCourseCatalog().newCourse("Data Management and Database Design", "DAMG6210", 4);
         
         //creating faculty user
         Person person010 = persondirectory.newPerson("21000032");
@@ -139,6 +142,9 @@ class ConfigureABusiness {
         
         // Student grades by Abhi
 business.getGradeList().add(new StudentGrade("Adam Rollen", "900002001", "INFO5100", "A"));
+business.getGradeList().add(new StudentGrade("Adam Rollen", "900002001", "INFO6150", "B+"));
+business.getGradeList().add(new StudentGrade("Adam Rollen", "900002001", "DAMG6210", "A-"));
+business.getGradeList().add(new StudentGrade("Adam Rollen", "900002001", "INFO6205", "B"));
 business.getGradeList().add(new StudentGrade("Jack White", "900002005", "INFO5100", "B+"));
 business.getGradeList().add(new StudentGrade("Anna Shnider", "900002003", "INFO5100", "A-"));
 business.getGradeList().add(new StudentGrade("Laura Brown", "900002004", "INFO5200", "B"));
