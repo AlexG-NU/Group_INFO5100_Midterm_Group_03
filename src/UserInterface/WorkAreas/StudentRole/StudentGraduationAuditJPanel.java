@@ -4,9 +4,11 @@
  */
 package UserInterface.WorkAreas.StudentRole;
 
+import Business.Advising.AdvisorAcademicData;
 import Business.Business;
 import Business.Advising.AdvisorRecord;
 import Business.Profiles.StudentProfile;
+import Business.UserAccounts.UserAccount;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -29,6 +31,7 @@ public class StudentGraduationAuditJPanel extends JPanel {
     private Business business;
     private StudentProfile student;
     private AdvisorRecord advisorRecord;
+    private UserAccount studentAccount;
 
     private JTable tblGraduationAudit;
     private JLabel lblStudentName;
@@ -49,10 +52,29 @@ public class StudentGraduationAuditJPanel extends JPanel {
     }
 
     private void loadAdvisorRecord() {
+        studentAccount = findStudentUserAccount();
+        
         if (business != null && student != null && student.getPerson() != null) {
             String studentId = student.getPerson().getPersonId();
             advisorRecord = business.getAdvisorRecordDirectory().findRecordByStudentId(studentId);
         }
+    }
+    
+    private UserAccount findStudentUserAccount() {
+        if(business == null || student == null || student.getPerson() == null) {
+            return null;
+        }
+        
+        String studentPersonId = student.getPerson().getPersonId();
+        
+        for(UserAccount ua: business.getUserAccountDirectory().getUserAccountList()){
+            if(ua.getAssociatedPersonProfile() != null
+                    && ua.getAssociatedPersonProfile().getPerson() != null
+                    && ua.getAssociatedPersonProfile().getPerson().getPersonId().equals(studentPersonId)){
+                return ua;
+            }
+        }
+        return null;
     }
 
     private void initComponents() {
@@ -130,27 +152,19 @@ public class StudentGraduationAuditJPanel extends JPanel {
         DefaultTableModel model = (DefaultTableModel) tblGraduationAudit.getModel();
         model.setRowCount(0);
 
-        if (advisorRecord == null) {
-            lblGpa.setText("GPA: Not available");
-            lblExpectedGraduation.setText("Expected Graduation: Not available");
+        int creditsCompleted = AdvisorAcademicData.calculateCreditsCompleted(business, studentAccount);
+        double gpa = AdvisorAcademicData.calculateGpa(business, studentAccount);
 
-            Object[] row = new Object[5];
-            row[0] = studentName;
-            row[1] = "Not available";
-            row[2] = "Not available";
-            row[3] = "Not available";
-            row[4] = "Needs Review";
-            model.addRow(row);
+        int creditsRequired = 120;
+        String expectedGraduation = "Not available";
 
-            return;
+        if (advisorRecord != null) {
+            creditsRequired = advisorRecord.getCreditsRequired();
+            expectedGraduation = advisorRecord.getPotentialGraduationDate();
         }
 
-        int creditsCompleted = advisorRecord.getCreditsCompleted();
-        int creditsRequired = advisorRecord.getCreditsRequired();
-        int remainingCredits = advisorRecord.getRemainingCredits();
-        double gpa = advisorRecord.getGpa();
-        String expectedGraduation = advisorRecord.getPotentialGraduationDate();
-        String status = calculateGraduationStatus(creditsCompleted, creditsRequired);
+        int remainingCredits = Math.max(creditsRequired - creditsCompleted, 0);
+        String status = AdvisorAcademicData.calculateGraduationStatus(business, studentAccount, advisorRecord);
 
         lblGpa.setText("GPA: " + String.format("%.2f", gpa));
         lblExpectedGraduation.setText("Expected Graduation: " + expectedGraduation);
@@ -163,19 +177,6 @@ public class StudentGraduationAuditJPanel extends JPanel {
         row[4] = status;
 
         model.addRow(row);
-    }
-
-    private String calculateGraduationStatus(int creditsCompleted, int creditsRequired) {
-        if (creditsCompleted >= creditsRequired) {
-            return "Eligible to Graduate";
-        }
-
-        if (advisorRecord != null && advisorRecord.getAcademicStanding() != null
-                && !advisorRecord.getAcademicStanding().trim().isEmpty()) {
-            return advisorRecord.getAcademicStanding();
-        }
-
-        return "In Progress";
     }
 
     private void goBack() {
