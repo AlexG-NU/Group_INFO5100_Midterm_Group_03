@@ -1,5 +1,15 @@
 # Midterm INFO5100 Group 3 Digital University System
 
+**Team Information**
+Alexander Goldblatt- Admin Role
+Abhinav Tripathi- Faculty Role  NUID: 003979804
+Connor Ewart - Student Role
+Janet Chong​ -  Advisor Role
+
+**Features Implemented**
+Faculty Role (Abhinav Tripathi)
+
+
 ## Student Use Case - Connor Ewart
 
 The Student role allows authenticated student users to access academic self-service features in the Digital University System. The Student user can manage coursework, register for classes, perform a graduation audit, and review transcript information.
