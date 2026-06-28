@@ -42,6 +42,8 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
         
         
        }
+    
+    //validates that course names contain only letters and spaces
     private boolean isValidCourseName(String courseName) {
     if (courseName == null || courseName.trim().isEmpty()) {
         return false;
@@ -50,6 +52,7 @@ public class ManageCoursesJPanel extends javax.swing.JPanel {
     // Requires at least one alphabetic letter
     return courseName.trim().matches("[a-zA-Z ]+");}
     
+    //loads all courses from the course catalog into the course table
     private void populateTable(){
         DefaultTableModel model = (DefaultTableModel) CourseTable.getModel();
         model.setRowCount(0);
