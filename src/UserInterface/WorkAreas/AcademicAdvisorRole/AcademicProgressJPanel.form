@@ -61,10 +61,10 @@
               <Table columnCount="6" rowCount="4">
                 <Column editable="false" title="NUID" type="java.lang.Object"/>
                 <Column editable="false" title="Student Name" type="java.lang.Object"/>
+                <Column editable="false" title="Department" type="java.lang.Object"/>
                 <Column editable="false" title="Credits Completed" type="java.lang.Object"/>
                 <Column editable="false" title="GPA" type="java.lang.Object"/>
                 <Column editable="false" title="Academic Standing" type="java.lang.Object"/>
-                <Column editable="false" title="Last Meeting Date" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -131,6 +131,19 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="140" y="300" width="90" height="30"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnViewTranscript">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="View Transcript Details"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewTranscriptActionPerformed"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="640" y="300" width="180" height="30"/>
         </Constraint>
       </Constraints>
     </Component>

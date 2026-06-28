@@ -9,9 +9,17 @@ import Business.Advising.AdvisorRecord;
 import Business.Business;
 import Business.UserAccounts.UserAccount;
 import Business.UserAccounts.UserAccountDirectory;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+
+/**
+ *
+ * @author janet
+ */
+
 
 public class GraduationAuditJPanel extends javax.swing.JPanel {
 
@@ -61,6 +69,36 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
         txtGraduationReviewNotes.setText(selectedRecord.getGraduationReviewNotes());
     }
 
+    private boolean isValidDate(String dateValue) {
+        if (dateValue == null || dateValue.trim().isEmpty()) {
+            return false;
+        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        dateFormat.setLenient(false);
+        try {
+            dateFormat.parse(dateValue.trim());
+            return true;
+        } catch (ParseException ex) {
+            return false;
+        }
+    }
+
+    private boolean validateGraduationReviewFields() {
+        if (txtPotentialGraduationDate.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a potential graduation date in MM/dd/yyyy format.");
+            return false;
+        }
+        if (!isValidDate(txtPotentialGraduationDate.getText())) {
+            JOptionPane.showMessageDialog(this, "Potential graduation date must use MM/dd/yyyy format.");
+            return false;
+        }
+        if (txtGraduationReviewNotes.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter graduation planning notes.");
+            return false;
+        }
+        return true;
+    }
+
     private void clearReviewFields() {
         txtSelectedStudent.setText("");
         txtPotentialGraduationDate.setText("");
@@ -91,7 +129,7 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
         setLayout(null);
 
         lblTitle.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        lblTitle.setText("Graduation Audit");
+        lblTitle.setText("Graduation Planning Audit");
         add(lblTitle);
         lblTitle.setBounds(30, 20, 500, 30);
 
@@ -103,7 +141,7 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "NUID", "Student Name", "Completed", "Required", "Remaining", "Audit Status"
+                "NUID", "Student Name", "Completed", "Required", "Remaining", "Graduation Progress"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -132,7 +170,7 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
         add(txtSelectedStudent);
         txtSelectedStudent.setBounds(150, 250, 220, 25);
 
-        lblPotentialGraduationDate.setText("Date:");
+        lblPotentialGraduationDate.setText("Date (MM/dd/yyyy):");
         add(lblPotentialGraduationDate);
         lblPotentialGraduationDate.setBounds(30, 300, 120, 20);
         add(txtPotentialGraduationDate);
@@ -221,8 +259,11 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
             return;
         }
 
+        if (!validateGraduationReviewFields()) {
+            return;
+        }
+
         selectedRecord.setPotentialGraduationDate(txtPotentialGraduationDate.getText().trim());
-       
         selectedRecord.setGraduationReviewNotes(txtGraduationReviewNotes.getText().trim());
         JOptionPane.showMessageDialog(this, "Graduation review saved.");
         refreshTable();
