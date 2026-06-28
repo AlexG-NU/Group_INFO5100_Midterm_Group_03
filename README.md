@@ -33,10 +33,12 @@ The Student role allows authenticated student users to access academic self-serv
 ### Student Data Sources Used
 
 * `Business.Person.Person`: Used for student name, NUID, email, and department information.
-* `Business.Advising.AdvisorRecord`: Used for GPA, credits completed, credits required, remaining credits, academic standing, and expected graduation date.
+* `CourseCatalog.StudentGrade`: Used as the shared source for student grades, course numbers, and transcript records.
+* `CourseCatalog.CourseCatalog` and `CourseCatalog.Course`: Used to retrieve course names and credit values from course numbers.
+* `Business.Advising.AdvisorAcademicData`: Used to calculate GPA, completed credits, graduation status, and shared academic standing information from grade/course data.
+* `Business.Advising.AdvisorRecord`: Used for advisor-specific planning information, including credits required, expected graduation date, advisor notes, course recommendations, and last meeting date.
 * `Coursework.CourseworkAssignment`: Used for coursework assignment tracking and submission status.
 * `StudentRegistrationJPanel`: Uses local course registration data to demonstrate course enrollment, duplicate registration validation, and course dropping.
-* `StudentTranscriptJPanel`: Uses local transcript data to demonstrate completed courses, course grades, credits earned, and GPA calculation.
 
 ### Student Login
 
@@ -45,14 +47,16 @@ Password: `****`
 
 ### Student Testing Plan
 
-* Verify that a Student login opens the Student work area.
-* Verify that the Course Work button opens the coursework panel.
-* Verify that coursework submission validates empty input and updates assignment status.
-* Verify that the Registration button opens the registration panel.
-* Verify that students can enroll in and drop courses.
-* Verify that duplicate course registration is prevented.
-* Verify that the Transcript button opens the transcript panel.
-* Verify that the transcript displays completed courses, grades, credits earned, and GPA.
-* Verify that the Graduation Audit button opens the graduation audit panel.
-* Verify that graduation audit displays credits completed, credits required, remaining credits, GPA, expected graduation date, and graduation status.
-* Verify that each Back button returns to the Student work area.
+* Verified that a Student login opens the Student work area.
+* Verified that the Course Work button opens the coursework panel.
+* Verified that coursework submission validates empty input and updates assignment status.
+* Verified that the Registration button opens the registration panel.
+* Verified that students can enroll in and drop courses.
+* Verified that duplicate course registration is prevented.
+* Verified that the Transcript button opens the transcript panel.
+* Verified that the transcript displays completed courses, grades, credits earned, and GPA from shared `StudentGrade` and `CourseCatalog` data.
+* Verified that the Graduation Audit button opens the graduation audit panel.
+* Verified that graduation audit displays credits completed, credits required, remaining credits, GPA, expected graduation date, and graduation status.
+* Verified that GPA and completed credits are calculated through `AdvisorAcademicData` instead of hardcoded transcript data.
+* Verified that each Back button returns to the Student work area.
+* Verified that Advisor role screens still display student academic information after the Student Transcript and Graduation Audit data-source updates.
