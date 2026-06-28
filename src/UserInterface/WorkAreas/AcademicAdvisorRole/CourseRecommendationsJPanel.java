@@ -140,21 +140,25 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
         }
     }
 
+    private boolean isValidGraduationMonth(String graduationValue) {
+        if (graduationValue == null || graduationValue.trim().isEmpty()) {
+            return false;
+        }
+        return graduationValue.trim().toUpperCase().matches("(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)\\s\\d{4}");
+    }
+    
     private boolean validateRecommendationFields() {
-        if (txtLastMeetingDate.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter a last meeting date in MM/dd/yyyy format.");
+        String lastMeetingDate = txtLastMeetingDate.getText().trim();
+        String potentialGradDate = txtPotentialGradDate.getText().trim();
+
+        // These fields are optional because an advisor may only be reviewing
+        // the student record. If entered, each field must use the required format.
+        if (!lastMeetingDate.isEmpty() && !isValidDate(lastMeetingDate)) {
+            JOptionPane.showMessageDialog(this, "Last meeting date must use MM/dd/yyyy format");
             return false;
         }
-        if (!isValidDate(txtLastMeetingDate.getText())) {
-            JOptionPane.showMessageDialog(this, "Last meeting date must use MM/dd/yyyy format.");
-            return false;
-        }
-        if (txtPotentialGradDate.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter a potential graduation date in MM/dd/yyyy format.");
-            return false;
-        }
-        if (!isValidDate(txtPotentialGradDate.getText())) {
-            JOptionPane.showMessageDialog(this, "Potential graduation date must use MM/dd/yyyy format.");
+        if (!potentialGradDate.isEmpty() && !isValidGraduationMonth(potentialGradDate)) {
+            JOptionPane.showMessageDialog(this, "Potential graduation date must use MMM yyyy format, for example JAN 2028.");
             return false;
         }
         if (txtRecommendedCourses.getText().trim().isEmpty()) {
@@ -279,7 +283,7 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
         add(txtLastMeetingDate);
         txtLastMeetingDate.setBounds(160, 340, 220, 26);
 
-        lblPotentialGradDate.setText("Potential Grad Date:");
+        lblPotentialGradDate.setText("Potential Graduation");
         add(lblPotentialGradDate);
         lblPotentialGradDate.setBounds(30, 390, 130, 20);
         add(txtPotentialGradDate);
@@ -324,7 +328,7 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
         add(jScrollPane3);
         jScrollPane3.setBounds(560, 430, 320, 125);
 
-        btnSave.setText("Save / Update");
+        btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);
@@ -351,7 +355,7 @@ public class CourseRecommendationsJPanel extends javax.swing.JPanel {
         add(btnViewCompletedCourses);
         btnViewCompletedCourses.setBounds(700, 290, 180, 30);
 
-        lblLastMeetingDate1.setText("(MM/dd/yyyy):");
+        lblLastMeetingDate1.setText("Date (MMM yyyy):");
         add(lblLastMeetingDate1);
         lblLastMeetingDate1.setBounds(30, 410, 130, 20);
 
