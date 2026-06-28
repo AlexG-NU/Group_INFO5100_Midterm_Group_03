@@ -16,7 +16,6 @@ import UserInterface.WorkAreas.AdminRole.AdministerUserAccountsWorkResp.ManageUs
 import UserInterface.WorkAreas.AdminRole.ManagePersonnelWorkResp.ManageAcademicAdvisorJPanel;
 import UserInterface.WorkAreas.AdminRole.ManagePersonnelWorkResp.ManageEmployeesJPanel;
 import UserInterface.WorkAreas.AdminRole.ManagePersonnelWorkResp.ManageFacultyJPanel;
-import UserInterface.WorkAreas.AdminRole.ManagePersonnelWorkResp.ManagePersonsJPanel;
 import UserInterface.WorkAreas.AdminRole.ManagePersonnelWorkResp.ManageStudentsJPanel;
 
 import javax.swing.JPanel;

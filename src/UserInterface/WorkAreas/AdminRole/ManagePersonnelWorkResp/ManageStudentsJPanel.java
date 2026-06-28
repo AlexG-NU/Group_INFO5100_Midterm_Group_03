@@ -381,7 +381,7 @@ public class ManageStudentsJPanel extends javax.swing.JPanel {
         StudentProfile existing = business.getStudentDirectory().findStudent(studentId);
 
         if (existing != null && existing != selectedStudent) {
-            JOptionPane.showMessageDialog(this, "Another student member already has this ID.");
+            JOptionPane.showMessageDialog(this, "This ID is already assigned to another person.");
             return;
         }
 

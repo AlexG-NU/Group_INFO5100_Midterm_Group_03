@@ -380,7 +380,7 @@ public class ManageAcademicAdvisorJPanel extends javax.swing.JPanel {
         AcademicAdvisorProfile existing = business.getAcademicAdvisorDirectory().findAcademicAdvisor(academicadvisorId);
 
         if (existing != null && existing != selectedAcademicAdvisor) {
-            JOptionPane.showMessageDialog(this, "Another advisor member already has this ID.");
+            JOptionPane.showMessageDialog(this, "This ID is already assigned to another person.");
             return;
         }
 
