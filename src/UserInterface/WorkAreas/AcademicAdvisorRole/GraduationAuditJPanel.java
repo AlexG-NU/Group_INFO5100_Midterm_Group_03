@@ -69,29 +69,25 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
         txtGraduationReviewNotes.setText(selectedRecord.getGraduationReviewNotes());
     }
 
-    private boolean isValidDate(String dateValue) {
-        if (dateValue == null || dateValue.trim().isEmpty()) {
-            return false;
-        }
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        dateFormat.setLenient(false);
-        try {
-            dateFormat.parse(dateValue.trim());
-            return true;
-        } catch (ParseException ex) {
-            return false;
-        }
+private boolean isValidExpectedGraduation(String dateValue) {
+    if (dateValue == null || dateValue.trim().isEmpty()) {
+        return false;
     }
 
-    private boolean validateGraduationReviewFields() {
-        if (txtPotentialGraduationDate.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter a potential graduation date in MM/dd/yyyy format.");
-            return false;
-        }
-        if (!isValidDate(txtPotentialGraduationDate.getText())) {
-            JOptionPane.showMessageDialog(this, "Potential graduation date must use MM/dd/yyyy format.");
-            return false;
-        }
+    return dateValue.trim().toUpperCase().matches(
+            "(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)\\s\\d{4}"
+    );
+}
+
+   private boolean validateGraduationReviewFields() {
+        String potentialGraduationDate = txtPotentialGraduationDate.getText().trim();
+
+        // The graduation planning date is optional because an advisor may be
+        // reviewing the student before a date is known. If entered, it must be valid.
+        if (!potentialGraduationDate.isEmpty() && !isValidExpectedGraduation(potentialGraduationDate)) {
+    JOptionPane.showMessageDialog(this, "Expected Graduation must use MMM yyyy format");
+    return false;
+}
         if (txtGraduationReviewNotes.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter graduation planning notes.");
             return false;
@@ -100,8 +96,7 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
     }
 
     private void clearReviewFields() {
-        txtSelectedStudent.setText("");
-        txtPotentialGraduationDate.setText("");
+       
         txtGraduationReviewNotes.setText("");
     }
 
@@ -170,9 +165,12 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
         add(txtSelectedStudent);
         txtSelectedStudent.setBounds(150, 250, 220, 25);
 
-        lblPotentialGraduationDate.setText("Date (MM/dd/yyyy):");
+        lblPotentialGraduationDate.setText("Date (MM yyyy):");
         add(lblPotentialGraduationDate);
         lblPotentialGraduationDate.setBounds(30, 300, 120, 20);
+
+        txtPotentialGraduationDate.setEditable(false);
+        txtPotentialGraduationDate.setBackground(new java.awt.Color(204, 204, 204));
         add(txtPotentialGraduationDate);
         txtPotentialGraduationDate.setBounds(150, 290, 220, 25);
 
@@ -216,7 +214,7 @@ public class GraduationAuditJPanel extends javax.swing.JPanel {
         add(btnSaveReview);
         btnSaveReview.setBounds(560, 370, 120, 30);
 
-        btnClearFields.setText("Clear Fields");
+        btnClearFields.setText("Clear Review");
         btnClearFields.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClearFieldsActionPerformed(evt);
