@@ -180,7 +180,7 @@ public class StudentWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-        StudentTranscriptJPanel panel = new StudentTranscriptJPanel();
+        StudentTranscriptJPanel panel = new StudentTranscriptJPanel(business, student);
         CardSequencePanel.add("StudentTranscript", panel);
         ((java.awt.CardLayout) CardSequencePanel.getLayout()).show(CardSequencePanel, "StudentTranscript");
         CardSequencePanel.revalidate();
