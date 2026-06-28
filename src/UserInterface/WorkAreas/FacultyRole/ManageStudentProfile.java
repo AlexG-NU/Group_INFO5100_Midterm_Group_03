@@ -26,6 +26,7 @@ public class ManageStudentProfile extends javax.swing.JPanel {
         populateStudentTable();
         setupTableSelectionListener();
     }
+    //Loads student info into table 
     private void populateStudentTable() {
     javax.swing.table.DefaultTableModel model = new javax.swing.table.DefaultTableModel() {
         @Override
@@ -63,6 +64,7 @@ public class ManageStudentProfile extends javax.swing.JPanel {
     StudentProfileTable.setModel(model);
 }
 
+    //adds a listener so selected a student row displays student's details below
 private void setupTableSelectionListener() {
     StudentProfileTable.getSelectionModel().addListSelectionListener(e -> {
         if (!e.getValueIsAdjusting()) {
@@ -94,7 +96,7 @@ private StudentProfile findStudentProfileByNuid(String nuid) {
 
     return null;
 }
-
+//displays hobbies, interests, and academic progress for the selected student.
 private void showSelectedStudentDetails() {
     int row = StudentProfileTable.getSelectedRow();
 

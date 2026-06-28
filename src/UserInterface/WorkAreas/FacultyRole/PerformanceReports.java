@@ -17,6 +17,8 @@ public class PerformanceReports extends javax.swing.JPanel {
     /**
      * Creates new form PerformanceReports
      */
+    //Initializes the performance report panel with the current business data
+    
     public PerformanceReports(Business.Business business, Business.Profiles.FacultyProfile facultyProfile, javax.swing.JPanel CardSequencePanel) {
         this.business= business;
         this.facultyProfile= facultyProfile;
@@ -28,6 +30,8 @@ public class PerformanceReports extends javax.swing.JPanel {
     updateStats();
    
     }
+    
+    //loads unique course numbrts from the grade list into the course dropdown
     private void populateCourseDropdown() {
     StudentPerformanceCombo.removeAllItems();
     java.util.ArrayList<String> seen = new java.util.ArrayList<>();
@@ -38,7 +42,7 @@ public class PerformanceReports extends javax.swing.JPanel {
         }
     }
 }
-
+//populates the performance table with students and grades for the selected course
 private void populateTable() {
     javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) jTable1.getModel();
     model.setRowCount(0);
@@ -55,7 +59,7 @@ private void populateTable() {
         }
     }
 }
-
+//Calculates and displays total students enrolled and class average GPA for selected course
 private void updateStats() {
     String selectedCourse = (String) StudentPerformanceCombo.getSelectedItem();
     System.out.println("updateStats called, course=" + selectedCourse);
@@ -73,7 +77,7 @@ private void updateStats() {
     lblStudentsEnrolled.setText("Students Enrolled " + count);
     lblClassAverage.setText("Class Average (GPA): " + String.format("%.2f", avg));
 }
-
+// Converts letter grades into GPA
 private double convertGradeToPoints(String grade) {
     if (grade == null) return 0.0;
     switch (grade) {

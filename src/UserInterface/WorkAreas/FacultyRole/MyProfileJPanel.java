@@ -40,6 +40,8 @@ txtPhone.addKeyListener(new java.awt.event.KeyAdapter() {
 });
         populateFields();
     }
+    
+    //Validates that the faculty name contains on letters and spaces
     private boolean isValidName(String name) {
     if (name == null || name.trim().isEmpty()) {
         return false;
@@ -48,7 +50,7 @@ txtPhone.addKeyListener(new java.awt.event.KeyAdapter() {
    
     return name.trim().matches("[a-zA-Z ]+");
 }
-
+//validates that the phone number contains only numbers
 private boolean isValidPhone(String phone) {
     if (phone == null || phone.trim().isEmpty()) {
         return false;
@@ -57,7 +59,7 @@ private boolean isValidPhone(String phone) {
    
     return phone.trim().matches("\\d+");
 }
-    
+    //loads the current faculty profile information
     private void populateFields(){
         Person person = facultyProfile.getPerson();
         txtFacultyID.setText(person.getNuid());
@@ -273,7 +275,8 @@ private boolean isValidPhone(String phone) {
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
-private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {                                 
+    //Prevents users from typing letters into the phone field
+    private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {                                 
     char c = evt.getKeyChar();
 
     if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
