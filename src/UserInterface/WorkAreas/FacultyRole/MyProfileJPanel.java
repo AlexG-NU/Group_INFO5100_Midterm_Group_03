@@ -66,7 +66,7 @@ private boolean isValidPhone(String phone) {
         txtName.setText(person.getFullName());
         txtEmail.setText(person.getEmail());
         txtDepartment.setText(person.getDepartment());
-        txtPhone.setText(person.getPhone());
+        txtPhone.setText(person.getPhone() == null ? "" : person.getPhone().replaceAll("\\D", ""));
         txtProfileTitle.setText(person.getTitle());
     }
 
@@ -247,6 +247,7 @@ private boolean isValidPhone(String phone) {
 
     String fullName = txtName.getText().trim();
     String phone = txtPhone.getText().trim();
+    System.out.println("Phone entered: [" + phone + "]");
 
     if (!isValidName(fullName)) {
         javax.swing.JOptionPane.showMessageDialog(this, "Name can only contain letters and spaces.");
@@ -277,15 +278,26 @@ private boolean isValidPhone(String phone) {
     }//GEN-LAST:event_txtNameActionPerformed
     //Prevents users from typing letters into the phone field
     private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {                                 
-    char c = evt.getKeyChar();
+       char c = evt.getKeyChar();
+
+    if (Character.isISOControl(c)) {
+        return;
+    }
 
     if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
         evt.consume();
         javax.swing.JOptionPane.showMessageDialog(this, "Name can only contain letters and spaces.");
     }
 }
+
+// Prevents users from typing letters or symbols into the phone field.
+// Allows Backspace/Delete so users can edit the phone number.
 private void txtPhoneKeyTyped(java.awt.event.KeyEvent evt) {                                  
     char c = evt.getKeyChar();
+
+    if (Character.isISOControl(c)) {
+        return;
+    }
 
     if (!Character.isDigit(c)) {
         evt.consume();
