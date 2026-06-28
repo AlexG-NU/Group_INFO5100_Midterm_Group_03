@@ -5,6 +5,10 @@
 
 package UserInterface.WorkAreas.StudentRole;
 
+import Business.Business;
+import Business.Profiles.StudentProfile;
+import CourseCatalog.Course;
+import CourseCatalog.StudentGrade;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -23,6 +27,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class StudentTranscriptJPanel extends JPanel {
 
+    private Business business;
+    private StudentProfile student;
+
     private ArrayList<TranscriptCourse> completedCourses;
     private JTable tblTranscript;
     private JLabel lblGpa;
@@ -30,9 +37,13 @@ public class StudentTranscriptJPanel extends JPanel {
     private JButton btnRefresh;
     private JButton btnBack;
 
-    public StudentTranscriptJPanel() {
+    public StudentTranscriptJPanel(Business business, StudentProfile student) {
+        this.business = business;
+        this.student = student;
+
         completedCourses = new ArrayList<>();
-        initializeCompletedCourses();
+        loadCompletedCoursesFromGradeList();
+
         initComponents();
         populateTranscriptTable();
         updateSummaryLabels();
@@ -49,7 +60,7 @@ public class StudentTranscriptJPanel extends JPanel {
         tblTranscript = new JTable();
         tblTranscript.setModel(new DefaultTableModel(
                 new Object[][]{},
-                new String[]{"Course Number", "Course Name", "Term", "Credits", "Grade"}
+                new String[]{"Course Number", "Course Name", "Credits", "Grade"}
         ) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -70,6 +81,7 @@ public class StudentTranscriptJPanel extends JPanel {
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
         btnRefresh = new JButton("Refresh");
         btnRefresh.addActionListener(e -> {
+            loadCompletedCoursesFromGradeList();
             populateTranscriptTable();
             updateSummaryLabels();
         });
@@ -86,11 +98,53 @@ public class StudentTranscriptJPanel extends JPanel {
         add(bottomPanel, BorderLayout.SOUTH);
     }
 
-    private void initializeCompletedCourses() {
-        completedCourses.add(new TranscriptCourse("INFO 5100", "Application Engineering and Development", "Spring 2026", 4, "A"));
-        completedCourses.add(new TranscriptCourse("INFO 6150", "Web Design and User Experience Engineering", "Spring 2026", 4, "B+"));
-        completedCourses.add(new TranscriptCourse("DAMG 6210", "Data Management and Database Design", "Summer 2026", 4, "A-"));
-        completedCourses.add(new TranscriptCourse("INFO 6205", "Program Structure and Algorithms", "Summer 2026", 4, "B"));
+    private void loadCompletedCoursesFromGradeList() {
+        completedCourses.clear();
+
+        if (business == null || student == null || student.getPerson() == null) {
+            return;
+        }
+
+        String studentNuid = student.getPerson().getNuid();
+
+        if (studentNuid == null || studentNuid.trim().isEmpty()) {
+            studentNuid = student.getPerson().getPersonId();
+        }
+
+        if (studentNuid == null || studentNuid.trim().isEmpty()) {
+            return;
+        }
+
+        for (StudentGrade grade : business.getGradeList()) {
+            if (grade.getNuid() != null && grade.getNuid().equals(studentNuid)) {
+                Course course = getCourseByNumber(grade.getCourseNumber());
+
+                String courseName = "Course not found";
+                int credits = 4;
+
+                if (course != null) {
+                    courseName = course.getName();
+                    credits = course.getCredits();
+                }
+
+                completedCourses.add(new TranscriptCourse(
+                        grade.getCourseNumber(),
+                        courseName,
+                        credits,
+                        grade.getGrade()
+                ));
+            }
+        }
+    }
+
+    private Course getCourseByNumber(String courseNumber) {
+        if (business != null
+                && business.getDepartment() != null
+                && business.getDepartment().getCourseCatalog() != null) {
+            return business.getDepartment().getCourseCatalog().getCourseByNumber(courseNumber);
+        }
+
+        return null;
     }
 
     private void populateTranscriptTable() {
@@ -98,12 +152,11 @@ public class StudentTranscriptJPanel extends JPanel {
         model.setRowCount(0);
 
         for (TranscriptCourse course : completedCourses) {
-            Object[] row = new Object[5];
+            Object[] row = new Object[4];
             row[0] = course.getCourseNumber();
             row[1] = course.getCourseName();
-            row[2] = course.getTerm();
-            row[3] = course.getCredits();
-            row[4] = course.getGrade();
+            row[2] = course.getCredits();
+            row[3] = course.getGrade();
             model.addRow(row);
         }
     }
@@ -186,14 +239,12 @@ public class StudentTranscriptJPanel extends JPanel {
 
         private String courseNumber;
         private String courseName;
-        private String term;
         private int credits;
         private String grade;
 
-        public TranscriptCourse(String courseNumber, String courseName, String term, int credits, String grade) {
+        public TranscriptCourse(String courseNumber, String courseName, int credits, String grade) {
             this.courseNumber = courseNumber;
             this.courseName = courseName;
-            this.term = term;
             this.credits = credits;
             this.grade = grade;
         }
@@ -204,10 +255,6 @@ public class StudentTranscriptJPanel extends JPanel {
 
         public String getCourseName() {
             return courseName;
-        }
-
-        public String getTerm() {
-            return term;
         }
 
         public int getCredits() {
