@@ -263,7 +263,7 @@ After a successful login:
 
 ### Login
 
-* Username: **Advisor**
+* Username: **advisor**
 * Password: **\*\*\*\***
 
 ### Available Functions
@@ -542,10 +542,10 @@ Potential improvements include:
 Creating the repository for the team and merging the skeletons into the main branch. Implementing the admin use case, including managing people, profiles, and user accounts for all individuals in the university system. Testing of admin workflows. Merging and uploading of video files.
 
 ## Abhinav Tripathi (Faculty)
-Implemented faculty use case which included manage courses, myprofile, performance reports, and student profile. Involved in collaboration with team members through microsoft teams. Conducted testing for faculty work area, and contributed to documentation.  
+Implemented faculty use case which included manage courses, myprofile, performance reports, and student profile. Involved in collaboration with team members through Microsoft Teams. Conducted testing for faculty work area, and contributed to documentation.  
 
 ## Connor Ewart (Student)
 Implemented the Student use case, including coursework management, course registration, transcript review, and graduation audit. Created Student role panels, connected StudentWorkArea navigation, tested Student workflows, updated Student documentation, and used AI assistance for debugging support, Swing layout guidance, and documentation wording.
 
 ## Janet Chong (Academic Advisor)
-Implemented the Academic Advisor use case, including the advisor work area and its features for viewing student information, reviewing academic progress, graduation planning, and course recommendations. Integrated the advisor role into the application's login flow, helped with project integration and testing, created the project schedule, contributed to the project documentation, and tested relationships between student, faculty, and advisor data to ensure information was populated and updated correctly throughout the application. Responsible for formatting our readme for our group and Will be submitting final documentation for team. 
+Implemented the Academic Advisor use case, including the advisor work area and its features for viewing student information, reviewing academic progress, graduation planning, and course recommendations. Integrated the advisor role into the application's login flow, helped with project integration and testing, created the project schedule, contributed to the project documentation, and tested relationships between student, faculty, and advisor data to ensure information was populated and updated correctly throughout the application. I was also responsible for formatting the README for the group and submitting the final documentation for the team.
