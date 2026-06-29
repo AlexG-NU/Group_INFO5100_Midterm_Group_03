@@ -39,15 +39,15 @@ git clone https://github.com/AlexG-NU/Group_INFO5100_Midterm_Group_03.git
 
 * Setup Instructions
 
-1. Open Apache NetBeans IDE 16
-2. Select **Team → Git → Clone**
-3. Paste the repository URL
-4. Enter your GitHub credentials if prompted
-5. Choose a local destination folder
-6. Click **Finish**
-7. Select **File → Open Project**
-8. Open the cloned project
-9. Build and Run the project
+1.	Copy the repository URL from GitHub. 
+2.	Open Apache NetBeans IDE 16. 
+3.	Select Team → Git → Clone. 
+4.	Paste the repository URL. 
+5.	Sign in to GitHub if prompted. 
+6.	Select the main branch. 
+7.	Choose the local destination folder. 
+8.	Click Finish. 
+9.	When prompted, select Open Project.
 
 
 # Authentication & Access Control
@@ -56,10 +56,10 @@ The application uses an access control layer to authenticate users before granti
 
 After a successful login:
 
-* The system validates the username and password.
-* The user's assigned role is identified.
+* The system validates the username and password
+* The user's assigned role is identified
 * The corresponding work area is loaded
-* Users are restricted to features assigned to their role.
+* Users are restricted to features assigned to their role
 
 ## Authorization Rules
 
@@ -106,11 +106,11 @@ After a successful login:
 
 ### Features
 
-* Manage Students, Faculty, Advisors, and Staff
-* Create, edit, and delete person/profile records
-* Create, edit, and delete user accounts
-* Activate or deactivate user accounts
-* Maintain administrator profile
+* Manage user accounts
+* Register students, faculty, and academic staff 
+* Manage student records 
+* Manage faculty records 
+* Maintain administrator profile 
 
 ### Responsibilities
 
@@ -119,7 +119,6 @@ After a successful login:
 * Ensure person records and user accounts remain synchronized
 * Maintain administrator information
 
----
 
 ## Faculty - Abhinav Tripathi (Member 2)
 
@@ -139,7 +138,6 @@ After a successful login:
 * Generate performance reports
 * Maintain faculty profile
 
----
 
 ## Student - Connor Ewart (Member 3)
 
@@ -215,8 +213,6 @@ After a successful login:
 4. Create a user account using the student's NUID.
 5. Verify the account appears in the User Account list.
 
----
-
 ## Faculty Example
 
 ### Login
@@ -239,7 +235,6 @@ After a successful login:
 4. Enter the course number, course name, and credits.
 5. Verify the course appears in the course table.
 
----
 
 ## Student Example
 
@@ -263,216 +258,6 @@ After a successful login:
 4. Register for the course.
 5. Verify the course appears in the registered courses table.
 6. Drop the course and verify it is removed.
-
----
-
-## Academic Advisor Example
-
-### Login
-
-* Username: **Advisor**
-* Password: **\*\*\*\***
-
-### Available Functions
-
-* View Students
-* Student Details
-* Academic Progress
-* Degree Audit
-* Course Recommendations
-* My Profile
-
-### Example Scenario
-
-1. Login as Academic Advisor.
-2. Open **View Students**.
-3. Select a student.
-4. Review Student Details.
-5. Open Academic Progress to review GPA and transcript information.
-6. Review Degree Audit information.
-7. Enter advising notes and course recommendations.
-8. Save the recommendation.
-
-# Features Implemented
-
-## Administrator - Alexander Goldblatt (Member 1)
-
-### Features
-
-* Manage Students, Faculty, Advisors, and Staff
-* Create, edit, and delete person/profile records
-* Create, edit, and delete user accounts
-* Activate or deactivate user accounts
-* Maintain administrator profile
-
-### Responsibilities
-
-* Register students, faculty, advisors, and staff
-* Manage all user accounts within the system
-* Ensure person records and user accounts remain synchronized
-* Maintain administrator information
-
----
-
-## Faculty - Abhinav Tripathi (Member 2)
-
-### Features
-
-* Manage assigned courses
-* Add and update course information
-* View student academic profiles
-* Generate student performance reports
-* Maintain faculty profile
-
-### Responsibilities
-
-* View and manage assigned courses
-* Update course information
-* Review student academic progress
-* Generate performance reports
-* Maintain faculty profile
-
----
-
-## Student - Connor Ewart (Member 3)
-
-### Features
-
-* Coursework Management
-* Course Registration
-* Transcript Review
-* Graduation Audit
-
-### Responsibilities
-
-* Submit coursework assignments
-* Track assignment progress
-* Register for available courses
-* Drop registered courses
-* Review transcript information
-* Monitor graduation progress
-
----
-
-## Academic Advisor - Janet Chong (Member 4)
-
-### Features
-
-* View Student Records
-* Student Details
-* Academic Progress
-* Degree Audit
-* Course Recommendations
-* Advisor Profile
-
-### Responsibilities
-
-* Review student personal information
-* Monitor academic progress using transcript information
-* Review graduation planning
-* Create advising notes
-* Recommend future courses
-* Maintain advisor profile
-
-### Advisor Role Restrictions
-
-The Academic Advisor can review student information and provide academic guidance but cannot:
-
-* Modify grades
-* Modify transcripts
-* Register students for courses
-* Create or delete user accounts
-* Access Administrator work areas
-* Access Faculty work areas
-* Access Student work areas
-
----
-
-# Usage Instructions
-
-## Starting the Application
-
-1. Launch the project in Apache NetBeans IDE 16.
-2. Build and run the project.
-3. Log in using a valid username and password.
-4. The system automatically opens the appropriate work area based on the user's assigned role.
-
----
-
-## Administrator Example
-
-### Login
-
-* Username: **admin**
-* Password: **\*\*\*\***
-
-### Available Functions
-
-* Manage Students
-* Manage Faculty
-* Manage Advisors
-* Manage Staff
-* Administer User Accounts
-* My Profile
-
-### Example Scenario
-
-1. Login as Administrator.
-2. Select **Manage Students**.
-3. Add a new student record.
-4. Create a user account using the student's NUID.
-5. Verify the account appears in the User Account list.
-
----
-
-## Faculty Example
-
-### Login
-
-* Username: **maria**
-* Password: **\*\*\*\***
-
-### Available Functions
-
-* Manage Courses
-* Student Profiles
-* Performance Reports
-* My Profile
-
-### Example Scenario
-
-1. Login as Faculty.
-2. Select **Manage Courses**.
-3. Click **Add Course**.
-4. Enter the course number, course name, and credits.
-5. Verify the course appears in the course table.
-
----
-
-## Student Example
-
-### Login
-
-* Username: **adam**
-* Password: **\*\*\*\***
-
-### Available Functions
-
-* Coursework
-* Registration
-* Transcript
-* Graduation Audit
-
-### Example Scenario
-
-1. Login as Student.
-2. Open **Registration**.
-3. Select an available course.
-4. Register for the course.
-5. Verify the course appears in the registered courses table.
-6. Drop the course and verify it is removed.
-
----
 
 ## Academic Advisor Example
 
@@ -754,47 +539,13 @@ Potential improvements include:
 # Contribution Breakdown
 
 ## Alexander Goldblatt (Administrator)
-
-* Created the GitHub repository.
-* Integrated the provided project skeletons.
-* Implemented the Administrator use case.
-* Developed person/profile management.
-* Developed user account management.
-* Tested Administrator workflows.
-* Assisted with project integration and final video submission.
+Creating the repository for the team and merging the skeletons into the main branch. Implementing the admin use case, including managing people, profiles, and user accounts for all individuals in the university system. Testing of admin workflows. Merging and uploading of video files.
 
 ## Abhinav Tripathi (Faculty)
-
-* Implemented the Faculty work area.
-* Developed course management functionality.
-* Implemented Performance Reports.
-* Developed Student Profile features.
-* Tested Faculty workflows.
-* Contributed to project documentation.
-
+Implemented faculty use case which included manage courses, myprofile, performance reports, and student profile. Involved in collaboration with team members through microsoft teams. Conducted testing for faculty work area, and contributed to documentation.  
 
 ## Connor Ewart (Student)
-
-* Implemented the Student work area.
-* Developed Coursework Management.
-* Developed Course Registration.
-* Implemented Transcript Review.
-* Implemented Graduation Audit.
-* Tested Student workflows.
-* Contributed to project documentation and debugging.
-
+Implemented the Student use case, including coursework management, course registration, transcript review, and graduation audit. Created Student role panels, connected StudentWorkArea navigation, tested Student workflows, updated Student documentation, and used AI assistance for debugging support, Swing layout guidance, and documentation wording.
 
 ## Janet Chong (Academic Advisor)
-
-* Designed and implemented the Academic Advisor use case.
-* Developed the Advisor Work Area.
-* Implemented Student Details.
-* Developed Academic Progress functionality.
-* Implemented Degree Audit.
-* Developed Course Recommendations and advising notes.
-* Integrated the Academic Advisor role into the application's login flow.
-* Assisted with project integration and testing.
-* Created the project schedule and coordinated integration activities.
-* Contributed to project documentation.
-* Verified that Student, Faculty, and Academic Advisor features shared consistent transcript, GPA, and academic progress data.
-* Will be submitting all video link, PPT, zipped file for project.
+Implemented the Academic Advisor use case, including the advisor work area and its features for viewing student information, reviewing academic progress, graduation planning, and course recommendations. Integrated the advisor role into the application's login flow, helped with project integration and testing, created the project schedule, contributed to the project documentation, and tested relationships between student, faculty, and advisor data to ensure information was populated and updated correctly throughout the application. Responsible for formatting our readme for our group and Will be submitting final documentation for team. 
